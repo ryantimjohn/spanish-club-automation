@@ -427,22 +427,20 @@ def check():
     if not token():
         raise Problem("No Instagram key found (INSTAGRAM_ACCESS_TOKEN).")
     me = graph("GET", "me", fields="id,name,client_business_id")
+    granted = {p["permission"] for p in graph("GET", "me/permissions").get("data", []) if p.get("status") == "granted"}
+    if not NEEDED_SCOPES <= granted:
+        raise Problem("The key is missing permission(s): " + ", ".join(sorted(NEEDED_SCOPES - granted)) + ".")
     ig_id, username = instagram_account()
     print(f"The key works. It belongs to {me.get('name', 'a system user')} "
           f"(business {me.get('client_business_id', 'not shown')}) and posts to @{username}.")
+    # Expiry: Meta only tells an app token, so this usually says "not shown". A dead key fails the calls above.
     try:
         info = graph("GET", "debug_token", input_token=token()).get("data", {})
-    except Problem as e:  # posting still works; just say we couldn't read the details
-        print(f"Couldn't read the key's details from Meta: {e}")
+    except Problem:
         info = {}
-    if info and not info.get("is_valid", True):
-        raise Problem("Meta says the Instagram key is no longer valid.")
-    scopes = set(info.get("scopes", []))
-    if info and not NEEDED_SCOPES <= scopes:
-        raise Problem("The key is missing permission(s): " + ", ".join(sorted(NEEDED_SCOPES - scopes)) + ".")
     expires = info.get("expires_at")
     if expires is None:
-        print("Expiry: Meta didn't say.")
+        print("Expiry: not shown to this key. (A key that stops working fails this check, which emails you.)")
     elif expires == 0:
         print("Expiry: never.")
     else:
