@@ -44,6 +44,9 @@ ROOT = pathlib.Path(__file__).resolve().parent
 TZ = ZoneInfo("America/New_York")
 GRAPH = "https://graph.facebook.com/v27.0"  # Instagram API with Unified login (system-user key)
 NEEDED_SCOPES = {"instagram_basic", "instagram_content_publish"}
+# The club's Instagram account. Not secret; checked against the username before every post.
+IG_USER_ID = os.environ.get("IG_USER_ID", "17841429526104661")
+IG_USERNAME = "spanishclubforsocialists"
 WARN_BEFORE_EXPIRY = timedelta(days=21)
 LUMA_FEED = "https://api.lu.ma/ics/get?entity=calendar&id=cal-ITgDf27EcKUkodA"
 LATE_LIMIT = timedelta(hours=4)  # a post more than 4 hours late is reported as missed, not posted
@@ -411,15 +414,11 @@ def run(live, as_of=None, only=None):
 
 
 def instagram_account():
-    """(id, username) of the one Instagram account this key is assigned to."""
-    accounts = graph("GET", "me/assigned_instagram_accounts", fields="id,username").get("data", [])
-    want = os.environ.get("INSTAGRAM_USERNAME", "").lstrip("@").lower()
-    if want:
-        accounts = [a for a in accounts if a.get("username", "").lower() == want]
-    if len(accounts) != 1:
-        names = ", ".join("@" + a.get("username", "?") for a in accounts) or "none"
-        raise Problem(f"The key should reach exactly one Instagram account, but it reaches: {names}.")
-    return accounts[0]["id"], accounts[0].get("username", "?")
+    """(id, username) of the club's Instagram account, after checking the key reaches it."""
+    acct = graph("GET", IG_USER_ID, fields="id,username")
+    if acct.get("username", "").lower() != IG_USERNAME:
+        raise Problem(f"Account {IG_USER_ID} is @{acct.get('username')}, not @{IG_USERNAME}, so nothing was posted.")
+    return acct["id"], acct["username"]
 
 
 def check():

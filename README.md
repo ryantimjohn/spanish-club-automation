@@ -24,7 +24,9 @@ After every post, skip or problem, a comment appears on the **"Instagram log"** 
 - **Anything about the key**: see "Secrets" below.
 
 ## Secret (Settings → Secrets and variables → Actions)
-- `INSTAGRAM_ACCESS_TOKEN`: the "System-user access token" from the club's Meta business portfolio (Instagram API with Unified login). It's set to never expire. Every Sunday the workflow checks the key still works, without posting, and emails you if it doesn't.
+- `INSTAGRAM_ACCESS_TOKEN`: the "System-user access token" from the club's Meta business portfolio (Instagram API with Unified login). Every Sunday the workflow checks the key still works, without posting, and emails you if it doesn't.
+
+That's the only secret. The club's Instagram account ID (`17841429526104661`, @spanishclubforsocialists) is in `post.py`; it isn't secret, and the account's username is checked before every post. Luma is read from its public calendar feed, so no Luma key is needed.
 
 ## Running it by hand (Actions → Instagram → Run workflow)
 - `test`: shows what's due right now. Posts nothing.
