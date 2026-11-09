@@ -1,0 +1,275 @@
+{
+ "about": "Posts the Spanish Club for Socialists Instagram account may publish. Only posts listed under 'approved' with a matching fingerprint are ever posted.",
+ "built_at": "2026-11-09T14:51:07+00:00",
+ "timezone": "America/New_York",
+ "items": [
+  {
+   "id": "2026-11-13-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Nov 16–18",
+   "post_at": "2026-11-13T09:00",
+   "slides": [
+    {
+     "image": "images/2026-11-13-cover.jpg",
+     "sha256": "624e85e9cae811ad847a862e55c3fb6d3c9936c17133834f0c329c09ce66d148",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/fdfiostx",
+      "https://luma.com/xvjrwk39",
+      "https://luma.com/6yd9kbw8"
+     ]
+    },
+    {
+     "image": "images/2026-11-16-st-stephens-45.jpg",
+     "sha256": "55d96fda3acc0098b8d7fa9beb3d044b5c9b9689e565fa514f45cdc7c1af9d6b",
+     "event": "https://luma.com/fdfiostx"
+    },
+    {
+     "image": "images/2026-11-17-liberation-center-45.jpg",
+     "sha256": "189852df1d6466899d4c10121a1376d4cf86bce05c71375732f516ad48a32466",
+     "event": "https://luma.com/xvjrwk39"
+    },
+    {
+     "image": "images/2026-11-18-online-45.jpg",
+     "sha256": "b40fc8888081e401fb5c60c9b624c0e8b5abd79932e51b50e6baadb4b26e6ff9",
+     "event": "https://luma.com/6yd9kbw8"
+    },
+    {
+     "image": "images/last-slide.jpg",
+     "sha256": "d5bb9d6c332ed3be3995dbdfc2a7c25677d02a5f442f6020ed1e6de8277024b8",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Nov 16 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/fdfiostx"
+    },
+    {
+     "text": "Tue Nov 17 · 7:00–8:30 PM · DC Liberation Center, 337 H St NE",
+     "event": "https://luma.com/xvjrwk39"
+    },
+    {
+     "text": "Wed Nov 18 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/6yd9kbw8"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/fdfiostx": "2026-11-16T19:00",
+    "https://luma.com/xvjrwk39": "2026-11-17T19:00",
+    "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "d101bfcedb776dd2cdb53934030e5a1949aec9d278af0af2fa26db96b763307d"
+  },
+  {
+   "id": "2026-11-13-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2026-11-13T09:05",
+   "slides": [
+    {
+     "image": "images/2026-11-13-cover-story.jpg",
+     "sha256": "f80e67ea9b71a3b7e03bb96f13671535bb42d09eb5ead0f62b75e27f9447da07",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/fdfiostx",
+      "https://luma.com/xvjrwk39",
+      "https://luma.com/6yd9kbw8"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/fdfiostx": "2026-11-16T19:00",
+    "https://luma.com/xvjrwk39": "2026-11-17T19:00",
+    "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
+   },
+   "depends_on": "2026-11-13-carousel",
+   "fingerprint": "069c4b1b7c9883c4b08cc3a31558efce3e72bc8abb58e14ad9370939ed375d4d"
+  },
+  {
+   "id": "2026-11-20-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Nov 23",
+   "post_at": "2026-11-20T09:00",
+   "slides": [
+    {
+     "image": "images/2026-11-20-cover.jpg",
+     "sha256": "0e95d9a3ddb537d34ae75fe90acf16892f3b09e5149b6d757e5ee775e00c9b56",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-v5wz"
+     ]
+    },
+    {
+     "image": "images/2026-11-23-st-stephens-45.jpg",
+     "sha256": "c58d282549656442370bcbb72be442b4df941bd96d2cadf254dcef36b269c82c",
+     "event": "https://luma.com/spanish-v5wz"
+    },
+    {
+     "image": "images/last-slide.jpg",
+     "sha256": "d5bb9d6c332ed3be3995dbdfc2a7c25677d02a5f442f6020ed1e6de8277024b8",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Nov 23 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-v5wz"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "No Online session Wed Nov 25."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-v5wz": "2026-11-23T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "5b49c58f719a0cce478c0cf939bb49105cc0fd74bdc34b2af885705cf24bbd28"
+  },
+  {
+   "id": "2026-11-20-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2026-11-20T09:05",
+   "slides": [
+    {
+     "image": "images/2026-11-20-cover-story.jpg",
+     "sha256": "3e10dbfe2aa1a5418dfc12b0ff1a3b7e402db6663def36f3944b463862b5acb5",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-v5wz"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-v5wz": "2026-11-23T19:00"
+   },
+   "depends_on": "2026-11-20-carousel",
+   "fingerprint": "fef4a4134ba903aa9e3c0012c22a66698aa7e8ebaf9e20459eb35c2a2cc47490"
+  },
+  {
+   "id": "2026-11-27-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Nov 30 – Dec 2",
+   "post_at": "2026-11-27T09:00",
+   "slides": [
+    {
+     "image": "images/2026-11-27-cover.jpg",
+     "sha256": "edd92e265a37550aa9b562cca072aa90057da35368360820c73a28b4590c32b5",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-e8i8",
+      "https://luma.com/spanish-z6b7"
+     ]
+    },
+    {
+     "image": "images/2026-11-30-st-stephens-45.jpg",
+     "sha256": "dbb89d9157b36618c48e715ef26404eb34ac9abbba0a75e95071b6a6a524b876",
+     "event": "https://luma.com/spanish-e8i8"
+    },
+    {
+     "image": "images/2026-12-02-online-45.jpg",
+     "sha256": "66f1686f85b02e604895651cbaa7e4b8f0a37991a19682c586c23e49f1ed1441",
+     "event": "https://luma.com/spanish-z6b7"
+    },
+    {
+     "image": "images/last-slide.jpg",
+     "sha256": "d5bb9d6c332ed3be3995dbdfc2a7c25677d02a5f442f6020ed1e6de8277024b8",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Nov 30 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-e8i8"
+    },
+    {
+     "text": "Wed Dec 2 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-z6b7"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-e8i8": "2026-11-30T19:00",
+    "https://luma.com/spanish-z6b7": "2026-12-02T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "748bd578997dd9066dbfc6a6a920a38cf9dc3887c607234677b6e7826ec20eb2"
+  },
+  {
+   "id": "2026-11-27-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2026-11-27T09:05",
+   "slides": [
+    {
+     "image": "images/2026-11-27-cover-story.jpg",
+     "sha256": "932f43fa556092e50859f2508bc60d5c013eb5695de7d19f0a45224896d3deb3",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-e8i8",
+      "https://luma.com/spanish-z6b7"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-e8i8": "2026-11-30T19:00",
+    "https://luma.com/spanish-z6b7": "2026-12-02T19:00"
+   },
+   "depends_on": "2026-11-27-carousel",
+   "fingerprint": "7b41abeb7564e1845f89cc95d946b010613491bc271a501521ea039903ab24c7"
+  }
+ ],
+ "approved": {}
+}
