@@ -6,6 +6,8 @@ This posts the club's Instagram posts on schedule, so nobody has to remember to.
 - **Event days, 11 AM Eastern:** that night's flyer as a Story.
 - **Breaks:** a heads-up before the winter break, and "We're back!" before Jan 4.
 
+Carousels with a St. Stephen's night, and the winter break post, are tagged with the church's location, so they also show on its Instagram location page. The tag uses the church's Facebook "delegate Page ID", `13539212969` (not secret). If the St. Stephen's night is cancelled, the tag is left off. If Instagram refuses the tag, the post goes out without it and the notice says so. Stories can't be tagged with a location through the API.
+
 Reels and link stickers stay manual. Instagram's API can't add stickers.
 
 ## What keeps it safe

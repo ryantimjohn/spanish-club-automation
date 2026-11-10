@@ -170,7 +170,8 @@ def event_problems(item, luma):
 
 
 def plan(item, luma):
-    """What would actually be posted after the Luma check: (slides, caption, notes, cover_included)."""
+    """What would actually be posted after the Luma check: (slides, caption, notes, cover_included, location).
+    location is the post's place tag, or None if it has none or all the events it rests on are gone."""
     bad = event_problems(item, luma)
     notes = [f"The {nice(parse_et(item['events'][url]))} event ({url}) {why}." for url, why in bad.items()]
     slides, cover_included = [], False
@@ -189,7 +190,12 @@ def plan(item, luma):
         slides = []
     if bad and slides:
         notes.append("Left out of this post: the flyer, caption line and cover that mention it.")
-    return slides, caption, notes, cover_included
+    location = item.get("location")
+    if location and location["events"] and all(e in bad for e in location["events"]):
+        location = None
+        if slides:
+            notes.append("The location tag was left off, since its events are gone.")
+    return slides, caption, notes, cover_included, location
 
 
 # ---------- GitHub (log commits and notices) ----------
@@ -272,28 +278,45 @@ def wait_ready(container):
     raise Problem("Instagram took more than 5 minutes to prepare the post.")
 
 
-def make_containers(item, slides, caption, user_id):
+def make_containers(item, slides, caption, user_id, location=None, notes=None):
+    """Prepare the post on Instagram (not published yet). A location goes on a single image or the carousel itself
+    (Meta doesn't allow it on carousel slides or Stories). If Instagram refuses the location, the post is made
+    without it and a note says so, so the post still goes out."""
+    def feed_container(**params):
+        if location:
+            try:
+                return graph("POST", f"{user_id}/media", location_id=location["id"], **params)["id"]
+            except Problem as e:
+                if "location" not in str(e).lower():
+                    raise
+                if notes is not None:
+                    notes.append(f"Posted without the {location['name']} location tag, because Instagram refused it. "
+                                 f"Details: {e}")
+        return graph("POST", f"{user_id}/media", **params)["id"]
+
     if item["kind"] == "story":
         c = graph("POST", f"{user_id}/media", image_url=public_url(slides[0]["image"]), media_type="STORIES")["id"]
     elif len(slides) == 1:
-        c = graph("POST", f"{user_id}/media", image_url=public_url(slides[0]["image"]), caption=caption)["id"]
+        c = feed_container(image_url=public_url(slides[0]["image"]), caption=caption)
     else:
         children = [graph("POST", f"{user_id}/media", image_url=public_url(s["image"]), is_carousel_item="true")["id"]
                     for s in slides]
-        c = graph("POST", f"{user_id}/media", media_type="CAROUSEL", children=",".join(children), caption=caption)["id"]
+        c = feed_container(media_type="CAROUSEL", children=",".join(children), caption=caption)
     wait_ready(c)
     return c
 
 
 # ---------- the run ----------
 
-def describe(item, slides, caption, notes):
+def describe(item, slides, caption, notes, location=None):
     kind = {"story": "Story", "image": "single post"}.get(item["kind"], "carousel")
     if item["kind"] == "carousel" and len(slides) == 1:
         kind = "single post"
     lines = [f"  Would post: {kind} with {len(slides)} image(s)"]
     for n, s in enumerate(slides, 1):
         lines.append(f"    {n}. {s['image']}")
+    if location:
+        lines.append(f"  Location: {location['name']} (Facebook Page {location['id']})")
     if caption:
         lines.append("  Caption:")
         lines += [f"    | {line}" for line in caption.split("\n")]
@@ -373,7 +396,7 @@ def run(live, as_of=None, only=None):
                 save("log/posted.json", log)
                 push_log(f"Skipped {item['id']}")
             continue
-        slides, caption, notes, cover_included = plan(item, luma)
+        slides, caption, notes, cover_included, location = plan(item, luma)
         if not slides:
             msg = f"Skipped: {item['what']}. " + " ".join(notes)
             print("  " + msg)
@@ -385,12 +408,12 @@ def run(live, as_of=None, only=None):
             continue
         for s in slides:
             check_image(s, online=live)
-        print(describe(item, slides, caption, notes))
+        print(describe(item, slides, caption, notes, location))
         if not live:
             cover_this_run[item["id"]] = cover_included
             continue
         try:
-            container = make_containers(item, slides, caption, user_id)
+            container = make_containers(item, slides, caption, user_id, location, notes)
             log[item["id"]] = {"status": "publishing", "at": now_et().isoformat(timespec="minutes")}
             save("log/posted.json", log)
             push_log(f"Publishing {item['id']}")
