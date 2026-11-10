@@ -1,8 +1,46 @@
 {
  "about": "Posts the Spanish Club for Socialists Instagram account may publish. Only posts listed under 'approved' with a matching fingerprint are ever posted.",
- "built_at": "2026-11-09T14:51:07+00:00",
+ "built_at": "2026-11-10T23:20:06+00:00",
  "timezone": "America/New_York",
  "items": [
+  {
+   "id": "2026-11-09-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2026-11-09T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-09-st-stephens-story.jpg",
+     "sha256": "b0e76195338eabc4ea7abd620696af4172c4f811671e513b5a857072df90f39a",
+     "event": "https://luma.com/dabp3z21"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/dabp3z21": "2026-11-09T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "8c0809d461ddee8fd31d97c113fe2e88b4279812f291e2600e4e5fc0743bd637"
+  },
+  {
+   "id": "2026-11-11-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2026-11-11T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-11-online-story.jpg",
+     "sha256": "b6c205c77cd085f9a12ca51c81d25f74c6f144be6cadc733a080ee5ab574324d",
+     "event": "https://luma.com/qzrrckkb"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/qzrrckkb": "2026-11-11T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "f47b10efa20fd0ef98b765c0e009d75bab93c212c40582d54a3b6088345bfcf1"
+  },
   {
    "id": "2026-11-13-carousel",
    "kind": "carousel",
@@ -11,7 +49,7 @@
    "slides": [
     {
      "image": "images/2026-11-13-cover.jpg",
-     "sha256": "624e85e9cae811ad847a862e55c3fb6d3c9936c17133834f0c329c09ce66d148",
+     "sha256": "ed984caf06dea56db6d549a8758efd3fe9232d8f3fba9593d4836f846895e81e",
      "event": null,
      "lists_events": [
       "https://luma.com/fdfiostx",
@@ -31,12 +69,12 @@
     },
     {
      "image": "images/2026-11-18-online-45.jpg",
-     "sha256": "b40fc8888081e401fb5c60c9b624c0e8b5abd79932e51b50e6baadb4b26e6ff9",
+     "sha256": "5f5abc37b9d29dd78c9c1fe7bd4b54c31b371c189ca3246a85ee27eb66ff4d62",
      "event": "https://luma.com/6yd9kbw8"
     },
     {
-     "image": "images/last-slide.jpg",
-     "sha256": "d5bb9d6c332ed3be3995dbdfc2a7c25677d02a5f442f6020ed1e6de8277024b8",
+     "image": "images/2026-11-13-end-slide.jpg",
+     "sha256": "fa59fb880d2ca848a0b325a80bf2353bf00f35f4c80ebd239be375048e6c1a94",
      "event": null
     }
    ],
@@ -75,7 +113,14 @@
     "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
    },
    "depends_on": null,
-   "fingerprint": "d101bfcedb776dd2cdb53934030e5a1949aec9d278af0af2fa26db96b763307d"
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/fdfiostx"
+    ]
+   },
+   "fingerprint": "c021b3e66107e8543af01e7ef3ea01c638ee807b3f6eb2837d421f5f7109603d"
   },
   {
    "id": "2026-11-13-cover-story",
@@ -85,7 +130,7 @@
    "slides": [
     {
      "image": "images/2026-11-13-cover-story.jpg",
-     "sha256": "f80e67ea9b71a3b7e03bb96f13671535bb42d09eb5ead0f62b75e27f9447da07",
+     "sha256": "3acb189f6f35093aaa706f552c38525386694c2cec93417926308cca6ea4d909",
      "event": null,
      "lists_events": [
       "https://luma.com/fdfiostx",
@@ -101,7 +146,64 @@
     "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
    },
    "depends_on": "2026-11-13-carousel",
-   "fingerprint": "069c4b1b7c9883c4b08cc3a31558efce3e72bc8abb58e14ad9370939ed375d4d"
+   "fingerprint": "0c9c30aa3083b2d314c9e39141a23c8ebee6fe95f8025d89d45d187c40721e0a"
+  },
+  {
+   "id": "2026-11-16-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2026-11-16T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-16-st-stephens-story.jpg",
+     "sha256": "d3c88c0adff3dbbd9b2f2e38987cc4977a7ed1befe928fd7093ee6dd3d3a83c1",
+     "event": "https://luma.com/fdfiostx"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/fdfiostx": "2026-11-16T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "d4de02b499dd77202a2e85c726f83dfaa821793263c476a39accc7f892d462ad"
+  },
+  {
+   "id": "2026-11-17-story",
+   "kind": "story",
+   "what": "Day-of Story: DC Liberation Center",
+   "post_at": "2026-11-17T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-17-liberation-center-story.jpg",
+     "sha256": "c22e0ff4a5f19283f05d0d0d7f6bbb4fa675321c63ecc2f6c9261a1f0d40bf30",
+     "event": "https://luma.com/xvjrwk39"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/xvjrwk39": "2026-11-17T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "2df996395438b2a8785ddf487c32b361b42137458c54e3985d3ec74e80da33ad"
+  },
+  {
+   "id": "2026-11-18-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2026-11-18T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-18-online-story.jpg",
+     "sha256": "7262f6d8fb664fdd0f4973685dbbf344579a642f57ebd0a3c0a4bcfb3e00200b",
+     "event": "https://luma.com/6yd9kbw8"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "8d25e7af161c0455e261814e9e31a1ad21864f3ff37b56b9a8323a8c9088b1bb"
   },
   {
    "id": "2026-11-20-carousel",
@@ -111,7 +213,7 @@
    "slides": [
     {
      "image": "images/2026-11-20-cover.jpg",
-     "sha256": "0e95d9a3ddb537d34ae75fe90acf16892f3b09e5149b6d757e5ee775e00c9b56",
+     "sha256": "a9f1ea3e9e3375b84f30a517bb1a64374052f704d221cb7879253a4882f7f7c9",
      "event": null,
      "lists_events": [
       "https://luma.com/spanish-v5wz"
@@ -123,8 +225,8 @@
      "event": "https://luma.com/spanish-v5wz"
     },
     {
-     "image": "images/last-slide.jpg",
-     "sha256": "d5bb9d6c332ed3be3995dbdfc2a7c25677d02a5f442f6020ed1e6de8277024b8",
+     "image": "images/2026-11-20-end-slide.jpg",
+     "sha256": "bbe81614c71a16966522e1bca5e606d55019e1852e9eae468b1484b12808b9d3",
      "event": null
     }
    ],
@@ -159,7 +261,14 @@
     "https://luma.com/spanish-v5wz": "2026-11-23T19:00"
    },
    "depends_on": null,
-   "fingerprint": "5b49c58f719a0cce478c0cf939bb49105cc0fd74bdc34b2af885705cf24bbd28"
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-v5wz"
+    ]
+   },
+   "fingerprint": "49defee8b5f0cdf15b71939f292655c5bfbe58214a89e46dfaa726e3ac48d518"
   },
   {
    "id": "2026-11-20-cover-story",
@@ -169,7 +278,7 @@
    "slides": [
     {
      "image": "images/2026-11-20-cover-story.jpg",
-     "sha256": "3e10dbfe2aa1a5418dfc12b0ff1a3b7e402db6663def36f3944b463862b5acb5",
+     "sha256": "bfe2f349a9b9ed79276ed14a5463e4f8ec37526eeb3927d4746e578590f27fb1",
      "event": null,
      "lists_events": [
       "https://luma.com/spanish-v5wz"
@@ -181,7 +290,26 @@
     "https://luma.com/spanish-v5wz": "2026-11-23T19:00"
    },
    "depends_on": "2026-11-20-carousel",
-   "fingerprint": "fef4a4134ba903aa9e3c0012c22a66698aa7e8ebaf9e20459eb35c2a2cc47490"
+   "fingerprint": "3f051ca2c95f12b30fd362e39a40c178ac188bf70b944b00f25ae47ed4ded315"
+  },
+  {
+   "id": "2026-11-23-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2026-11-23T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-23-st-stephens-story.jpg",
+     "sha256": "aee21c8b37c52b796037c9ce487c97e745fe40419ac1241b74c12397ac4d7daf",
+     "event": "https://luma.com/spanish-v5wz"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-v5wz": "2026-11-23T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "514df606c46397b7e27ea68d0069ed2bacfd4cade5485b5a0ff482254208dc30"
   },
   {
    "id": "2026-11-27-carousel",
@@ -191,7 +319,7 @@
    "slides": [
     {
      "image": "images/2026-11-27-cover.jpg",
-     "sha256": "edd92e265a37550aa9b562cca072aa90057da35368360820c73a28b4590c32b5",
+     "sha256": "a0b3dc54a999cefff688c42d2f2457dd2c45b7706820e8cf9296d39c360b1740",
      "event": null,
      "lists_events": [
       "https://luma.com/spanish-e8i8",
@@ -205,12 +333,12 @@
     },
     {
      "image": "images/2026-12-02-online-45.jpg",
-     "sha256": "66f1686f85b02e604895651cbaa7e4b8f0a37991a19682c586c23e49f1ed1441",
+     "sha256": "55ab137e024667d1ca437d0a854261425df4fa293f32b2f6aafe10356dd6749f",
      "event": "https://luma.com/spanish-z6b7"
     },
     {
-     "image": "images/last-slide.jpg",
-     "sha256": "d5bb9d6c332ed3be3995dbdfc2a7c25677d02a5f442f6020ed1e6de8277024b8",
+     "image": "images/2026-11-27-end-slide.jpg",
+     "sha256": "efdf3f53a078f18ede8825aed80f3446e45bf17536ac5a3e6d0a59c101c65ced",
      "event": null
     }
    ],
@@ -244,7 +372,14 @@
     "https://luma.com/spanish-z6b7": "2026-12-02T19:00"
    },
    "depends_on": null,
-   "fingerprint": "748bd578997dd9066dbfc6a6a920a38cf9dc3887c607234677b6e7826ec20eb2"
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-e8i8"
+    ]
+   },
+   "fingerprint": "d2ac81a6a61566351cc284d1265b3a15df18678fdf0d7b1b56d5fd52efd468a7"
   },
   {
    "id": "2026-11-27-cover-story",
@@ -254,7 +389,7 @@
    "slides": [
     {
      "image": "images/2026-11-27-cover-story.jpg",
-     "sha256": "932f43fa556092e50859f2508bc60d5c013eb5695de7d19f0a45224896d3deb3",
+     "sha256": "d571bd88d7a1b1468e6de4e814b1ec12204e4b10d02aebc9fb036f0ffc3d520e",
      "event": null,
      "lists_events": [
       "https://luma.com/spanish-e8i8",
@@ -268,7 +403,2768 @@
     "https://luma.com/spanish-z6b7": "2026-12-02T19:00"
    },
    "depends_on": "2026-11-27-carousel",
-   "fingerprint": "7b41abeb7564e1845f89cc95d946b010613491bc271a501521ea039903ab24c7"
+   "fingerprint": "7b3dcfa31ea262d0ac18bce5e765a9600a1f9f7e4e338cd5449a441baeabd6ad"
+  },
+  {
+   "id": "2026-11-30-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2026-11-30T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-30-st-stephens-story.jpg",
+     "sha256": "5fa81d7875e7acf141a66b96d30f5f66fa804b8fe800ff2acae3f4040e1ff346",
+     "event": "https://luma.com/spanish-e8i8"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-e8i8": "2026-11-30T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "326c9f21282ae576437c4ca3007f9f33b7826166d9e0ee7b9b815e2402e0102f"
+  },
+  {
+   "id": "2026-12-02-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2026-12-02T11:00",
+   "slides": [
+    {
+     "image": "images/2026-12-02-online-story.jpg",
+     "sha256": "afe9f8bda89c53b5c5b626506f73bc884171bf280ac7b306e655d5b58d7c80d5",
+     "event": "https://luma.com/spanish-z6b7"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-z6b7": "2026-12-02T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "f4a081c0c2f7ecaebac87c62550f7ea137b148320d755cb5633d9abfadef8414"
+  },
+  {
+   "id": "2026-12-04-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Dec 7–9",
+   "post_at": "2026-12-04T09:00",
+   "slides": [
+    {
+     "image": "images/2026-12-04-cover.jpg",
+     "sha256": "884cbd6e1a585d9900d1200f57831be568f616ad168f44a642ca49a278280850",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-2ey3",
+      "https://luma.com/spanish-4kys"
+     ]
+    },
+    {
+     "image": "images/2026-12-07-st-stephens-45.jpg",
+     "sha256": "8357d8715c7e95bef2d117ee4bd4ba4450f3977a11114c191faf2a3fad32e9a1",
+     "event": "https://luma.com/spanish-2ey3"
+    },
+    {
+     "image": "images/2026-12-09-online-45.jpg",
+     "sha256": "36e732486e66b65d0096e4caa9732c7581fc3def45859a3456984bc9e13523ce",
+     "event": "https://luma.com/spanish-4kys"
+    },
+    {
+     "image": "images/2026-12-04-end-slide.jpg",
+     "sha256": "6559b0d7aeeb90f9ab97900d41e5b90a1bf95537f78a6f6fcda21805a19d3deb",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Dec 7 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-2ey3"
+    },
+    {
+     "text": "Wed Dec 9 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-4kys"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-2ey3": "2026-12-07T19:00",
+    "https://luma.com/spanish-4kys": "2026-12-09T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-2ey3"
+    ]
+   },
+   "fingerprint": "6ff2b956d57bb66e48777167c9ce427d064cef4a018531f432123c47d208b2aa"
+  },
+  {
+   "id": "2026-12-04-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2026-12-04T09:05",
+   "slides": [
+    {
+     "image": "images/2026-12-04-cover-story.jpg",
+     "sha256": "9446d9973b20a00ff028ed83047aee2f2d7f153a3ad5713f69baad848888bbea",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-2ey3",
+      "https://luma.com/spanish-4kys"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-2ey3": "2026-12-07T19:00",
+    "https://luma.com/spanish-4kys": "2026-12-09T19:00"
+   },
+   "depends_on": "2026-12-04-carousel",
+   "fingerprint": "b1d32523402a6948ed8dde2f586b9a1ca7ba2ac42cecb09b1de2a8110c7ff989"
+  },
+  {
+   "id": "2026-12-07-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2026-12-07T11:00",
+   "slides": [
+    {
+     "image": "images/2026-12-07-st-stephens-story.jpg",
+     "sha256": "ccb16a794168d06defc4ad07fbf243ca5bf83b074f9de34faa913a7a389b8a04",
+     "event": "https://luma.com/spanish-2ey3"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-2ey3": "2026-12-07T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "48cf45fa04b129c6197315bfd8898cc164bf73bbb17651afb107ea6835a2f489"
+  },
+  {
+   "id": "2026-12-09-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2026-12-09T11:00",
+   "slides": [
+    {
+     "image": "images/2026-12-09-online-story.jpg",
+     "sha256": "eef54dee5e920eb58beb4a223e22ebdaf21916def54b03ff638099ca8df880a3",
+     "event": "https://luma.com/spanish-4kys"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-4kys": "2026-12-09T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "5d4b2bfaf015d948dc777c8e2725294c1247127622534d6b87b97cc372efc7c2"
+  },
+  {
+   "id": "2026-12-11-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Dec 14–16",
+   "post_at": "2026-12-11T09:00",
+   "slides": [
+    {
+     "image": "images/2026-12-11-cover.jpg",
+     "sha256": "c5bd28a0a518c914a9b917d1d3857a43ff55bf7dc5dabc421392ae2f69b1b3ea",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-vqti",
+      "https://luma.com/spanish-jbk8"
+     ]
+    },
+    {
+     "image": "images/2026-12-14-st-stephens-45.jpg",
+     "sha256": "6253a272ec97e1287b99387463e8b577c96c6a01f27ed16b73509dcd8d3d9bdc",
+     "event": "https://luma.com/spanish-vqti"
+    },
+    {
+     "image": "images/2026-12-16-online-45.jpg",
+     "sha256": "9c855bfb6bccf9db5853ed7efb0f88f004c5020c5dd5a6c0272bf1e76b9914a7",
+     "event": "https://luma.com/spanish-jbk8"
+    },
+    {
+     "image": "images/2026-12-11-end-slide.jpg",
+     "sha256": "fa59fb880d2ca848a0b325a80bf2353bf00f35f4c80ebd239be375048e6c1a94",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club, our last before the winter break:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Dec 14 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-vqti"
+    },
+    {
+     "text": "Wed Dec 16 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-jbk8"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-vqti": "2026-12-14T19:00",
+    "https://luma.com/spanish-jbk8": "2026-12-16T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-vqti"
+    ]
+   },
+   "fingerprint": "61907c6866f46d18a884f951cd300f314dd8aa9d6fa2ac03dbf1603da3582007"
+  },
+  {
+   "id": "2026-12-11-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2026-12-11T09:05",
+   "slides": [
+    {
+     "image": "images/2026-12-11-cover-story.jpg",
+     "sha256": "dfb8f6259912072e7f7911647eff6902f2e3794b16dd07175f29c2422842af99",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-vqti",
+      "https://luma.com/spanish-jbk8"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-vqti": "2026-12-14T19:00",
+    "https://luma.com/spanish-jbk8": "2026-12-16T19:00"
+   },
+   "depends_on": "2026-12-11-carousel",
+   "fingerprint": "ce19f9772c0ab78b776540e696de88bc1788e943ae08061ebdb64d394a783eae"
+  },
+  {
+   "id": "2026-12-14-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2026-12-14T11:00",
+   "slides": [
+    {
+     "image": "images/2026-12-14-st-stephens-story.jpg",
+     "sha256": "fc96345a02c0a9bab48dec91790bd61b41fab0efe55c9d9e45584cdb41c9cc3d",
+     "event": "https://luma.com/spanish-vqti"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-vqti": "2026-12-14T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "fc18a1db1614e5cce083a3d4f2a208c97b41994ff82b8b97af0b444d750947d8"
+  },
+  {
+   "id": "2026-12-16-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2026-12-16T11:00",
+   "slides": [
+    {
+     "image": "images/2026-12-16-online-story.jpg",
+     "sha256": "c6ffc0dc1932766f7b1003a9123e38c301d8a3c8662bc2e6b3c23de24468dc1b",
+     "event": "https://luma.com/spanish-jbk8"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-jbk8": "2026-12-16T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "e52c3e7525dc85089cc100567727e8ade2ada9ff25549f62fbd419327f636422"
+  },
+  {
+   "id": "2026-12-18-break",
+   "kind": "image",
+   "what": "Winter break heads-up",
+   "post_at": "2026-12-18T09:00",
+   "slides": [
+    {
+     "image": "images/2026-12-18-winter-break.jpg",
+     "sha256": "07647e85905c681b52a407e6e75fc6293198fd4af16932aee727ac31450e4821",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-p01y"
+     ]
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Spanish Club is on winter break from Dec 21 to Jan 3."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "We're back Monday, Jan 4 at St. Stephen's!"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "¡Felices fiestas!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-p01y": "2027-01-04T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": []
+   },
+   "fingerprint": "5ba4f779b485b9338a51f7d40380a39525e0e7420d2009c59d4819c99901c26e"
+  },
+  {
+   "id": "2027-01-01-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Jan 4–6",
+   "post_at": "2027-01-01T09:00",
+   "slides": [
+    {
+     "image": "images/2027-01-01-cover.jpg",
+     "sha256": "5256ab9d8348a13d815b90f3413a04d3ba447d03959e62e92b28746dd8a432b5",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-p01y",
+      "https://luma.com/spanish-rm0h"
+     ]
+    },
+    {
+     "image": "images/2027-01-04-st-stephens-45.jpg",
+     "sha256": "fc570c6b63113115ab3912839cf9ea8715b9332b5ecc8bf1234aeb949d225187",
+     "event": "https://luma.com/spanish-p01y"
+    },
+    {
+     "image": "images/2027-01-06-online-45.jpg",
+     "sha256": "5b8b1e5a441b7df79cd7461e2536aa34de94a99a83e2a0e4e1512688664ea65c",
+     "event": "https://luma.com/spanish-rm0h"
+    },
+    {
+     "image": "images/2027-01-01-end-slide.jpg",
+     "sha256": "bbe81614c71a16966522e1bca5e606d55019e1852e9eae468b1484b12808b9d3",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "We're back! Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Jan 4 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-p01y"
+    },
+    {
+     "text": "Wed Jan 6 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-rm0h"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-p01y": "2027-01-04T19:00",
+    "https://luma.com/spanish-rm0h": "2027-01-06T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-p01y"
+    ]
+   },
+   "fingerprint": "8f0bdcc7287804d025ab5cd4f56ac4e6ead85d892391a68560f1e25a99fc9a33"
+  },
+  {
+   "id": "2027-01-01-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-01-01T09:05",
+   "slides": [
+    {
+     "image": "images/2027-01-01-cover-story.jpg",
+     "sha256": "ac4a295bdcd3e88e2eb6af7decc85752ed5a532e1f65852825f3e90c87c6a13a",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-p01y",
+      "https://luma.com/spanish-rm0h"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-p01y": "2027-01-04T19:00",
+    "https://luma.com/spanish-rm0h": "2027-01-06T19:00"
+   },
+   "depends_on": "2027-01-01-carousel",
+   "fingerprint": "650bc58566846f26e15f5c459b16fa0faa8a113d61d03cb9a4b49172fed5a0b6"
+  },
+  {
+   "id": "2027-01-04-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-01-04T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-04-st-stephens-story.jpg",
+     "sha256": "bc37d7f38cb624d8ef45e3361e49a24ee34834c70468e01b8151a19da6856dfa",
+     "event": "https://luma.com/spanish-p01y"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-p01y": "2027-01-04T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "a26cead84b8e0239a5bff6d60454171e23cfa5031021e4ef669cf67a14fd3b8c"
+  },
+  {
+   "id": "2027-01-06-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-01-06T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-06-online-story.jpg",
+     "sha256": "8ccb4b1e0fa6dbde923319cdb978e83b3a7a319a88c42df7113732fe7f56a1aa",
+     "event": "https://luma.com/spanish-rm0h"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-rm0h": "2027-01-06T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "57bcdef2a9aa66549179c39122122d8d643506354a6c61c50e7338e96bea5081"
+  },
+  {
+   "id": "2027-01-08-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Jan 11–13",
+   "post_at": "2027-01-08T09:00",
+   "slides": [
+    {
+     "image": "images/2027-01-08-cover.jpg",
+     "sha256": "8b9870a3949d80b1552deb0b46e24afffbd8fee0da7cd6682f4df441f04612bc",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-vnin",
+      "https://luma.com/spanish-y4gm"
+     ]
+    },
+    {
+     "image": "images/2027-01-11-st-stephens-45.jpg",
+     "sha256": "3d4095c40483b7b75b4f9e24589fdea7497625df92e3543f4ac7911aec01daea",
+     "event": "https://luma.com/spanish-vnin"
+    },
+    {
+     "image": "images/2027-01-13-online-45.jpg",
+     "sha256": "3fd91fdc68b5906874b0a75abf2d1b688eca19e02767959904e89ffabb5e52ee",
+     "event": "https://luma.com/spanish-y4gm"
+    },
+    {
+     "image": "images/2027-01-08-end-slide.jpg",
+     "sha256": "26100b55f9efaac4a54144b0a5a406e92689805ef86bbf2ef585bbd69610755c",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Jan 11 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-vnin"
+    },
+    {
+     "text": "Wed Jan 13 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-y4gm"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-vnin": "2027-01-11T19:00",
+    "https://luma.com/spanish-y4gm": "2027-01-13T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-vnin"
+    ]
+   },
+   "fingerprint": "92787533dc879150202577255758e7bc604d04f94c1fdea65149a88001228587"
+  },
+  {
+   "id": "2027-01-08-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-01-08T09:05",
+   "slides": [
+    {
+     "image": "images/2027-01-08-cover-story.jpg",
+     "sha256": "d39712dda4f07b99b6eaf6d0b05553fb179e9462f42af3e0b2239b07a99faa74",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-vnin",
+      "https://luma.com/spanish-y4gm"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-vnin": "2027-01-11T19:00",
+    "https://luma.com/spanish-y4gm": "2027-01-13T19:00"
+   },
+   "depends_on": "2027-01-08-carousel",
+   "fingerprint": "1160b5e755d4f4b6b856d9ecae0d4f1ee950e965bd44937704d6e537168f16da"
+  },
+  {
+   "id": "2027-01-11-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-01-11T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-11-st-stephens-story.jpg",
+     "sha256": "8d767f4efccbfe2accc5179a319e46e7e095db1406d5eb4fac22290303d55f66",
+     "event": "https://luma.com/spanish-vnin"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-vnin": "2027-01-11T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "c2d03f48c4ea1398a413692a7bd20cf7e3035d5de4ff444a0f0ef5aff59d9631"
+  },
+  {
+   "id": "2027-01-13-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-01-13T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-13-online-story.jpg",
+     "sha256": "1120f02d9507fe922c3e9d9ae0996da1f94b00e6df6053299051d52feea69344",
+     "event": "https://luma.com/spanish-y4gm"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-y4gm": "2027-01-13T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "7cd1b05da37aa1176d9b8b9ccf9a579b2128dd64b2024eff358fc555b8e09dfa"
+  },
+  {
+   "id": "2027-01-15-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Jan 20",
+   "post_at": "2027-01-15T09:00",
+   "slides": [
+    {
+     "image": "images/2027-01-15-cover.jpg",
+     "sha256": "480adf6b82027d145e90ef6eac036a527337c690e3f680b7d1ce819c97f4e576",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-e7u0"
+     ]
+    },
+    {
+     "image": "images/2027-01-20-online-45.jpg",
+     "sha256": "5faff1046605a71f9651167d559c2937600f5df89be0b8e57a51df0c762772a3",
+     "event": "https://luma.com/spanish-e7u0"
+    },
+    {
+     "image": "images/2027-01-15-end-slide.jpg",
+     "sha256": "6559b0d7aeeb90f9ab97900d41e5b90a1bf95537f78a6f6fcda21805a19d3deb",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Wed Jan 20 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-e7u0"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "No St. Stephen's session Mon Jan 18."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-e7u0": "2027-01-20T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "f737d9a886de90178191972ab59dd6fa6d19cf47d944d64965451d852c8fdb2f"
+  },
+  {
+   "id": "2027-01-15-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-01-15T09:05",
+   "slides": [
+    {
+     "image": "images/2027-01-15-cover-story.jpg",
+     "sha256": "7fd5f618f85b224919a36dc53ef74f4780fab8937e0d803d1eed9e41c02cebc4",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-e7u0"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-e7u0": "2027-01-20T19:00"
+   },
+   "depends_on": "2027-01-15-carousel",
+   "fingerprint": "773ebe95950438273ea01c7b64764d1eec64b131c340dfddc159837932af3e25"
+  },
+  {
+   "id": "2027-01-20-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-01-20T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-20-online-story.jpg",
+     "sha256": "d7d0c30f4091e7c542892a3c38787993ce213a64c4cf7920b770b60adb4ed34f",
+     "event": "https://luma.com/spanish-e7u0"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-e7u0": "2027-01-20T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "fec880704321e43c248194775d668bb3781e6131f75e4239765a19c1e0fdc2eb"
+  },
+  {
+   "id": "2027-01-22-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Jan 25–27",
+   "post_at": "2027-01-22T09:00",
+   "slides": [
+    {
+     "image": "images/2027-01-22-cover.jpg",
+     "sha256": "05731406fe4d8d9d7c0a4a8c7d3ac02356d7031988b714889ff65b6a45866f89",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-t0kn",
+      "https://luma.com/spanish-70uv"
+     ]
+    },
+    {
+     "image": "images/2027-01-25-st-stephens-45.jpg",
+     "sha256": "fe2b375254eb68af4475084e7b69729e61174c087d9c02af352e15857965b6bb",
+     "event": "https://luma.com/spanish-t0kn"
+    },
+    {
+     "image": "images/2027-01-27-online-45.jpg",
+     "sha256": "82d49c181e4933b2d09878d6db2f3d4d509650759cb858816f2ed2719105d09c",
+     "event": "https://luma.com/spanish-70uv"
+    },
+    {
+     "image": "images/2027-01-22-end-slide.jpg",
+     "sha256": "fa59fb880d2ca848a0b325a80bf2353bf00f35f4c80ebd239be375048e6c1a94",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Jan 25 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-t0kn"
+    },
+    {
+     "text": "Wed Jan 27 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-70uv"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-t0kn": "2027-01-25T19:00",
+    "https://luma.com/spanish-70uv": "2027-01-27T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-t0kn"
+    ]
+   },
+   "fingerprint": "e96d86b20202acf079847570499bb667be497a074176d446d6532fff0b1834aa"
+  },
+  {
+   "id": "2027-01-22-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-01-22T09:05",
+   "slides": [
+    {
+     "image": "images/2027-01-22-cover-story.jpg",
+     "sha256": "68ef69ccf59a53b87e9d316277d5e4191a5cf8e6221f0c3c017c017e61c0a0e2",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-t0kn",
+      "https://luma.com/spanish-70uv"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-t0kn": "2027-01-25T19:00",
+    "https://luma.com/spanish-70uv": "2027-01-27T19:00"
+   },
+   "depends_on": "2027-01-22-carousel",
+   "fingerprint": "3d8152f8de01d42383aa550f46819cebc2b1bb56521bf353107f6ac71a358da1"
+  },
+  {
+   "id": "2027-01-25-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-01-25T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-25-st-stephens-story.jpg",
+     "sha256": "da1a255a44d25e4536a2c06905085d061e9a496bc8566e983ac7d9f135dfd64d",
+     "event": "https://luma.com/spanish-t0kn"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-t0kn": "2027-01-25T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "893609068169c58870c632352dfdffe11ad47a6d70f59ac63d7b42036c23424d"
+  },
+  {
+   "id": "2027-01-27-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-01-27T11:00",
+   "slides": [
+    {
+     "image": "images/2027-01-27-online-story.jpg",
+     "sha256": "23aa71e52f3a1bed266ed5846a13baf177631dc5594a42b86cb5f4350988243b",
+     "event": "https://luma.com/spanish-70uv"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-70uv": "2027-01-27T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "2200b846adf1f7e7faf2caf7cca25f2a025a506e11f8da6d1ffccbde75fb8b32"
+  },
+  {
+   "id": "2027-01-29-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Feb 1–3",
+   "post_at": "2027-01-29T09:00",
+   "slides": [
+    {
+     "image": "images/2027-01-29-cover.jpg",
+     "sha256": "a97cf5bf2abd51854846d8ba7433636a711d99bde6672dab9f9dd9aef3af482d",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-m859",
+      "https://luma.com/spanish-zu1n"
+     ]
+    },
+    {
+     "image": "images/2027-02-01-st-stephens-45.jpg",
+     "sha256": "f9f3d2cfff6f1b8ab98dd9e462108203a5c9d85054a8f4c9775787d1d6e61c85",
+     "event": "https://luma.com/spanish-m859"
+    },
+    {
+     "image": "images/2027-02-03-online-45.jpg",
+     "sha256": "b47f7419171cf3cf5457919c1ac8c30e8498c03d046b90df1fc308a7c9385aa7",
+     "event": "https://luma.com/spanish-zu1n"
+    },
+    {
+     "image": "images/2027-01-29-end-slide.jpg",
+     "sha256": "efdf3f53a078f18ede8825aed80f3446e45bf17536ac5a3e6d0a59c101c65ced",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Feb 1 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-m859"
+    },
+    {
+     "text": "Wed Feb 3 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-zu1n"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-m859": "2027-02-01T19:00",
+    "https://luma.com/spanish-zu1n": "2027-02-03T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-m859"
+    ]
+   },
+   "fingerprint": "8b5810ac18f79335fcb328c042c29bf55b07981cd26b0f8651a591b8e5c562da"
+  },
+  {
+   "id": "2027-01-29-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-01-29T09:05",
+   "slides": [
+    {
+     "image": "images/2027-01-29-cover-story.jpg",
+     "sha256": "7cfd31023b1b3b9f7c031a6080bfffd52a8db73d374fe75466df5bb67c14813a",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-m859",
+      "https://luma.com/spanish-zu1n"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-m859": "2027-02-01T19:00",
+    "https://luma.com/spanish-zu1n": "2027-02-03T19:00"
+   },
+   "depends_on": "2027-01-29-carousel",
+   "fingerprint": "dbacdc19467ec1ee881bfdacb1359a06708f3fa27db0cf9ca14b1cda082600f7"
+  },
+  {
+   "id": "2027-02-01-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-02-01T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-01-st-stephens-story.jpg",
+     "sha256": "0b52cdc60a9a4240b0eb0571c8ec639a0646c4e158dc32c0f073bc92a8f07b52",
+     "event": "https://luma.com/spanish-m859"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-m859": "2027-02-01T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "6e9b92a5da85c3d0dfca17332f5c1ac94c7468e9a711c15fe6ed0c1009e7884d"
+  },
+  {
+   "id": "2027-02-03-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-02-03T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-03-online-story.jpg",
+     "sha256": "15cbb97dffefb2c0e38edf03f6f5b91858030ab4a155e29f596ecfa1992d1051",
+     "event": "https://luma.com/spanish-zu1n"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-zu1n": "2027-02-03T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "480fa7f4807cc9370e7335f947a8f1738aa24c9606aab82f8d43783756189abc"
+  },
+  {
+   "id": "2027-02-05-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Feb 8–10",
+   "post_at": "2027-02-05T09:00",
+   "slides": [
+    {
+     "image": "images/2027-02-05-cover.jpg",
+     "sha256": "3eed13cc85921d9772c1696aa63ba97898f472b2d6480203d7562105abc1ca63",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-uvdf",
+      "https://luma.com/spanish-ubqf"
+     ]
+    },
+    {
+     "image": "images/2027-02-08-st-stephens-45.jpg",
+     "sha256": "1cda1103d8baa4d6eb2246f42c4106c17058d046d0cf011f78b3864e21944cf6",
+     "event": "https://luma.com/spanish-uvdf"
+    },
+    {
+     "image": "images/2027-02-10-online-45.jpg",
+     "sha256": "465f8f5220990a29f5b05fb1fcf4465fafe953533025da3b9bff50a17823ef6e",
+     "event": "https://luma.com/spanish-ubqf"
+    },
+    {
+     "image": "images/2027-02-05-end-slide.jpg",
+     "sha256": "bbe81614c71a16966522e1bca5e606d55019e1852e9eae468b1484b12808b9d3",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Feb 8 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-uvdf"
+    },
+    {
+     "text": "Wed Feb 10 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-ubqf"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-uvdf": "2027-02-08T19:00",
+    "https://luma.com/spanish-ubqf": "2027-02-10T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-uvdf"
+    ]
+   },
+   "fingerprint": "6cd54b628dad9111875af85d5957ee0289f54c106c1487249de596507e1ca69a"
+  },
+  {
+   "id": "2027-02-05-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-02-05T09:05",
+   "slides": [
+    {
+     "image": "images/2027-02-05-cover-story.jpg",
+     "sha256": "9f307d2fe361661c49c30df0ee21dc94888d0939d05cbf1454bf17a33f93d4fb",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-uvdf",
+      "https://luma.com/spanish-ubqf"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-uvdf": "2027-02-08T19:00",
+    "https://luma.com/spanish-ubqf": "2027-02-10T19:00"
+   },
+   "depends_on": "2027-02-05-carousel",
+   "fingerprint": "8edf3b91ebd446d97b6915e486836ea077bd6d46dc0fa1827b5cf16d60bab52f"
+  },
+  {
+   "id": "2027-02-08-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-02-08T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-08-st-stephens-story.jpg",
+     "sha256": "48fc648609dfde73332470c758a7143cd4557f60f5ee3263cce8486fca7e794c",
+     "event": "https://luma.com/spanish-uvdf"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-uvdf": "2027-02-08T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "8bc9401fa6bfea78c61d3d706d83e9170bac0183ddd24ef12ce8f18a19bc7c66"
+  },
+  {
+   "id": "2027-02-10-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-02-10T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-10-online-story.jpg",
+     "sha256": "5ff511ae93cbeace4ffa1b44604e8779aa2126979e420c99d5625b0bb3cf7be2",
+     "event": "https://luma.com/spanish-ubqf"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-ubqf": "2027-02-10T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "1f339a0d52c8ec5751da2d9687d5084d4b4b8a2c0db5c41bff91f4bec8830135"
+  },
+  {
+   "id": "2027-02-12-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Feb 17",
+   "post_at": "2027-02-12T09:00",
+   "slides": [
+    {
+     "image": "images/2027-02-12-cover.jpg",
+     "sha256": "fd13fe13bb7546c6cecd810ccb18aa8c4a768dda88409c86f09ec13a2d4ccdaa",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-w8l2"
+     ]
+    },
+    {
+     "image": "images/2027-02-17-online-45.jpg",
+     "sha256": "5ba0628e26cf02d0b014370169376f9bb2648959b40acbffb190b00ec5f8fc19",
+     "event": "https://luma.com/spanish-w8l2"
+    },
+    {
+     "image": "images/2027-02-12-end-slide.jpg",
+     "sha256": "6559b0d7aeeb90f9ab97900d41e5b90a1bf95537f78a6f6fcda21805a19d3deb",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Wed Feb 17 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-w8l2"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "No St. Stephen's session Mon Feb 15."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-w8l2": "2027-02-17T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "7eac3281e508b1897a4f4f8666c2d63de00a0722cd9a89fa8c7fdde2364afd6d"
+  },
+  {
+   "id": "2027-02-12-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-02-12T09:05",
+   "slides": [
+    {
+     "image": "images/2027-02-12-cover-story.jpg",
+     "sha256": "7ace3b9df7081de36a8b7b9163167f1540ec4ccf290abfec008486cf614cef88",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-w8l2"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-w8l2": "2027-02-17T19:00"
+   },
+   "depends_on": "2027-02-12-carousel",
+   "fingerprint": "60e91df846444957a366e7b06b98896d4978351acf1dd0c0c22b1ec214d884d6"
+  },
+  {
+   "id": "2027-02-17-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-02-17T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-17-online-story.jpg",
+     "sha256": "e4614d48fe7d95d30ad09dba3f5ad013f54efa5e8e9f4b588df5e32634b073ab",
+     "event": "https://luma.com/spanish-w8l2"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-w8l2": "2027-02-17T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "adfd67730c910031b91310ec534b77314b14bd271d3539a3d8089d7788c0f7e9"
+  },
+  {
+   "id": "2027-02-19-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Feb 22–24",
+   "post_at": "2027-02-19T09:00",
+   "slides": [
+    {
+     "image": "images/2027-02-19-cover.jpg",
+     "sha256": "2c4844ede43a55683fa78064430c77163f38d71d28b3968c20f9b6d390f89393",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-xows",
+      "https://luma.com/spanish-34s7"
+     ]
+    },
+    {
+     "image": "images/2027-02-22-st-stephens-45.jpg",
+     "sha256": "b3724c23bf947c98c8ad1f6d7f1beb9035e9299cb251d724db239c31e6d67eef",
+     "event": "https://luma.com/spanish-xows"
+    },
+    {
+     "image": "images/2027-02-24-online-45.jpg",
+     "sha256": "b00f3ac95eead61123da1ad0c9171a8d38abf0e30e7220006d617ef33a55d749",
+     "event": "https://luma.com/spanish-34s7"
+    },
+    {
+     "image": "images/2027-02-19-end-slide.jpg",
+     "sha256": "fa59fb880d2ca848a0b325a80bf2353bf00f35f4c80ebd239be375048e6c1a94",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Feb 22 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-xows"
+    },
+    {
+     "text": "Wed Feb 24 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-34s7"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-xows": "2027-02-22T19:00",
+    "https://luma.com/spanish-34s7": "2027-02-24T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-xows"
+    ]
+   },
+   "fingerprint": "dc8ae8a5d7cd9e17e11443342f2bb9ec5d1ff7c4270fd7b288e4842933abd249"
+  },
+  {
+   "id": "2027-02-19-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-02-19T09:05",
+   "slides": [
+    {
+     "image": "images/2027-02-19-cover-story.jpg",
+     "sha256": "fd8bf614fcc1c1b7da353d97a35c1ccf754b0c226affdc4e255d859579586e6b",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-xows",
+      "https://luma.com/spanish-34s7"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-xows": "2027-02-22T19:00",
+    "https://luma.com/spanish-34s7": "2027-02-24T19:00"
+   },
+   "depends_on": "2027-02-19-carousel",
+   "fingerprint": "7336c1798a24b0cadb5f6e9f1a58bd95726cf2141cbcc1319251b789ef544eee"
+  },
+  {
+   "id": "2027-02-22-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-02-22T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-22-st-stephens-story.jpg",
+     "sha256": "227eeddd89fbe04faf933766aaef18f0a7ffc6acca7f27527c8c0a6f24d1fdf0",
+     "event": "https://luma.com/spanish-xows"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-xows": "2027-02-22T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "e2a4b06aac636945c4579b764710ecd4004ed6abb0f5bff3ffb1447616b0212c"
+  },
+  {
+   "id": "2027-02-24-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-02-24T11:00",
+   "slides": [
+    {
+     "image": "images/2027-02-24-online-story.jpg",
+     "sha256": "cb77004c77e7b649ddbf49195eb6bc41efd8f2fd1c43d3c7d88685ab5e86f5d7",
+     "event": "https://luma.com/spanish-34s7"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-34s7": "2027-02-24T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "3b15988e58637bf37e9472ae7ec607b7ca4b002b1a7a3217452364f4f01e981d"
+  },
+  {
+   "id": "2027-02-26-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Mar 1–3",
+   "post_at": "2027-02-26T09:00",
+   "slides": [
+    {
+     "image": "images/2027-02-26-cover.jpg",
+     "sha256": "676307ff7daab7ce2ce85c9c4867234d58e69ae5c505fd954f5ec0f191a243f3",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-rf90",
+      "https://luma.com/spanish-92b3"
+     ]
+    },
+    {
+     "image": "images/2027-03-01-st-stephens-45.jpg",
+     "sha256": "0f46a6f956348d1c0782a089611447da65c0b199853d3054d2ea7fde4102e55e",
+     "event": "https://luma.com/spanish-rf90"
+    },
+    {
+     "image": "images/2027-03-03-online-45.jpg",
+     "sha256": "4b938d227a0fc51d9e65493f032944723e6eaeb8e18e1a86c23876d03fe58326",
+     "event": "https://luma.com/spanish-92b3"
+    },
+    {
+     "image": "images/2027-02-26-end-slide.jpg",
+     "sha256": "efdf3f53a078f18ede8825aed80f3446e45bf17536ac5a3e6d0a59c101c65ced",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Mar 1 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-rf90"
+    },
+    {
+     "text": "Wed Mar 3 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-92b3"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-rf90": "2027-03-01T19:00",
+    "https://luma.com/spanish-92b3": "2027-03-03T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-rf90"
+    ]
+   },
+   "fingerprint": "011548cb379c84ffa8b9317a51b6d0885179fb0cb941035f18b51ffba7e36aab"
+  },
+  {
+   "id": "2027-02-26-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-02-26T09:05",
+   "slides": [
+    {
+     "image": "images/2027-02-26-cover-story.jpg",
+     "sha256": "774155d223230a2240c1af55934442e586f2f30a2a5b990941d4988e793e4d1e",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-rf90",
+      "https://luma.com/spanish-92b3"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-rf90": "2027-03-01T19:00",
+    "https://luma.com/spanish-92b3": "2027-03-03T19:00"
+   },
+   "depends_on": "2027-02-26-carousel",
+   "fingerprint": "61e7a394efc263a7470c0f3d852d9c186d59535e16f9745c9e659afa5069485a"
+  },
+  {
+   "id": "2027-03-01-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-03-01T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-01-st-stephens-story.jpg",
+     "sha256": "48ce8fd04b0977b0a3ef3cddca2e369a5e46dd72d785c97b0f18b74652c22722",
+     "event": "https://luma.com/spanish-rf90"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-rf90": "2027-03-01T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "ed8f637676ce37cfd25e29e412cc837a6d9675cf18ac74bba4c5b8a5957262c6"
+  },
+  {
+   "id": "2027-03-03-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-03-03T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-03-online-story.jpg",
+     "sha256": "565bb0e2b173be368eb8f027863bf14accf02f26b413a075b706dc9b65360688",
+     "event": "https://luma.com/spanish-92b3"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-92b3": "2027-03-03T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "5ec8f91de87cbb3b2a394e84834e3043d54807d0524cc0ad560944f91cf1c0b7"
+  },
+  {
+   "id": "2027-03-05-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Mar 8–10",
+   "post_at": "2027-03-05T09:00",
+   "slides": [
+    {
+     "image": "images/2027-03-05-cover.jpg",
+     "sha256": "50877891cfadda3b65f33a5b869ba9cdc41feb61591db4f8c571a4e5b3582242",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-2nxq",
+      "https://luma.com/spanish-bsma"
+     ]
+    },
+    {
+     "image": "images/2027-03-08-st-stephens-45.jpg",
+     "sha256": "25319f6c4159081ed78057c3c75ef25472a0413ba730803b65bb50876c6402e6",
+     "event": "https://luma.com/spanish-2nxq"
+    },
+    {
+     "image": "images/2027-03-10-online-45.jpg",
+     "sha256": "28fce345673e76f35acb747381fd88cbe5484bc5704f30e73148eb473ab0ae76",
+     "event": "https://luma.com/spanish-bsma"
+    },
+    {
+     "image": "images/2027-03-05-end-slide.jpg",
+     "sha256": "6559b0d7aeeb90f9ab97900d41e5b90a1bf95537f78a6f6fcda21805a19d3deb",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Mar 8 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-2nxq"
+    },
+    {
+     "text": "Wed Mar 10 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-bsma"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-2nxq": "2027-03-08T19:00",
+    "https://luma.com/spanish-bsma": "2027-03-10T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-2nxq"
+    ]
+   },
+   "fingerprint": "a294d9c63e02b1b3cf134bd80da8abccdb989a3b618d7d4f1cecbb658666ae6e"
+  },
+  {
+   "id": "2027-03-05-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-03-05T09:05",
+   "slides": [
+    {
+     "image": "images/2027-03-05-cover-story.jpg",
+     "sha256": "d00ba3353124abee3a12b8db9e9ea305787be8ab6999b42d5c101cf550291649",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-2nxq",
+      "https://luma.com/spanish-bsma"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-2nxq": "2027-03-08T19:00",
+    "https://luma.com/spanish-bsma": "2027-03-10T19:00"
+   },
+   "depends_on": "2027-03-05-carousel",
+   "fingerprint": "f2aac8718dca13644b818f56e5ad384ab2d8d20c28b4f1147a1edc3a46736288"
+  },
+  {
+   "id": "2027-03-08-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-03-08T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-08-st-stephens-story.jpg",
+     "sha256": "d658eaa5937bedc2ea6bbb067cd8696279305e01e5a6075dc26468768b1fff72",
+     "event": "https://luma.com/spanish-2nxq"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-2nxq": "2027-03-08T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "8fd95a6f35dd28fa42d211fe80c24ff446b478e0ce556e3fb5a341084037e8c0"
+  },
+  {
+   "id": "2027-03-10-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-03-10T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-10-online-story.jpg",
+     "sha256": "4e0748769a06695a2c7031814c9235917efbe417185f4b80c95964babb1732dc",
+     "event": "https://luma.com/spanish-bsma"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-bsma": "2027-03-10T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "c6f99121d23ce151165f8354267cbd1aacfe20f35d52829b37ded32f78742e20"
+  },
+  {
+   "id": "2027-03-12-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Mar 15–17",
+   "post_at": "2027-03-12T09:00",
+   "slides": [
+    {
+     "image": "images/2027-03-12-cover.jpg",
+     "sha256": "a8d89058176e109d8961b37a3d65c232ecc9104c374f6d1ffa2aec524ed3e487",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-le12",
+      "https://luma.com/spanish-bz0m"
+     ]
+    },
+    {
+     "image": "images/2027-03-15-st-stephens-45.jpg",
+     "sha256": "450760988d4832411d3c9e046499cd868d9133a5da6e863ec64837fe612f7733",
+     "event": "https://luma.com/spanish-le12"
+    },
+    {
+     "image": "images/2027-03-17-online-45.jpg",
+     "sha256": "c2682c8122ea019e8d5f3bdd5ca776bf7a82559a7097f9eb348cdc6141e5e5f7",
+     "event": "https://luma.com/spanish-bz0m"
+    },
+    {
+     "image": "images/2027-03-12-end-slide.jpg",
+     "sha256": "bbe81614c71a16966522e1bca5e606d55019e1852e9eae468b1484b12808b9d3",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Mar 15 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-le12"
+    },
+    {
+     "text": "Wed Mar 17 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-bz0m"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-le12": "2027-03-15T19:00",
+    "https://luma.com/spanish-bz0m": "2027-03-17T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-le12"
+    ]
+   },
+   "fingerprint": "77345707db6a02259054e359de5f04c630cfec64581f920345880aae0a191822"
+  },
+  {
+   "id": "2027-03-12-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-03-12T09:05",
+   "slides": [
+    {
+     "image": "images/2027-03-12-cover-story.jpg",
+     "sha256": "bfed2969765f22402726565c978f297584c2e895ab6e7398c63e3c8aa8cd04ae",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-le12",
+      "https://luma.com/spanish-bz0m"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-le12": "2027-03-15T19:00",
+    "https://luma.com/spanish-bz0m": "2027-03-17T19:00"
+   },
+   "depends_on": "2027-03-12-carousel",
+   "fingerprint": "976a846178a0ad1e50bca0bf80de6d38cb802a0a901d78d54e9a13d48f8433e3"
+  },
+  {
+   "id": "2027-03-15-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-03-15T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-15-st-stephens-story.jpg",
+     "sha256": "4146292697b4aef1274f29e2a72f5e202c0ddce02fd550188f53f33363970fbc",
+     "event": "https://luma.com/spanish-le12"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-le12": "2027-03-15T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "7d0c37a1b9736f58f280195ba1a877f303ad9e2ea1d125cee65e9f4ecba1b268"
+  },
+  {
+   "id": "2027-03-17-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-03-17T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-17-online-story.jpg",
+     "sha256": "c6fd265d7895d44d9525974b791b991b17177a3a1cbcf537a1560a57b1dd1854",
+     "event": "https://luma.com/spanish-bz0m"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-bz0m": "2027-03-17T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "9e0cdd6641756c564527d840d3f6c1239d4f568d3b48aaf6c0b0b46bd68d216c"
+  },
+  {
+   "id": "2027-03-19-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Mar 22–24",
+   "post_at": "2027-03-19T09:00",
+   "slides": [
+    {
+     "image": "images/2027-03-19-cover.jpg",
+     "sha256": "c06299268aaa77ded04d888f0a5b6c01453fa81e70aa03ad95a78d6395e86ba2",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-4ahs",
+      "https://luma.com/spanish-2zd7"
+     ]
+    },
+    {
+     "image": "images/2027-03-22-st-stephens-45.jpg",
+     "sha256": "953111292259a245fbff26f33bb2d496eea6371f49a4ee54787abe496eb27f31",
+     "event": "https://luma.com/spanish-4ahs"
+    },
+    {
+     "image": "images/2027-03-24-online-45.jpg",
+     "sha256": "86894fdb17ba2d3b576abc5040c03d795b7b2383e5df427e6f586fb292ecc39d",
+     "event": "https://luma.com/spanish-2zd7"
+    },
+    {
+     "image": "images/2027-03-19-end-slide.jpg",
+     "sha256": "fa59fb880d2ca848a0b325a80bf2353bf00f35f4c80ebd239be375048e6c1a94",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Mar 22 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-4ahs"
+    },
+    {
+     "text": "Wed Mar 24 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-2zd7"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-4ahs": "2027-03-22T19:00",
+    "https://luma.com/spanish-2zd7": "2027-03-24T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-4ahs"
+    ]
+   },
+   "fingerprint": "cf8f5fb273a67ba1aad267bd918d0a17cce65af577f04b5b5b6c639767396c07"
+  },
+  {
+   "id": "2027-03-19-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-03-19T09:05",
+   "slides": [
+    {
+     "image": "images/2027-03-19-cover-story.jpg",
+     "sha256": "80bb0a2d56111e8c052f56ceba924989e4b8e2484b3c9799b5ac6c03070ed453",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-4ahs",
+      "https://luma.com/spanish-2zd7"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-4ahs": "2027-03-22T19:00",
+    "https://luma.com/spanish-2zd7": "2027-03-24T19:00"
+   },
+   "depends_on": "2027-03-19-carousel",
+   "fingerprint": "9a2f30e2a2208e507943ec626f89ad0924ffb596c9877313e587a261a240c7db"
+  },
+  {
+   "id": "2027-03-22-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-03-22T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-22-st-stephens-story.jpg",
+     "sha256": "8d80642bf36d749fefdaf7c927344933d56b393cea4cfa2d95ad92af511edc3a",
+     "event": "https://luma.com/spanish-4ahs"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-4ahs": "2027-03-22T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "d53696b9a72c5ef882b1e5f48790ac040e8ee65f20f041c97a5ee9b8414eb3f2"
+  },
+  {
+   "id": "2027-03-24-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-03-24T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-24-online-story.jpg",
+     "sha256": "cceaa63bdfc22771d90f442c7839ad3ee58e55ced5d9fe4bb05ae0339014aee0",
+     "event": "https://luma.com/spanish-2zd7"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-2zd7": "2027-03-24T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "6e830e238ef05519e15f346a7d85d7daa11d72acb5812ed2b864833cde2d7cc0"
+  },
+  {
+   "id": "2027-03-26-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Mar 29–31",
+   "post_at": "2027-03-26T09:00",
+   "slides": [
+    {
+     "image": "images/2027-03-26-cover.jpg",
+     "sha256": "0f03b10f37678bac13fc1b9e5e16d2d830047b43fc0dbede05bc98a8d46c5127",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-ovn1",
+      "https://luma.com/spanish-nwef"
+     ]
+    },
+    {
+     "image": "images/2027-03-29-st-stephens-45.jpg",
+     "sha256": "543480a7f8abc02eee76de75d47f53542740d8f2056b6664de84ed43fea8cefa",
+     "event": "https://luma.com/spanish-ovn1"
+    },
+    {
+     "image": "images/2027-03-31-online-45.jpg",
+     "sha256": "918c03901dd0178225826098496e65240ee90dbc00f04d1d85f1d3afd6da57fd",
+     "event": "https://luma.com/spanish-nwef"
+    },
+    {
+     "image": "images/2027-03-26-end-slide.jpg",
+     "sha256": "efdf3f53a078f18ede8825aed80f3446e45bf17536ac5a3e6d0a59c101c65ced",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Mar 29 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-ovn1"
+    },
+    {
+     "text": "Wed Mar 31 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-nwef"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-ovn1": "2027-03-29T19:00",
+    "https://luma.com/spanish-nwef": "2027-03-31T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-ovn1"
+    ]
+   },
+   "fingerprint": "ce126dc5c6a4abfe843e593bc23de47f7524c9142ea9d9bc880efa936c494f0b"
+  },
+  {
+   "id": "2027-03-26-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-03-26T09:05",
+   "slides": [
+    {
+     "image": "images/2027-03-26-cover-story.jpg",
+     "sha256": "831f9cf6008816d2a2629817be956681bd2ce296640804fc947ee90913ae65b5",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-ovn1",
+      "https://luma.com/spanish-nwef"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-ovn1": "2027-03-29T19:00",
+    "https://luma.com/spanish-nwef": "2027-03-31T19:00"
+   },
+   "depends_on": "2027-03-26-carousel",
+   "fingerprint": "e223762ed29c4d3d5e6e976ea01ea4f1a3a18b8c767b6d39f75bfa6737781202"
+  },
+  {
+   "id": "2027-03-29-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-03-29T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-29-st-stephens-story.jpg",
+     "sha256": "bd6ddd4156f6c9c91d7f02db97bd0ebb6dea89bb4fa94504a991845ce8db7d61",
+     "event": "https://luma.com/spanish-ovn1"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-ovn1": "2027-03-29T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "7997d2eb1328207ef4d7d000453ee471d3bd411e13505bcec39bdfd3743bb0b4"
+  },
+  {
+   "id": "2027-03-31-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-03-31T11:00",
+   "slides": [
+    {
+     "image": "images/2027-03-31-online-story.jpg",
+     "sha256": "acd31a95a281b0e0c6f3063c429ae4d1d2a54fbde13253aa3a9b6d9e3610ff8e",
+     "event": "https://luma.com/spanish-nwef"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-nwef": "2027-03-31T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "1f4913609db40d8a60d0065b3d4cc87135f8a772debb5cfcd0c9d136e9dbe0d8"
+  },
+  {
+   "id": "2027-04-02-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Apr 5–7",
+   "post_at": "2027-04-02T09:00",
+   "slides": [
+    {
+     "image": "images/2027-04-02-cover.jpg",
+     "sha256": "ae95e430146771c7fef8b64c9d6b523a22a304d5b951ef0eecbd0c00f4040ebe",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-lb3g",
+      "https://luma.com/spanish-cytu"
+     ]
+    },
+    {
+     "image": "images/2027-04-05-st-stephens-45.jpg",
+     "sha256": "b1b6a171c8efabd6de17d39e0f1b4dadf557a28d97a3743f7b05f1c7d2ee7bc1",
+     "event": "https://luma.com/spanish-lb3g"
+    },
+    {
+     "image": "images/2027-04-07-online-45.jpg",
+     "sha256": "3a21606260a1b42be91635a2b1f3ab6a6068f65643f16bb5d0665cd480ea4900",
+     "event": "https://luma.com/spanish-cytu"
+    },
+    {
+     "image": "images/2027-04-02-end-slide.jpg",
+     "sha256": "6559b0d7aeeb90f9ab97900d41e5b90a1bf95537f78a6f6fcda21805a19d3deb",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Apr 5 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-lb3g"
+    },
+    {
+     "text": "Wed Apr 7 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-cytu"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-lb3g": "2027-04-05T19:00",
+    "https://luma.com/spanish-cytu": "2027-04-07T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-lb3g"
+    ]
+   },
+   "fingerprint": "f0b3d4e268e37a50d4c88597fd0a735734d8cfc7c325f7bb710219dddde20155"
+  },
+  {
+   "id": "2027-04-02-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-04-02T09:05",
+   "slides": [
+    {
+     "image": "images/2027-04-02-cover-story.jpg",
+     "sha256": "7a077295adee9046df935e3280a717498ecd314e8ba2d6325f12fc7252b6a092",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-lb3g",
+      "https://luma.com/spanish-cytu"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-lb3g": "2027-04-05T19:00",
+    "https://luma.com/spanish-cytu": "2027-04-07T19:00"
+   },
+   "depends_on": "2027-04-02-carousel",
+   "fingerprint": "b8389f38d7125d7c32706ae86be013e074b19535ec9a0764bb30a5d6454ce53b"
+  },
+  {
+   "id": "2027-04-05-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-04-05T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-05-st-stephens-story.jpg",
+     "sha256": "0b9f5ca4a7e773aad303c5f19c064833867d13fee30ef3b62eda6f78cc299df0",
+     "event": "https://luma.com/spanish-lb3g"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-lb3g": "2027-04-05T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "e953461f236136121cb2da91edfb712e6df5b9e4acfaa96a06d0d719399f7877"
+  },
+  {
+   "id": "2027-04-07-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-04-07T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-07-online-story.jpg",
+     "sha256": "24fb10c7ee2d5fe168d18373a32f6ba83ea8b2faf73b7ff61a432701c65294ef",
+     "event": "https://luma.com/spanish-cytu"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-cytu": "2027-04-07T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "d6d91535eb6f3f1233381b62a59d375bd24c58b75e33f2affada74568671aa86"
+  },
+  {
+   "id": "2027-04-09-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Apr 12–14",
+   "post_at": "2027-04-09T09:00",
+   "slides": [
+    {
+     "image": "images/2027-04-09-cover.jpg",
+     "sha256": "eb00b5038f864511a04240f95c5a70bc3b731618868cf67f11f73e006dec31c7",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-m20x",
+      "https://luma.com/spanish-4ozx"
+     ]
+    },
+    {
+     "image": "images/2027-04-12-st-stephens-45.jpg",
+     "sha256": "6be1f0f1ecdcf401743378a72d4b0c8adbc8f2b22af79ca51177eff9d4ce1f42",
+     "event": "https://luma.com/spanish-m20x"
+    },
+    {
+     "image": "images/2027-04-14-online-45.jpg",
+     "sha256": "bf123c90c757ec677e2c2b836c55a8e4dd8d1cb11b8e956456cb482179bd127e",
+     "event": "https://luma.com/spanish-4ozx"
+    },
+    {
+     "image": "images/2027-04-09-end-slide.jpg",
+     "sha256": "bbe81614c71a16966522e1bca5e606d55019e1852e9eae468b1484b12808b9d3",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Apr 12 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-m20x"
+    },
+    {
+     "text": "Wed Apr 14 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-4ozx"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-m20x": "2027-04-12T19:00",
+    "https://luma.com/spanish-4ozx": "2027-04-14T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-m20x"
+    ]
+   },
+   "fingerprint": "5c7116a98c42aeb427690974aa9e2d93bd850513a8dc7d69c203664cdf8a72e5"
+  },
+  {
+   "id": "2027-04-09-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-04-09T09:05",
+   "slides": [
+    {
+     "image": "images/2027-04-09-cover-story.jpg",
+     "sha256": "bfd484b79764ba0b23caf7ad16d64aafe9fec178fd582a61b6eb2dec7faf6be1",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-m20x",
+      "https://luma.com/spanish-4ozx"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-m20x": "2027-04-12T19:00",
+    "https://luma.com/spanish-4ozx": "2027-04-14T19:00"
+   },
+   "depends_on": "2027-04-09-carousel",
+   "fingerprint": "939f9e291effce375a7ca58bcd9a37e267c754244b13e207c0382868b1fa7209"
+  },
+  {
+   "id": "2027-04-12-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-04-12T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-12-st-stephens-story.jpg",
+     "sha256": "23914505ff4886517d39533b397fbc480aec60314822300182c7d61b4169f788",
+     "event": "https://luma.com/spanish-m20x"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-m20x": "2027-04-12T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "219b37f2a7a6ea7ad3dcf844add2f5caf5c3c05809537151585b467a6769bb62"
+  },
+  {
+   "id": "2027-04-14-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-04-14T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-14-online-story.jpg",
+     "sha256": "9d3c8538f84e586851f74b457ee7e3a4c6316600cfe3c5c9338f8f2de2c119ac",
+     "event": "https://luma.com/spanish-4ozx"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-4ozx": "2027-04-14T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "193ef91d95a40f9541e113c17b274ce80d5ff03b99c54547302431bc45f36f26"
+  },
+  {
+   "id": "2027-04-16-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Apr 19",
+   "post_at": "2027-04-16T09:00",
+   "slides": [
+    {
+     "image": "images/2027-04-16-cover.jpg",
+     "sha256": "0994c489052c44565a7498024d179411da4b91b7aa68e6c7f178db67395077e2",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-fxwb"
+     ]
+    },
+    {
+     "image": "images/2027-04-19-st-stephens-45.jpg",
+     "sha256": "fc171122af43294c5c1aa2f10f3bc95817ea8f0eccf5ba4431dd122c016f5aa7",
+     "event": "https://luma.com/spanish-fxwb"
+    },
+    {
+     "image": "images/2027-04-16-end-slide.jpg",
+     "sha256": "e1efd8bd62e37ccc2e8f62a88c69838855438e84a1b434bcf3b2f09192d47609",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Apr 19 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-fxwb"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "No Online session Wed Apr 21."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-fxwb": "2027-04-19T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-fxwb"
+    ]
+   },
+   "fingerprint": "f70e8e298861c891a8ef9bb18f91f4f8869f5061987870dffffecb7c3f99e0e8"
+  },
+  {
+   "id": "2027-04-16-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-04-16T09:05",
+   "slides": [
+    {
+     "image": "images/2027-04-16-cover-story.jpg",
+     "sha256": "c35740c22dacfaf28ed25eaa416586e24fc49f41c12600c0f478e0abcadd345b",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-fxwb"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-fxwb": "2027-04-19T19:00"
+   },
+   "depends_on": "2027-04-16-carousel",
+   "fingerprint": "f8372eec50b08d608a7fe4db75ea6b54a538fe895e76efda62cb354dbaaf5197"
+  },
+  {
+   "id": "2027-04-19-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-04-19T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-19-st-stephens-story.jpg",
+     "sha256": "ddb2141ca4049fbed957930d8a16f7d58abddaeccb8bb987bfd92dc4daf15ca0",
+     "event": "https://luma.com/spanish-fxwb"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-fxwb": "2027-04-19T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "96ba48ea385704af6e8ca7c78543d4ee5798f37966513a904cf54b5341a4f07d"
+  },
+  {
+   "id": "2027-04-23-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: Apr 26–28",
+   "post_at": "2027-04-23T09:00",
+   "slides": [
+    {
+     "image": "images/2027-04-23-cover.jpg",
+     "sha256": "c63406225c221104294e719c1741ddcf6314a7d222e5ba498acac7a4245f8a47",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-az6d",
+      "https://luma.com/spanish-k9kt"
+     ]
+    },
+    {
+     "image": "images/2027-04-26-st-stephens-45.jpg",
+     "sha256": "967ddd7d98a178fcbf0f51a20747073c391826822fe6b86e40e5875951c9ec07",
+     "event": "https://luma.com/spanish-az6d"
+    },
+    {
+     "image": "images/2027-04-28-online-45.jpg",
+     "sha256": "c4aa480e78bf888039ba8bf935ab77f594de99a1bfbdcf807da37956276537f1",
+     "event": "https://luma.com/spanish-k9kt"
+    },
+    {
+     "image": "images/2027-04-23-end-slide.jpg",
+     "sha256": "fa59fb880d2ca848a0b325a80bf2353bf00f35f4c80ebd239be375048e6c1a94",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon Apr 26 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-az6d"
+    },
+    {
+     "text": "Wed Apr 28 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-k9kt"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-az6d": "2027-04-26T19:00",
+    "https://luma.com/spanish-k9kt": "2027-04-28T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-az6d"
+    ]
+   },
+   "fingerprint": "1d44e9952d860c18eab027e8010dfcabf96ecd2c158f0b130fc86bba2a97972d"
+  },
+  {
+   "id": "2027-04-23-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-04-23T09:05",
+   "slides": [
+    {
+     "image": "images/2027-04-23-cover-story.jpg",
+     "sha256": "e3ae08873f446182b943f8c04d19c8742a47208448f284a526100e760f21d179",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-az6d",
+      "https://luma.com/spanish-k9kt"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-az6d": "2027-04-26T19:00",
+    "https://luma.com/spanish-k9kt": "2027-04-28T19:00"
+   },
+   "depends_on": "2027-04-23-carousel",
+   "fingerprint": "fd64f1d2777add298bacde80b8d6f6dbc2b9952980244f0e6546c19517f821db"
+  },
+  {
+   "id": "2027-04-26-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-04-26T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-26-st-stephens-story.jpg",
+     "sha256": "5303f83d1bb62caa854262a3ca9d35885e0de2f26e0011c0e9bdf544fdfef6c8",
+     "event": "https://luma.com/spanish-az6d"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-az6d": "2027-04-26T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "3bf3acc040dec83f3f08efbae80f2a732daed19e9a072835fbb74eda4d2e2397"
+  },
+  {
+   "id": "2027-04-28-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-04-28T11:00",
+   "slides": [
+    {
+     "image": "images/2027-04-28-online-story.jpg",
+     "sha256": "528fd7b99d38246c9a6a77a47affb1220be0b98484cb4b11651367428318d0eb",
+     "event": "https://luma.com/spanish-k9kt"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-k9kt": "2027-04-28T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "9ce281c7290c6b1ca20774dcefd776a455159ee80742c1283ec1176a74a34d84"
+  },
+  {
+   "id": "2027-04-30-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: May 3–5",
+   "post_at": "2027-04-30T09:00",
+   "slides": [
+    {
+     "image": "images/2027-04-30-cover.jpg",
+     "sha256": "86150462fb6187610d855b7834d44ef89955fafd9fb193fb84270324861a93ad",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-54hs",
+      "https://luma.com/spanish-545a"
+     ]
+    },
+    {
+     "image": "images/2027-05-03-st-stephens-45.jpg",
+     "sha256": "f8df8d606663239552cdad2d5781ddd7e84b3ed543504e6a6be567dac554d322",
+     "event": "https://luma.com/spanish-54hs"
+    },
+    {
+     "image": "images/2027-05-05-online-45.jpg",
+     "sha256": "34febb552769f4d775ba57bc176617bb5408938c84d85b1782eeb075ca56ef1f",
+     "event": "https://luma.com/spanish-545a"
+    },
+    {
+     "image": "images/2027-04-30-end-slide.jpg",
+     "sha256": "efdf3f53a078f18ede8825aed80f3446e45bf17536ac5a3e6d0a59c101c65ced",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon May 3 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-54hs"
+    },
+    {
+     "text": "Wed May 5 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-545a"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-54hs": "2027-05-03T19:00",
+    "https://luma.com/spanish-545a": "2027-05-05T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-54hs"
+    ]
+   },
+   "fingerprint": "79e2b07e2d00f9a3738f5d594423b29951088c8e163266adf81017e44b1cbbe6"
+  },
+  {
+   "id": "2027-04-30-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-04-30T09:05",
+   "slides": [
+    {
+     "image": "images/2027-04-30-cover-story.jpg",
+     "sha256": "d236cef8815e3b5f0e3b667c659d958615aca63445e9b4dc6df86bfbb99598dd",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-54hs",
+      "https://luma.com/spanish-545a"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-54hs": "2027-05-03T19:00",
+    "https://luma.com/spanish-545a": "2027-05-05T19:00"
+   },
+   "depends_on": "2027-04-30-carousel",
+   "fingerprint": "a9ddd8bbabd3d46101864fea677d38c0dfabafe0edcb3819abe8eb73350133ba"
+  },
+  {
+   "id": "2027-05-03-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-05-03T11:00",
+   "slides": [
+    {
+     "image": "images/2027-05-03-st-stephens-story.jpg",
+     "sha256": "3dcd2cd297e48a0a120053c946a5782ca95696ceca86a1e6603d7d37f69cf0d1",
+     "event": "https://luma.com/spanish-54hs"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-54hs": "2027-05-03T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "18c5096dec542cb3a0de322cb2eeff28495bbebcee0b495156bac913885effe7"
+  },
+  {
+   "id": "2027-05-05-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-05-05T11:00",
+   "slides": [
+    {
+     "image": "images/2027-05-05-online-story.jpg",
+     "sha256": "c09c4477a2a7d6059d357298d43e7776a0b6d64c52f07e3c8fe83e21a37cdd9c",
+     "event": "https://luma.com/spanish-545a"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-545a": "2027-05-05T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "0fbbf6a858d8000bb05624ac088cef5a0c365888c3969f5d33aefac7eabb5fb9"
+  },
+  {
+   "id": "2027-05-07-carousel",
+   "kind": "carousel",
+   "what": "Weekly carousel: May 10–12",
+   "post_at": "2027-05-07T09:00",
+   "slides": [
+    {
+     "image": "images/2027-05-07-cover.jpg",
+     "sha256": "eed0c4a16351964078662985396d4eca08fcf67c066e37dbd4c0b351bf9e2c48",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-pj39",
+      "https://luma.com/spanish-5tcq"
+     ]
+    },
+    {
+     "image": "images/2027-05-10-st-stephens-45.jpg",
+     "sha256": "7c09d97bae26a187d37cc9289081911fb620469171e473bf4040de7fb0a6c781",
+     "event": "https://luma.com/spanish-pj39"
+    },
+    {
+     "image": "images/2027-05-12-online-45.jpg",
+     "sha256": "5bef180bb364dab4d0297f8af3260eb0f1fc38a35bf21081ce437f763c7118b2",
+     "event": "https://luma.com/spanish-5tcq"
+    },
+    {
+     "image": "images/2027-05-07-end-slide.jpg",
+     "sha256": "6559b0d7aeeb90f9ab97900d41e5b90a1bf95537f78a6f6fcda21805a19d3deb",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Next week at Spanish Club:"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Mon May 10 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "event": "https://luma.com/spanish-pj39"
+    },
+    {
+     "text": "Wed May 12 · 7:00–7:45 PM · Online on Zoom",
+     "event": "https://luma.com/spanish-5tcq"
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    },
+    {
+     "text": "¡Nos vemos!"
+    }
+   ],
+   "events": {
+    "https://luma.com/spanish-pj39": "2027-05-10T19:00",
+    "https://luma.com/spanish-5tcq": "2027-05-12T19:00"
+   },
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": [
+     "https://luma.com/spanish-pj39"
+    ]
+   },
+   "fingerprint": "f71f950b7439dc9570f6fd79a924e99b8e68e508775f6b0e0b7952f245d643d0"
+  },
+  {
+   "id": "2027-05-07-cover-story",
+   "kind": "story",
+   "what": "Weekly cover as a Story",
+   "post_at": "2027-05-07T09:05",
+   "slides": [
+    {
+     "image": "images/2027-05-07-cover-story.jpg",
+     "sha256": "2464cb93d9279ec2f32589713b36f9d5f6c039ee91f53c12d8c295fa1e8b4619",
+     "event": null,
+     "lists_events": [
+      "https://luma.com/spanish-pj39",
+      "https://luma.com/spanish-5tcq"
+     ]
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-pj39": "2027-05-10T19:00",
+    "https://luma.com/spanish-5tcq": "2027-05-12T19:00"
+   },
+   "depends_on": "2027-05-07-carousel",
+   "fingerprint": "25a4fa862bda12fbae00b7807e0d30c84523e9c1c4a1e91bad1a224a5b933893"
+  },
+  {
+   "id": "2027-05-10-story",
+   "kind": "story",
+   "what": "Day-of Story: St. Stephen's",
+   "post_at": "2027-05-10T11:00",
+   "slides": [
+    {
+     "image": "images/2027-05-10-st-stephens-story.jpg",
+     "sha256": "861e0749612fd70c7486f63fd68b507207fae55cefa15cdc1cd054f4c192df54",
+     "event": "https://luma.com/spanish-pj39"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-pj39": "2027-05-10T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "a68ea5bf8814dde8bcc175bb5a24634067bc577e5b9746f728387a65234ba4e8"
+  },
+  {
+   "id": "2027-05-12-story",
+   "kind": "story",
+   "what": "Day-of Story: Online",
+   "post_at": "2027-05-12T11:00",
+   "slides": [
+    {
+     "image": "images/2027-05-12-online-story.jpg",
+     "sha256": "69f72c27bccaafb751eb2250d3b65b81e77659401cfe9a22b6a75291fcf4f738",
+     "event": "https://luma.com/spanish-5tcq"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/spanish-5tcq": "2027-05-12T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "35a48d2e6938fa13208fe42e4597c3b5cebeb7e71337eb8126fde5447870801e"
   }
  ],
  "approved": {}
