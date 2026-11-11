@@ -7,6 +7,8 @@ Every Friday at about 9 AM Eastern, `discord/weekly.py` reads Luma and posts nex
 
 It never posts the Zoom link, never pings anyone (no @everyone), shows no link previews, and never mentions the conversation guides.
 
+**Live from Fri Nov 13, 2026**, after the organizer approved a sample in #server-bots on Nov 10.
+
 ## What keeps it safe
 - Nothing is posted until `LIVE_FROM` is set at the top of `weekly.py`, and never before that Friday.
 - It posts only through a webhook that belongs to #announcements (`CHANNEL_ID`, not secret).

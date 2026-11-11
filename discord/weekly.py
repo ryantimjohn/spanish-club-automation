@@ -44,7 +44,7 @@ from zoneinfo import ZoneInfo
 
 # ---------- settings ----------
 POST_HOUR = 9           # Eastern, on Fridays. Posts on the first run at or after this hour.
-LIVE_FROM = None        # The first Friday to post. None = switched off.
+LIVE_FROM = date(2026, 11, 13)  # First Friday to post, with the organizer's OK on Nov 10, 2026. None = off.
 CHANNEL_ID = "1568234951642452000"  # #announcements (not secret), from check-webhook on Nov 10, 2026.
 LOOK_BACK = 21          # Days of past events read from Luma, to tell a night that's off from a season's end.
 LOOK_AHEAD = 70         # Days of future events read from Luma, to find the night after a break.
