@@ -32,6 +32,17 @@
   "status": "published",
   "title": "Spanish Club for Socialists - St. Stephen's"
  },
+ "evt-gNkVxaoC0i0mFQO": {
+  "luma_url": "https://luma.com/6yd9kbw8",
+  "made_by": "hand (Claude in Chrome), 2026-11-10",
+  "meetup_event_id": "317378113",
+  "meetup_url": "https://www.meetup.com/spanish-club-for-socialists/events/317378113/",
+  "photo": true,
+  "published": "2026-11-10, by the coordinator with the organizer's OK",
+  "start": "2026-11-19T00:00:00.000Z",
+  "status": "published",
+  "title": "Spanish Club for Socialists - Online"
+ },
  "evt-oqgwamDUq2aXg1I": {
   "luma_url": "https://luma.com/spanish-e8i8",
   "made_by": "hand (browser), 2026-11-10",
@@ -42,5 +53,16 @@
   "start": "2026-11-30T19:00",
   "status": "published",
   "title": "Spanish Club for Socialists - St. Stephen's"
+ },
+ "evt-uJrBRuX4kmOiwhf": {
+  "luma_url": "https://luma.com/qzrrckkb",
+  "made_by": "hand (Claude in Chrome), 2026-11-10",
+  "meetup_event_id": "317378090",
+  "meetup_url": "https://www.meetup.com/spanish-club-for-socialists/events/317378090/",
+  "photo": true,
+  "published": "2026-11-10, by the coordinator with the organizer's OK",
+  "start": "2026-11-12T00:00:00.000Z",
+  "status": "published",
+  "title": "Spanish Club for Socialists - Online"
  }
 }
