@@ -1,6 +1,6 @@
 {
  "about": "Posts the Spanish Club for Socialists Instagram account may publish. Only posts listed under 'approved' with a matching fingerprint are ever posted.",
- "built_at": "2026-11-10T23:20:06+00:00",
+ "built_at": "2026-11-11T00:22:56+00:00",
  "timezone": "America/New_York",
  "items": [
   {
@@ -86,11 +86,11 @@
      "text": ""
     },
     {
-     "text": "Mon Nov 16 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Nov 16 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/fdfiostx"
     },
     {
-     "text": "Tue Nov 17 · 7:00–8:30 PM · DC Liberation Center, 337 H St NE",
+     "text": "Tue Nov 17 · 7:00–8:30 PM · DC Liberation Center (@dcliberationcenter), 337 H St NE",
      "event": "https://luma.com/xvjrwk39"
     },
     {
@@ -120,7 +120,7 @@
      "https://luma.com/fdfiostx"
     ]
    },
-   "fingerprint": "c021b3e66107e8543af01e7ef3ea01c638ee807b3f6eb2837d421f5f7109603d"
+   "fingerprint": "55911736d86589c0af9bc58363b7ca2b61d8f2875d3635a1ba2ff22faaa96fc1"
   },
   {
    "id": "2026-11-13-cover-story",
@@ -238,7 +238,7 @@
      "text": ""
     },
     {
-     "text": "Mon Nov 23 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Nov 23 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-v5wz"
     },
     {
@@ -268,7 +268,7 @@
      "https://luma.com/spanish-v5wz"
     ]
    },
-   "fingerprint": "49defee8b5f0cdf15b71939f292655c5bfbe58214a89e46dfaa726e3ac48d518"
+   "fingerprint": "2171e67522fa009107c10cff9bd496c8bc7ffedd335f2ca885c7464ef16aeef9"
   },
   {
    "id": "2026-11-20-cover-story",
@@ -350,7 +350,7 @@
      "text": ""
     },
     {
-     "text": "Mon Nov 30 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Nov 30 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-e8i8"
     },
     {
@@ -379,7 +379,7 @@
      "https://luma.com/spanish-e8i8"
     ]
    },
-   "fingerprint": "d2ac81a6a61566351cc284d1265b3a15df18678fdf0d7b1b56d5fd52efd468a7"
+   "fingerprint": "10d749dd2c25ceaa30135aee3c4b2511fd7962e4a7083fb3a55e1157c3ae8af4"
   },
   {
    "id": "2026-11-27-cover-story",
@@ -482,7 +482,7 @@
      "text": ""
     },
     {
-     "text": "Mon Dec 7 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Dec 7 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-2ey3"
     },
     {
@@ -511,7 +511,7 @@
      "https://luma.com/spanish-2ey3"
     ]
    },
-   "fingerprint": "6ff2b956d57bb66e48777167c9ce427d064cef4a018531f432123c47d208b2aa"
+   "fingerprint": "93cdb7be03053b7e9cb2b30974b2961bdcc42257544c0dd9f3c1059f88e32dbf"
   },
   {
    "id": "2026-12-04-cover-story",
@@ -614,7 +614,7 @@
      "text": ""
     },
     {
-     "text": "Mon Dec 14 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Dec 14 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-vqti"
     },
     {
@@ -643,7 +643,7 @@
      "https://luma.com/spanish-vqti"
     ]
    },
-   "fingerprint": "61907c6866f46d18a884f951cd300f314dd8aa9d6fa2ac03dbf1603da3582007"
+   "fingerprint": "2f81c461ad6220e8109c47f5638f2e4b581ee0776825f521fde8dcc0406e0d73"
   },
   {
    "id": "2026-12-11-cover-story",
@@ -730,7 +730,7 @@
      "text": ""
     },
     {
-     "text": "We're back Monday, Jan 4 at St. Stephen's!"
+     "text": "We're back Monday, Jan 4 at St. Stephen's (@ststephensdc)!"
     },
     {
      "text": ""
@@ -748,7 +748,7 @@
     "name": "St. Stephen & the Incarnation Episcopal Church",
     "events": []
    },
-   "fingerprint": "5ba4f779b485b9338a51f7d40380a39525e0e7420d2009c59d4819c99901c26e"
+   "fingerprint": "2d67e0e5a573f113e7c3e23d9e69d2c0c86d0caf89e4b8d411d58105aa6bacd9"
   },
   {
    "id": "2027-01-01-carousel",
@@ -789,7 +789,7 @@
      "text": ""
     },
     {
-     "text": "Mon Jan 4 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Jan 4 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-p01y"
     },
     {
@@ -818,7 +818,7 @@
      "https://luma.com/spanish-p01y"
     ]
    },
-   "fingerprint": "8f0bdcc7287804d025ab5cd4f56ac4e6ead85d892391a68560f1e25a99fc9a33"
+   "fingerprint": "886fa9e8f4567aaa5af9df6be5deea493583a9cdfbc67ac7f7224c3dab650ee6"
   },
   {
    "id": "2027-01-01-cover-story",
@@ -921,7 +921,7 @@
      "text": ""
     },
     {
-     "text": "Mon Jan 11 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Jan 11 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-vnin"
     },
     {
@@ -950,7 +950,7 @@
      "https://luma.com/spanish-vnin"
     ]
    },
-   "fingerprint": "92787533dc879150202577255758e7bc604d04f94c1fdea65149a88001228587"
+   "fingerprint": "169dd425bee94d2f07e88200fc8ccdd96b8c4695dd1c24c467a376a97f7648a1"
   },
   {
    "id": "2027-01-08-cover-story",
@@ -1152,7 +1152,7 @@
      "text": ""
     },
     {
-     "text": "Mon Jan 25 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Jan 25 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-t0kn"
     },
     {
@@ -1181,7 +1181,7 @@
      "https://luma.com/spanish-t0kn"
     ]
    },
-   "fingerprint": "e96d86b20202acf079847570499bb667be497a074176d446d6532fff0b1834aa"
+   "fingerprint": "2698a7cc305067bf5db85498a540f9e2773d29cac2936d30f20a38694e2e5819"
   },
   {
    "id": "2027-01-22-cover-story",
@@ -1284,7 +1284,7 @@
      "text": ""
     },
     {
-     "text": "Mon Feb 1 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Feb 1 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-m859"
     },
     {
@@ -1313,7 +1313,7 @@
      "https://luma.com/spanish-m859"
     ]
    },
-   "fingerprint": "8b5810ac18f79335fcb328c042c29bf55b07981cd26b0f8651a591b8e5c562da"
+   "fingerprint": "11282ad455a3053f13c0a7233a81562229070896e7f4ef111009878b2a06dd2d"
   },
   {
    "id": "2027-01-29-cover-story",
@@ -1416,7 +1416,7 @@
      "text": ""
     },
     {
-     "text": "Mon Feb 8 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Feb 8 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-uvdf"
     },
     {
@@ -1445,7 +1445,7 @@
      "https://luma.com/spanish-uvdf"
     ]
    },
-   "fingerprint": "6cd54b628dad9111875af85d5957ee0289f54c106c1487249de596507e1ca69a"
+   "fingerprint": "da90240e2e53f00cf5f30d50691b571d376002b789baf197793e3b284f1c4361"
   },
   {
    "id": "2027-02-05-cover-story",
@@ -1647,7 +1647,7 @@
      "text": ""
     },
     {
-     "text": "Mon Feb 22 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Feb 22 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-xows"
     },
     {
@@ -1676,7 +1676,7 @@
      "https://luma.com/spanish-xows"
     ]
    },
-   "fingerprint": "dc8ae8a5d7cd9e17e11443342f2bb9ec5d1ff7c4270fd7b288e4842933abd249"
+   "fingerprint": "ada4d9a54cb78f251e7b907b5d8a950057ec1145d002ed15fca056f47b0ad324"
   },
   {
    "id": "2027-02-19-cover-story",
@@ -1779,7 +1779,7 @@
      "text": ""
     },
     {
-     "text": "Mon Mar 1 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Mar 1 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-rf90"
     },
     {
@@ -1808,7 +1808,7 @@
      "https://luma.com/spanish-rf90"
     ]
    },
-   "fingerprint": "011548cb379c84ffa8b9317a51b6d0885179fb0cb941035f18b51ffba7e36aab"
+   "fingerprint": "680fd27aaf10b8a7b9d803f389ce319e4527bdac49c3a9eabbd9a108f9453da1"
   },
   {
    "id": "2027-02-26-cover-story",
@@ -1911,7 +1911,7 @@
      "text": ""
     },
     {
-     "text": "Mon Mar 8 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Mar 8 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-2nxq"
     },
     {
@@ -1940,7 +1940,7 @@
      "https://luma.com/spanish-2nxq"
     ]
    },
-   "fingerprint": "a294d9c63e02b1b3cf134bd80da8abccdb989a3b618d7d4f1cecbb658666ae6e"
+   "fingerprint": "6922073bd90545a4162e76f31137aebee09ef9e3501a1e2118c89d1b92437a8d"
   },
   {
    "id": "2027-03-05-cover-story",
@@ -2043,7 +2043,7 @@
      "text": ""
     },
     {
-     "text": "Mon Mar 15 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Mar 15 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-le12"
     },
     {
@@ -2072,7 +2072,7 @@
      "https://luma.com/spanish-le12"
     ]
    },
-   "fingerprint": "77345707db6a02259054e359de5f04c630cfec64581f920345880aae0a191822"
+   "fingerprint": "08fd8d059c5047d2ebbdd47c5917b4b6af9dc5bf9c6c97b800f579793af3e601"
   },
   {
    "id": "2027-03-12-cover-story",
@@ -2175,7 +2175,7 @@
      "text": ""
     },
     {
-     "text": "Mon Mar 22 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Mar 22 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-4ahs"
     },
     {
@@ -2204,7 +2204,7 @@
      "https://luma.com/spanish-4ahs"
     ]
    },
-   "fingerprint": "cf8f5fb273a67ba1aad267bd918d0a17cce65af577f04b5b5b6c639767396c07"
+   "fingerprint": "78e1f3b10800fed2a04e8eb19062eac7b46a2fb7e78130c5ff8a5fde3f2ee8dd"
   },
   {
    "id": "2027-03-19-cover-story",
@@ -2307,7 +2307,7 @@
      "text": ""
     },
     {
-     "text": "Mon Mar 29 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Mar 29 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-ovn1"
     },
     {
@@ -2336,7 +2336,7 @@
      "https://luma.com/spanish-ovn1"
     ]
    },
-   "fingerprint": "ce126dc5c6a4abfe843e593bc23de47f7524c9142ea9d9bc880efa936c494f0b"
+   "fingerprint": "03460f57bfb11d975d83811fc6087d89c344d622c0ca70701a8e1b625d965508"
   },
   {
    "id": "2027-03-26-cover-story",
@@ -2439,7 +2439,7 @@
      "text": ""
     },
     {
-     "text": "Mon Apr 5 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Apr 5 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-lb3g"
     },
     {
@@ -2468,7 +2468,7 @@
      "https://luma.com/spanish-lb3g"
     ]
    },
-   "fingerprint": "f0b3d4e268e37a50d4c88597fd0a735734d8cfc7c325f7bb710219dddde20155"
+   "fingerprint": "4ab41e502a3fcd46ce676be4c3305c2bf5b155547f7ba67b9e6fa786d876af0b"
   },
   {
    "id": "2027-04-02-cover-story",
@@ -2571,7 +2571,7 @@
      "text": ""
     },
     {
-     "text": "Mon Apr 12 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Apr 12 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-m20x"
     },
     {
@@ -2600,7 +2600,7 @@
      "https://luma.com/spanish-m20x"
     ]
    },
-   "fingerprint": "5c7116a98c42aeb427690974aa9e2d93bd850513a8dc7d69c203664cdf8a72e5"
+   "fingerprint": "e5a5387d97ada5392d86f9b42928a540b357514dfe3423c8b458fb918d1971ac"
   },
   {
    "id": "2027-04-09-cover-story",
@@ -2697,7 +2697,7 @@
      "text": ""
     },
     {
-     "text": "Mon Apr 19 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Apr 19 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-fxwb"
     },
     {
@@ -2727,7 +2727,7 @@
      "https://luma.com/spanish-fxwb"
     ]
    },
-   "fingerprint": "f70e8e298861c891a8ef9bb18f91f4f8869f5061987870dffffecb7c3f99e0e8"
+   "fingerprint": "8bf1f645cdb2223cc7c7bf03c7430a65e2b9be173626f5898844cccb2cf537a2"
   },
   {
    "id": "2027-04-16-cover-story",
@@ -2809,7 +2809,7 @@
      "text": ""
     },
     {
-     "text": "Mon Apr 26 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon Apr 26 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-az6d"
     },
     {
@@ -2838,7 +2838,7 @@
      "https://luma.com/spanish-az6d"
     ]
    },
-   "fingerprint": "1d44e9952d860c18eab027e8010dfcabf96ecd2c158f0b130fc86bba2a97972d"
+   "fingerprint": "98de502cf5facf07e3ddd29e1b57b2025ff25e07c701d545fbfec6d4132615f7"
   },
   {
    "id": "2027-04-23-cover-story",
@@ -2941,7 +2941,7 @@
      "text": ""
     },
     {
-     "text": "Mon May 3 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon May 3 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-54hs"
     },
     {
@@ -2970,7 +2970,7 @@
      "https://luma.com/spanish-54hs"
     ]
    },
-   "fingerprint": "79e2b07e2d00f9a3738f5d594423b29951088c8e163266adf81017e44b1cbbe6"
+   "fingerprint": "64c06b7197db0ac9a5dbe0a37d47e95cea7aa2dfbedd502a07a55bb32d2cf324"
   },
   {
    "id": "2027-04-30-cover-story",
@@ -3073,7 +3073,7 @@
      "text": ""
     },
     {
-     "text": "Mon May 10 · 7:00–8:30 PM · St. Stephen's, 1525 Newton St NW (side door)",
+     "text": "Mon May 10 · 7:00–8:30 PM · St. Stephen's (@ststephensdc), 1525 Newton St NW (side door)",
      "event": "https://luma.com/spanish-pj39"
     },
     {
@@ -3102,7 +3102,7 @@
      "https://luma.com/spanish-pj39"
     ]
    },
-   "fingerprint": "f71f950b7439dc9570f6fd79a924e99b8e68e508775f6b0e0b7952f245d643d0"
+   "fingerprint": "42e315bcac0702e7235ab457014477a1dcb25c5ad2987e8dd343b80f0069f6a6"
   },
   {
    "id": "2027-05-07-cover-story",
