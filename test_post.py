@@ -163,6 +163,33 @@ class Squares(unittest.TestCase):
     def test_a_post_without_flyers_is_unchanged(self):
         self.assertEqual(fb_slides(BREAK["slides"], SQUARES), (BREAK["slides"], []))
 
+    def test_three_nights_lead_with_the_first_nights_wide_flyer(self):
+        wides = {"images/2026-11-16-st-stephens-45.jpg": {"image": "meetup/images/2026-11-16-st-stephens.png",
+                                                          "sha256": "w16", "approved": True}}
+        slides, notes = fb_slides(NOV_13["slides"], SQUARES, wides)
+        self.assertEqual([s["image"] for s in slides], ["meetup/images/2026-11-16-st-stephens.png"] + NOV_13_SQUARES[1:])
+        self.assertEqual(slides[0]["sha256"], "w16")
+        self.assertEqual(slides[0]["event"], STEPHENS)
+        self.assertEqual(notes, [])
+
+    def test_three_nights_without_an_approved_wide_flyer_stay_square(self):
+        wides = {"images/2026-11-16-st-stephens-45.jpg": {"image": "meetup/images/2026-11-16-st-stephens.png",
+                                                          "sha256": "w16", "approved": False}}
+        slides, _ = fb_slides(NOV_13["slides"], SQUARES, wides)
+        self.assertEqual([s["image"] for s in slides], NOV_13_SQUARES)
+
+    def test_two_nights_stay_square(self):
+        wides = {"images/2026-11-16-st-stephens-45.jpg": {"image": "meetup/images/2026-11-16-st-stephens.png",
+                                                          "sha256": "w16", "approved": True}}
+        two = [s for s in NOV_13["slides"] if s.get("event") != LIBERATION]
+        slides, _ = fb_slides(two, SQUARES, wides)
+        self.assertEqual([s["image"] for s in slides], NOV_13_SQUARES[:2])
+
+    def test_wide_flyer_is_the_meetup_one(self):
+        self.assertEqual(collect_squares.wide_for("images/2026-11-16-st-stephens-45.jpg"),
+                         "meetup/images/2026-11-16-st-stephens.png")
+        self.assertIsNone(collect_squares.wide_for("images/2026-11-13-cover.jpg"))
+
     def test_square_names_follow_the_instagram_flyer(self):
         self.assertEqual(collect_squares.square_for("images/2026-11-16-st-stephens-45.jpg"),
                          ("flyers/St. Stephen's/2026-11-16 Spanish Club for Socialists St. Stephen's – square.png",

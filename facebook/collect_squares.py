@@ -41,6 +41,15 @@ def square_for(ig_image):
             f"facebook/images/{m[1]}-{m[2]}-square.jpg")
 
 
+def wide_for(ig_image):
+    """The night's wide (16:9) flyer already in the repo for Meetup and Eventbrite, which leads a 3-night Facebook
+    post (Facebook shows a 3-photo post's first photo as a wide strip). None for covers and closing slides."""
+    m = re.fullmatch(r"images/(\d{4}-\d{2}-\d{2})-([a-z-]+)-45\.jpg", ig_image)
+    if not m or m[2] not in PLACES:
+        return None
+    return f"meetup/images/{m[1]}-{m[2]}.png"
+
+
 def merge(old, new):
     """New entries, keeping an approval only where the image's fingerprint is unchanged."""
     out = {}
@@ -67,29 +76,38 @@ def to_jpeg(src, dest):
 
 def main(approve=False):
     manifest = json.loads((REPO / "manifest.json").read_text(encoding="utf-8"))
-    old = json.loads(SQUARES.read_text(encoding="utf-8")).get("squares", {}) if SQUARES.exists() else {}
-    new, missing = {}, []
+    old = json.loads(SQUARES.read_text(encoding="utf-8")) if SQUARES.exists() else {}
+    new, new_wides, missing = {}, {}, []
     for item in manifest["items"]:
         if item["kind"] not in ("carousel", "image"):
             continue
-        for slide in item["slides"]:
-            pair = square_for(slide["image"]) if slide.get("event") else None
-            if not pair:
-                continue
-            src, dest = FLYERS_ROOT / pair[0], REPO / pair[1]
+        flyers = [s for s in item["slides"] if s.get("event") and square_for(s["image"])]
+        for slide in flyers:
+            src_rel, dest_rel = square_for(slide["image"])
+            src, dest = FLYERS_ROOT / src_rel, REPO / dest_rel
             if not src.exists():
-                missing.append(pair[0])
+                missing.append(src_rel)
                 continue
-            new[slide["image"]] = {"image": pair[1], "sha256": to_jpeg(src, dest)}
-    squares = merge(old, new)
+            new[slide["image"]] = {"image": dest_rel, "sha256": to_jpeg(src, dest)}
+        if len(flyers) == 3:  # only a 3-night post leads with a wide flyer
+            wide = wide_for(flyers[0]["image"])
+            if (REPO / wide).exists():
+                new_wides[flyers[0]["image"]] = {"image": wide,
+                                                 "sha256": hashlib.sha256((REPO / wide).read_bytes()).hexdigest()}
+            else:
+                missing.append(wide)
+    squares, wides = merge(old.get("squares", {}), new), merge(old.get("wides", {}), new_wides)
     if approve:
         squares = {k: dict(v, approved=True) for k, v in squares.items()}
+        wides = {k: dict(v, approved=True) for k, v in wides.items()}
     SQUARES.write_text(json.dumps({
-        "about": "Square flyers posted to the Facebook Page in place of Instagram's 4:5 flyers (see post.py). "
-                 "Made by facebook/collect_squares.py. Only approved squares with a matching fingerprint are posted.",
-        "squares": dict(sorted(squares.items()))}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    waiting = sum(not v["approved"] for v in squares.values())
-    print(f"{len(squares)} square flyers in facebook/squares.json; {waiting} waiting for approval.")
+        "about": "Square flyers posted to the Facebook Page in place of Instagram's 4:5 flyers, and the wide flyer "
+                 "that leads a 3-night post (see post.py). Made by facebook/collect_squares.py. Only approved images "
+                 "with a matching fingerprint are posted.",
+        "squares": dict(sorted(squares.items())),
+        "wides": dict(sorted(wides.items()))}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    waiting = sum(not v["approved"] for v in [*squares.values(), *wides.values()])
+    print(f"{len(squares)} square and {len(wides)} wide flyers in facebook/squares.json; {waiting} waiting for approval.")
     for m in missing:
         print("No square flyer found:", m)
     return 1 if missing else 0

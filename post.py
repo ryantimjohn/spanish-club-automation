@@ -555,27 +555,31 @@ def fb_caption(item, bad):
     return "\n\n".join(paragraphs)
 
 
-def fb_slides(slides, squares):
+def fb_slides(slides, squares, wides=None):
     """Facebook's photos: each night's approved square flyer, without the weekly cover and closing slide (Facebook
-    crops 4:5 photos in a multi-photo post's grid, and the post's text already lists the week). If any flyer has no
-    approved square, Instagram's own images are used, with a note. A post with no flyers (the break post) is unchanged.
-    Returns (slides, notes)."""
+    crops 4:5 photos in a multi-photo post's grid, and the post's text already lists the week). With exactly three
+    nights, Facebook shows the first photo as a wide strip on top, so the first night's approved wide (16:9) flyer
+    leads instead. If any flyer has no approved square, Instagram's own images are used, with a note. A post with no
+    flyers (the break post) is unchanged. Returns (slides, notes)."""
     flyers = [s for s in slides if s.get("event")]
     if not flyers:
         return slides, []
     missing = [s["image"] for s in flyers if not (squares.get(s["image"]) or {}).get("approved")]
     if missing:
         return slides, [f"No approved square flyer for {', '.join(missing)}, so Instagram's 4:5 images were used."]
-    return [{"image": squares[s["image"]]["image"], "sha256": squares[s["image"]]["sha256"], "event": s["event"]}
-            for s in flyers], []
+    pick = [squares[s["image"]] for s in flyers]
+    wide = (wides or {}).get(flyers[0]["image"]) or {}
+    if len(flyers) == 3 and wide.get("approved"):
+        pick[0] = wide
+    return [{"image": p["image"], "sha256": p["sha256"], "event": s["event"]} for p, s in zip(pick, flyers)], []
 
 
-def fb_plan(item, luma, squares):
+def fb_plan(item, luma, squares, wides=None):
     """(slides, caption, notes) for the Page after the Luma check: the square flyers and Facebook's caption."""
     slides, _, notes, _, _ = plan(item, luma)
     notes = [n for n in notes if "location tag" not in n]  # Facebook posts carry no location tag
     if slides:
-        slides, more = fb_slides(slides, squares)
+        slides, more = fb_slides(slides, squares, wides)
         notes += more
     return slides, fb_caption(item, event_problems(item, luma)), notes
 
@@ -634,7 +638,8 @@ def run_facebook(live, as_of=None, only=None):
         raise Problem("manifest.json is missing.")
     log = load("log/posted.json", {})
     fb = log.get("facebook", {})
-    squares = load("facebook/squares.json", {}).get("squares", {})
+    flyers = load("facebook/squares.json", {})
+    squares, wides = flyers.get("squares", {}), flyers.get("wides", {})
     now = parse_et(as_of) if as_of else now_et()
     approved = manifest.get("approved", {})
     items = {i["id"]: i for i in manifest["items"]}
@@ -691,7 +696,7 @@ def run_facebook(live, as_of=None, only=None):
                 print("  Not approved (or changed since approval), so it won't be posted.")
                 continue
             print("  NOT APPROVED YET: shown here, but a live run would hold it back.")
-        slides, caption, notes = fb_plan(item, luma, squares)
+        slides, caption, notes = fb_plan(item, luma, squares, wides)
         if not slides:
             msg = f"Skipped on Facebook: {item['what']}. " + " ".join(notes)
             print("  " + msg)

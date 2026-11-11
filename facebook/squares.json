@@ -1,5 +1,5 @@
 {
- "about": "Square flyers posted to the Facebook Page in place of Instagram's 4:5 flyers (see post.py). Made by facebook/collect_squares.py. Only approved squares with a matching fingerprint are posted.",
+ "about": "Square flyers posted to the Facebook Page in place of Instagram's 4:5 flyers, and the wide flyer that leads a 3-night post (see post.py). Made by facebook/collect_squares.py. Only approved images with a matching fingerprint are posted.",
  "squares": {
   "images/2026-11-16-st-stephens-45.jpg": {
    "image": "facebook/images/2026-11-16-st-stephens-square.jpg",
@@ -225,6 +225,13 @@
    "image": "facebook/images/2027-05-12-online-square.jpg",
    "sha256": "5ca3006a2eb9a9d9d414a3e5069ed880d6d94d7c35d2759fe31f89ba7e310926",
    "approved": false
+  }
+ },
+ "wides": {
+  "images/2026-11-16-st-stephens-45.jpg": {
+   "image": "meetup/images/2026-11-16-st-stephens.png",
+   "sha256": "596d7835f2d820932b2e9f2b13dd4f3c4c503e196ac33795a8269383eb7d2ea7",
+   "approved": true
   }
  }
 }
