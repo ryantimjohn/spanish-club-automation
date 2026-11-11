@@ -102,3 +102,7 @@ To pause: Actions → Luma invites → "…" → Disable workflow.
 **How you'll hear about it:** the **"Meetup log"** issue.
 
 **To pause:** Actions → Meetup → "…" → Disable workflow.
+
+## Discord weekly post
+
+Every Friday at about 9 AM Eastern, `discord/weekly.py` (the "Discord" workflow) posts next week's events from Luma in the Discord server's #announcements, through a webhook. Nothing is posted until `LIVE_FROM` is set. Secrets: `DISCORD_ANNOUNCEMENTS_WEBHOOK`, `DISCORD_SERVER_BOTS_WEBHOOK` (samples only) and `LUMA_API_KEY`. Results go to the **"Discord log"** issue. The details, and how to run or pause it, are in `discord/README.md`.

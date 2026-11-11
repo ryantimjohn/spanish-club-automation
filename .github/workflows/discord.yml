@@ -1,0 +1,66 @@
+# Posts next week's Spanish Club for Socialists events in Discord's #announcements every Friday at
+# about 9 AM Eastern, through a webhook. See discord/weekly.py.
+#
+# GitHub's schedule is in UTC and can run late, so it runs at 13:07, 14:07, 15:07 and 16:07 UTC on
+# Fridays and weekly.py checks the Eastern time itself (9 AM is 13:00 UTC in summer, 14:00 in
+# winter). Each Friday is posted once; discord/posted.json keeps the record. Nothing is posted until
+# LIVE_FROM is set in discord/weekly.py. Results go to the "Discord log" issue, which emails the owner.
+
+name: Discord
+
+on:
+  schedule:
+    - cron: "7 13,14,15,16 * * 5"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        type: choice
+        options: [test, sample, check-webhook, post-due]
+        default: test
+      as_of:
+        description: "test or sample: pretend it's this Eastern date (YYYY-MM-DD). Empty = today."
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # save discord/posted.json
+  issues: write     # comment on the "Discord log" issue, which emails the owner
+
+concurrency:
+  group: discord
+  cancel-in-progress: false
+
+jobs:
+  discord:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test the logic
+        run: python -m unittest discord/test_weekly.py
+
+      - name: Run
+        env:
+          LUMA_API_KEY: ${{ secrets.LUMA_API_KEY }}
+          DISCORD_ANNOUNCEMENTS_WEBHOOK: ${{ secrets.DISCORD_ANNOUNCEMENTS_WEBHOOK }}
+          DISCORD_SERVER_BOTS_WEBHOOK: ${{ secrets.DISCORD_SERVER_BOTS_WEBHOOK }}
+          GITHUB_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          ACTION: ${{ inputs.action }}
+          AS_OF: ${{ inputs.as_of }}
+        run: |
+          if [ "$EVENT" = "schedule" ] || [ "$ACTION" = "post-due" ]; then
+            python discord/weekly.py run --live
+          elif [ "$ACTION" = "check-webhook" ]; then
+            python discord/weekly.py check
+          elif [ "$ACTION" = "sample" ]; then
+            python discord/weekly.py sample ${AS_OF:+--as-of "$AS_OF"}
+          else
+            python discord/weekly.py run ${AS_OF:+--as-of "${AS_OF}T09:05"}
+          fi
