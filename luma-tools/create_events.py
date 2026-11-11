@@ -35,6 +35,10 @@ def _user_env(name):
 ZOOM_PWD = _user_env("ZOOM_PWD")
 ZOOM_URL = f"https://us02web.zoom.us/j/83064162001?pwd={ZOOM_PWD}"
 
+# Patchwork's old space (1506 19th St NW) on Google Maps. Dupont events can't be created while the
+# template still points here; Patchwork moved to 1901 18th St NW.
+OLD_PATCHWORK_PLACE_ID = "ChIJ-c1uWqW3t4kRzeVoo-OqgNk"
+
 LOG = Path(__file__).with_name("created_events.json")
 
 FIRST_WEEK = date(2026, 11, 23)  # Monday after the last existing event
@@ -136,11 +140,13 @@ SERIES = [
         "with_guide": True,
         "fields": {
             "name": "Spanish Club for Socialists - Dupont",
+            # Patchwork moved to 1901 18th St NW (organizer, Nov 10, 2026). Before a Dupont season, set
+            # this to the new space's Google place_id and door directions; until then the script refuses
+            # to create Dupont events (see OLD_PATCHWORK_PLACE_ID).
             "geo_address_json": {
                 "type": "google",
                 "place_id": "ChIJ-c1uWqW3t4kRzeVoo-OqgNk",
-                "description": "Just to the right of the Starbucks on 19th, non-descript door. "
-                               "We're on the third floor!",
+                "description": "",
             },
             "cover_url": "https://images.lumacdn.com/uploads/h6/05a373ac-2c17-4514-a6fc-ae9a78bf5a00.png",
             "font": "geist-mono",
@@ -148,8 +154,8 @@ SERIES = [
         },
         "description": (
             "Event is from 7:30 pm to 9:00 pm at Patchwork DC:\n\n"
-            "1506 19th St NW, 3rd Floor Washington, DC 20036\n\n"
-            "[Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Patchwork%2C%201506%2019th%20St%20NW%2C%20Washington%2C%20DC%2020036&query_place_id=ChIJ-c1uWqW3t4kRzeVoo-OqgNk)\n\n"
+            "1901 18th St NW, Washington, DC\n\n"
+            "[Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Patchwork%2C%201901%2018th%20St%20NW%2C%20Washington%2C%20DC)\n\n"
             "Here's the conversation guide for this week. You can determine your level by reading it "
             "and seeing which most fits your level of speaking:\n\n"
             "{guide}\n\n"
@@ -278,6 +284,12 @@ def main():
         return
 
     have = existing_keys(targets)
+    old_patchwork = [e for e in targets if e["series"] == "Dupont"
+                     and (e["body"]["name"], e["body"]["start_at"]) not in have
+                     and e["body"].get("geo_address_json", {}).get("place_id") == OLD_PATCHWORK_PLACE_ID]
+    if old_patchwork:
+        sys.exit("New Dupont events would point at Patchwork's old space on Google Maps. Set the new space's "
+                 "place_id and door directions in the Dupont template first.")
     log = json.loads(LOG.read_text(encoding="utf-8")) if LOG.exists() else []
     for e in targets:
         b = e["body"]
