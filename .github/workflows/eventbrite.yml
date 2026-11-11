@@ -1,0 +1,57 @@
+# Keeps the Spanish Club for Socialists events on Eventbrite in step with Luma: lists each event 5 weeks
+# ahead and follows Luma when an event moves or is cancelled. See eventbrite/sync.py.
+#
+# GitHub's schedule is in UTC, so it runs at 14:35 and 15:35 UTC (about 10:35 AM Eastern in summer
+# and winter). Nothing changes on Eventbrite until LIVE_FROM is set in eventbrite/sync.py. Results go to
+# the "Eventbrite log" issue, which emails the owner.
+
+name: Eventbrite
+
+on:
+  schedule:
+    - cron: "35 14,15 * * *"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        type: choice
+        options: [test, sync-now, check-token]
+        default: test
+
+permissions:
+  contents: write   # save eventbrite/events.json
+  issues: write     # comment on the "Eventbrite log" issue, which emails the owner
+
+concurrency:
+  group: eventbrite
+  cancel-in-progress: false
+
+jobs:
+  eventbrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test the logic
+        run: python -m unittest eventbrite/test_sync.py
+
+      - name: Run
+        env:
+          LUMA_API_KEY: ${{ secrets.LUMA_API_KEY }}
+          EVENTBRITE_TOKEN: ${{ secrets.EVENTBRITE_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          ACTION: ${{ inputs.action }}
+        run: |
+          if [ "$EVENT" = "schedule" ] || [ "$ACTION" = "sync-now" ]; then
+            python eventbrite/sync.py run --live
+          elif [ "$ACTION" = "check-token" ]; then
+            python eventbrite/sync.py check
+          else
+            python eventbrite/sync.py run
+          fi

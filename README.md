@@ -1,9 +1,10 @@
 # Spanish Club for Socialists: automation
 
-This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs three jobs on GitHub Actions:
+This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs four jobs on GitHub Actions:
 - **Instagram auto-poster** (`post.py`, the "Instagram" workflow), described first below.
 - **Luma invites** (`luma-invites/`, the "Luma invites" workflow).
-- **Meetup listings** (`meetup/`, the "Meetup" workflow), described at the end.
+- **Meetup listings** (`meetup/`, the "Meetup" workflow).
+- **Eventbrite listings** (`eventbrite/`, the "Eventbrite" workflow), described at the end.
 
 The season scripts for Luma (`luma-tools/`) run on the organizer's computer.
 
@@ -102,6 +103,30 @@ To pause: Actions → Luma invites → "…" → Disable workflow.
 **How you'll hear about it:** the **"Meetup log"** issue.
 
 **To pause:** Actions → Meetup → "…" → Disable workflow.
+
+## Eventbrite listings
+
+`eventbrite/sync.py` keeps the club's Eventbrite events in step with Luma, the same way as Meetup:
+- **5 weeks ahead:** each Luma event goes up once it's within 5 weeks, under Luma's exact title, with Luma's date, time and place and one free ticket ("General Admission", 100 places, open until the event ends).
+- **Follows Luma:** if a Luma event changes, its Eventbrite event is updated, even if it moved past the 5 weeks. If it's gone from Luma (checked twice), the Eventbrite event is *cancelled*, never deleted. Eventbrite won't cancel an event that has RSVPs through its API: the log then asks you to cancel it by hand, which emails its guests.
+- **Online:** the Zoom link goes only on Eventbrite's attendee-only Online Event Page, never in the description.
+- **Description:** Luma's text (St. Stephen's adds "Please come in the side door!"), ending with "Get weekly reminders and see every event: follow us on Luma". The short summary under the title is set in `SUMMARY`.
+- **Image:** the event's wide flyer from `meetup/images/` (shared with Meetup), shown in Eventbrite's 2:1 crop. An event without its flyer waits.
+- **Place:** an in-person event whose Luma address doesn't match its venue in `sync.py` waits, so nothing is listed at the wrong place.
+- **Only its own events:** it edits or cancels only events recorded in `eventbrite/events.json`.
+
+**Secrets:** `EVENTBRITE_TOKEN` (the private token of the club's Eventbrite API key: Account settings → Developer links → API keys) and `LUMA_API_KEY`.
+
+**Switching it on:** nothing changes until `LIVE_FROM` is set in `sync.py`. The sample is made as an unpublished draft (`run --live --draft --only LUMA_EVENT_ID`) for the organizer to check; `publish --live` publishes the drafts after their OK.
+
+**Running it by hand (Actions → Eventbrite → Run workflow):**
+- `test`: shows what it would do.
+- `sync-now`: a real run.
+- `check-token`: checks the Eventbrite token, read-only.
+
+**How you'll hear about it:** the **"Eventbrite log"** issue.
+
+**To pause:** Actions → Eventbrite → "…" → Disable workflow.
 
 ## Discord weekly post
 
