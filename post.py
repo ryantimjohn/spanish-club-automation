@@ -69,7 +69,7 @@ IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
 
 # Facebook Page. Its own key: FACEBOOK_ACCESS_TOKEN, a system-user token of the "Spanish Club Page Poster" app.
 FB_LIVE_FROM = None     # date(YYYY, M, D), a Friday: the first Friday posted to the Page. None = off.
-FB_PAGE_ID = None       # the club's Page ID (not secret); `check-facebook` lists the Pages the key reaches.
+FB_PAGE_ID = "1349858851551538"  # the club's Page (not secret), made Nov 11, 2026
 FB_PAGE_NAME = "Spanish Club for Socialists"  # checked before every post
 FB_NEEDED_SCOPES = {"pages_show_list", "pages_read_engagement", "pages_manage_posts"}
 FEED_KINDS = ("carousel", "image")  # what goes to Facebook: the Friday feed posts, never Stories
