@@ -45,7 +45,7 @@ from zoneinfo import ZoneInfo
 
 # ---------- settings ----------
 WEEKS_AHEAD = 5
-LIVE_FROM = None        # date(YYYY, M, D): when the daily run may start changing Eventbrite, set with the organizer's OK.
+LIVE_FROM = date(2026, 11, 11)  # the daily run changes Eventbrite from this date (organizer's OK, Nov 10). None = off.
 CAPACITY = 100          # free tickets per event (Luma has no cap)
 TICKET_NAME = "General Admission"
 CATEGORY_ID = "113"     # Community & Culture (Eventbrite ids, not secret; None leaves one unset)
