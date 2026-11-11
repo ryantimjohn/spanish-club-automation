@@ -10,6 +10,9 @@ Carousels with a St. Stephen's night, and the winter break post, are tagged with
 
 Reels and link stickers stay manual. Instagram's API can't add stickers.
 
+## Keep this repository public
+Instagram downloads each image from its public GitHub link, so if this repository is made private, every post fails. Nothing in it is secret: the Instagram key is stored separately as a GitHub secret.
+
 ## What keeps it safe
 - It only posts what's in `manifest.json` **and** was approved. If an image or caption changes, that post needs approval again.
 - Before each post it reads the club's public Luma calendar. A flyer whose event is gone or has moved is left out, along with its caption line and the cover that lists it. If nothing is left, the post is skipped.
