@@ -44,7 +44,7 @@ SEND_HOUR = 10          # Eastern. Sends on the first run at or after this hour.
 DAYS_AHEAD = 6          # Monday events go out the Tuesday before, Wednesday events the Thursday before.
 NOTE = ""               # Optional note on each invite (max 200 characters). Empty = Luma's standard invite.
 TAG = "removed-from-group"
-LIVE_FROM = None        # date(YYYY, M, D): set at go-live, with the organizer's OK.
+LIVE_FROM = date(2026, 11, 11)  # Go-live, with the organizer's OK on Nov 10, 2026. Set to None to stop sending.
 MIN_CONTACTS = 100      # Fewer contacts than this means Luma's answer looks wrong: send nothing.
 BATCH = 100             # Guests per send-invites call.
 MIN_LEAD = timedelta(hours=24)
