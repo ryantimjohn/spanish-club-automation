@@ -27,6 +27,9 @@ The Nov 10, 2026 cleanup: it swapped the free-course line for the Discord line a
 ## update_covers.py
 Sets each upcoming event's Luma cover to its dated square flyer from the club folder's `flyers` directory. Uploads are logged in `covers_done.json`, so a rerun only uploads flyers that changed. A plain run is a dry run, `--only EVENT_ID` does one event, `--apply` does all of them, and `--skip EVENT_ID` leaves one out.
 
+## backup_people.py
+Saves Luma's people list (names, emails, event counts, tags) as a dated CSV in `D:\Spanish Club for Socialists\Luma people backups` on the organizer's computer. It stays there only: never commit it, upload it or share it. It prints counts only.
+
 ## count_events.py
 A read-only count of past events on Luma, by name and by month. Cancelled events are deleted from Luma, so they never count. To get the club's all-time total, add the fixed number of pre-Luma (Google Group) events, which is kept in the Plan tab's "Where we are".
 
