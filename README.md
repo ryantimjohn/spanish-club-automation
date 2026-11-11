@@ -1,4 +1,10 @@
-# Spanish Club for Socialists: Instagram auto-poster
+# Spanish Club for Socialists: automation
+
+This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs two jobs on GitHub Actions:
+- **Instagram auto-poster** (`post.py`, the "Instagram" workflow), described first below.
+- **Luma invites** (`luma-invites/`, the "Luma invites" workflow), described at the end.
+
+## Instagram auto-poster
 
 This posts the club's Instagram posts on schedule, so nobody has to remember to.
 
@@ -31,7 +37,7 @@ After every post, skip or problem, a comment appears on the **"Instagram log"** 
 ## Secret (Settings → Secrets and variables → Actions)
 - `INSTAGRAM_ACCESS_TOKEN`: the "System-user access token" from the club's Meta business portfolio (Instagram API with Unified login). Every Sunday the workflow checks the key still works, without posting, and emails you if it doesn't.
 
-That's the only secret. The club's Instagram account ID (`17841429526104661`, @spanishclubforsocialists) is in `post.py`; it isn't secret, and the account's username is checked before every post. Luma is read from its public calendar feed, so no Luma key is needed.
+That's the only secret the Instagram poster uses. The Luma invites use `LUMA_API_KEY` (see below). The club's Instagram account ID (`17841429526104661`, @spanishclubforsocialists) is in `post.py`; it isn't secret, and the account's username is checked before every post. Luma is read from its public calendar feed, so no Luma key is needed.
 
 ## Running it by hand (Actions → Instagram → Run workflow)
 - `test`: shows what's due right now. Posts nothing.
@@ -39,3 +45,32 @@ That's the only secret. The club's Instagram account ID (`17841429526104661`, @s
 - `check-key`: checks the Instagram key without posting.
 
 To pause everything: Actions → Instagram → "…" → Disable workflow.
+
+## Luma invites
+
+Every day at about 10 AM Eastern, `luma-invites/invite.py`:
+1. Removes everyone tagged **removed-from-group** from the Luma calendar. The Google Group sync adds that tag. They're removed, not blocked, so they can follow again on their own.
+2. Invites everyone on the calendar to each event that starts **6 days later**: Monday nights go out the Tuesday before, Wednesday nights the Thursday before, and one-offs 6 days ahead. Anyone already on that event's guest list (invited, registered, declined…) is skipped, and Luma skips anyone who unsubscribed.
+
+Settings are at the top of `invite.py`:
+- `SEND_HOUR`: 10.
+- `DAYS_AHEAD`: 6.
+- `NOTE`: empty, so Luma's standard invite goes out.
+- `LIVE_FROM`: nothing is sent before this date, and nothing at all while it's unset.
+
+**What keeps it safe:**
+- Each event is sent once. `luma-invites/sent.json` marks it "sending" before any invite goes out, so a crash can't cause a second send. It's reported instead.
+- If Luma's contact list looks wrong (under 100 people), nothing is sent.
+- This repository is public, so the log shows counts, event names and links only. It never shows names or emails.
+
+**How you'll hear about it:** a comment on the **"Luma invite log"** issue whenever it removes people, sends invites, or hits a problem. GitHub emails it to you.
+
+**Secret:** `LUMA_API_KEY`, the Luma API key. It's never printed. Luma Plus allows 5,000 invites a week once the calendar is verified (Luma → calendar → Settings → Send Limit). About 760 people × 3 events is about 2,300.
+
+**Running it by hand (Actions → Luma invites → Run workflow):**
+- `test`: shows what's due, with counts. Changes nothing.
+- `send-due`: does a real run now.
+
+To see a real invite, run `python luma-invites/invite.py sample EVENT_ID YOUR_EMAIL` on your own computer, never in GitHub, where the address would show in public logs.
+
+To pause: Actions → Luma invites → "…" → Disable workflow.

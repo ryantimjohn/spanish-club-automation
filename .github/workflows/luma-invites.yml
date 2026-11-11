@@ -1,0 +1,54 @@
+# Sends Spanish Club for Socialists Luma invites 6 days before each event, at about 10 AM Eastern.
+#
+# GitHub's schedule is in UTC and can run a few minutes late, so it runs at 14:03 and 15:03 UTC
+# (10 AM Eastern in summer and winter) and invite.py checks the Eastern time itself. Each event is
+# sent once; luma-invites/sent.json keeps the record. Nothing is sent until LIVE_FROM is set in
+# luma-invites/invite.py. Results go to the "Luma invite log" issue, which emails the owner.
+
+name: Luma invites
+
+on:
+  schedule:
+    - cron: "3 14,15 * * *"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        type: choice
+        options: [test, send-due]
+        default: test
+
+permissions:
+  contents: write   # save luma-invites/sent.json
+  issues: write     # comment on the "Luma invite log" issue, which emails the owner
+
+concurrency:
+  group: luma-invites
+  cancel-in-progress: false
+
+jobs:
+  invites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test the logic
+        run: python -m unittest luma-invites/test_invite.py
+
+      - name: Run
+        env:
+          LUMA_API_KEY: ${{ secrets.LUMA_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          ACTION: ${{ inputs.action }}
+        run: |
+          if [ "$EVENT" = "schedule" ] || [ "$ACTION" = "send-due" ]; then
+            python luma-invites/invite.py run --live
+          else
+            python luma-invites/invite.py run
+          fi
