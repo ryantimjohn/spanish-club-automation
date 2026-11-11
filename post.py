@@ -68,7 +68,7 @@ UA = "spanish-club-instagram/1.0"
 IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
 
 # Facebook Page. Its own key: FACEBOOK_ACCESS_TOKEN, a system-user token of the "Spanish Club Page Poster" app.
-FB_LIVE_FROM = None     # date(YYYY, M, D), a Friday: the first Friday posted to the Page. None = off.
+FB_LIVE_FROM = date(2026, 11, 20)  # first Friday posted to the Page (organizer's OK after the Nov 11 sample). None = off.
 FB_PAGE_ID = "1349858851551538"  # the club's Page (not secret), made Nov 11, 2026
 FB_PAGE_NAME = "Spanish Club for Socialists"  # checked before every post
 FB_NEEDED_SCOPES = {"pages_show_list", "pages_read_engagement", "pages_manage_posts"}
