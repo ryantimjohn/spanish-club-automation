@@ -1,8 +1,11 @@
 # Spanish Club for Socialists: automation
 
-This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs two jobs on GitHub Actions:
+This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs three jobs on GitHub Actions:
 - **Instagram auto-poster** (`post.py`, the "Instagram" workflow), described first below.
-- **Luma invites** (`luma-invites/`, the "Luma invites" workflow), described at the end.
+- **Luma invites** (`luma-invites/`, the "Luma invites" workflow).
+- **Meetup listings** (`meetup/`, the "Meetup" workflow), described at the end.
+
+The season scripts for Luma (`luma-tools/`) run on the organizer's computer.
 
 ## Instagram auto-poster
 
@@ -74,3 +77,28 @@ Settings are at the top of `invite.py`:
 To see a real invite, run `python luma-invites/invite.py sample EVENT_ID YOUR_EMAIL` on your own computer, never in GitHub, where the address would show in public logs.
 
 To pause: Actions → Luma invites → "…" → Disable workflow.
+
+## Meetup listings
+
+`meetup/sync.py` keeps the Meetup group (meetup.com/spanish-club-for-socialists) in step with Luma, which is always the source of truth:
+- **5 weeks ahead:** each Luma event goes up on Meetup once it's within 5 weeks, under Luma's exact title, so people know it's a club for socialists. Meetup then sends its usual announcement.
+- **Follows Luma:** if a Luma event changes, its Meetup event is updated. If it's gone from Luma (checked twice), the Meetup event is *cancelled*, never deleted.
+- **Online:** the Zoom link goes only in Meetup's attendee link, never in the description.
+- **Description:** Luma's text, ending with a line pointing back to Luma.
+- **Photo:** the event's wide flyer. Run `python meetup/sync.py collect` on the organizer's computer to copy the "– Meetup 16 9.png" flyers into `meetup/images/`, then commit them. An event without its photo waits.
+- **Only its own events:** it edits or cancels only events recorded in `meetup/events.json`, never anything posted by hand.
+
+**Secrets:**
+- `MEETUP_CLIENT_KEY`, `MEETUP_SIGNING_KEY_ID`, `MEETUP_PRIVATE_KEY`: from the "Spanish Club events" API client at meetup.com/api/oauth/list. Meetup API access needs the Pro subscription.
+- `LUMA_API_KEY`.
+
+**Switching it on:** nothing changes on Meetup until `LIVE_FROM` is set in `sync.py`. The first event is made by hand as a draft (`run --live --draft --only LUMA_EVENT_ID`) for the organizer to check. Drafts are published with `publish --live` after their OK.
+
+**Running it by hand (Actions → Meetup → Run workflow):**
+- `test`: shows what it would do.
+- `sync-now`: a real run.
+- `check-keys`: checks the Meetup keys, read-only.
+
+**How you'll hear about it:** the **"Meetup log"** issue.
+
+**To pause:** Actions → Meetup → "…" → Disable workflow.
