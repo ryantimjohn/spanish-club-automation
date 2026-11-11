@@ -1,6 +1,6 @@
 {
  "about": "Posts the Spanish Club for Socialists Instagram account may publish. Only posts listed under 'approved' with a matching fingerprint are ever posted.",
- "built_at": "2026-11-11T00:26:56+00:00",
+ "built_at": "2026-11-11T02:54:56+00:00",
  "timezone": "America/New_York",
  "items": [
   {
@@ -44,17 +44,17 @@
   {
    "id": "2026-11-13-carousel",
    "kind": "carousel",
-   "what": "Weekly carousel: Nov 16–18",
+   "what": "Weekly carousel: Nov 16–19",
    "post_at": "2026-11-13T09:00",
    "slides": [
     {
      "image": "images/2026-11-13-cover.jpg",
-     "sha256": "ed984caf06dea56db6d549a8758efd3fe9232d8f3fba9593d4836f846895e81e",
+     "sha256": "5b03295f34e68035627028dcbbc22883f37117151cdd7aa9ad027dda132cf460",
      "event": null,
      "lists_events": [
       "https://luma.com/fdfiostx",
-      "https://luma.com/xvjrwk39",
-      "https://luma.com/6yd9kbw8"
+      "https://luma.com/6yd9kbw8",
+      "https://luma.com/xvjrwk39"
      ]
     },
     {
@@ -63,14 +63,14 @@
      "event": "https://luma.com/fdfiostx"
     },
     {
-     "image": "images/2026-11-17-liberation-center-45.jpg",
-     "sha256": "189852df1d6466899d4c10121a1376d4cf86bce05c71375732f516ad48a32466",
-     "event": "https://luma.com/xvjrwk39"
-    },
-    {
      "image": "images/2026-11-18-online-45.jpg",
      "sha256": "5f5abc37b9d29dd78c9c1fe7bd4b54c31b371c189ca3246a85ee27eb66ff4d62",
      "event": "https://luma.com/6yd9kbw8"
+    },
+    {
+     "image": "images/2026-11-19-liberation-center-45.jpg",
+     "sha256": "e102dda6450d983ffe623473d94ccb043b627ec162cd9bce8f52ba240e5b3c0a",
+     "event": "https://luma.com/xvjrwk39"
     },
     {
      "image": "images/2026-11-13-end-slide.jpg",
@@ -90,12 +90,12 @@
      "event": "https://luma.com/fdfiostx"
     },
     {
-     "text": "Tue Nov 17 · 7:00–8:30 PM · DC Liberation Center (@dcliberationcenter), 337 H St NE",
-     "event": "https://luma.com/xvjrwk39"
-    },
-    {
      "text": "Wed Nov 18 · 7:00–7:45 PM · Online on Zoom",
      "event": "https://luma.com/6yd9kbw8"
+    },
+    {
+     "text": "Thu Nov 19 · 7:00–8:30 PM · DC Liberation Center (@dcliberationcenter), 337 H St NE",
+     "event": "https://luma.com/xvjrwk39"
     },
     {
      "text": ""
@@ -109,8 +109,8 @@
    ],
    "events": {
     "https://luma.com/fdfiostx": "2026-11-16T19:00",
-    "https://luma.com/xvjrwk39": "2026-11-17T19:00",
-    "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
+    "https://luma.com/6yd9kbw8": "2026-11-18T19:00",
+    "https://luma.com/xvjrwk39": "2026-11-19T19:00"
    },
    "depends_on": null,
    "location": {
@@ -120,7 +120,7 @@
      "https://luma.com/fdfiostx"
     ]
    },
-   "fingerprint": "55911736d86589c0af9bc58363b7ca2b61d8f2875d3635a1ba2ff22faaa96fc1"
+   "fingerprint": "88de7078761aabf1d191f1ebf22a74cb0a53bd48151ff09d30ccd2120924b4e6"
   },
   {
    "id": "2026-11-13-cover-story",
@@ -130,23 +130,23 @@
    "slides": [
     {
      "image": "images/2026-11-13-cover-story.jpg",
-     "sha256": "3acb189f6f35093aaa706f552c38525386694c2cec93417926308cca6ea4d909",
+     "sha256": "012d3d411e93f4c9b60d8e0dd49f202b33b62597d055d9d7557b6170aafccc27",
      "event": null,
      "lists_events": [
       "https://luma.com/fdfiostx",
-      "https://luma.com/xvjrwk39",
-      "https://luma.com/6yd9kbw8"
+      "https://luma.com/6yd9kbw8",
+      "https://luma.com/xvjrwk39"
      ]
     }
    ],
    "caption_lines": [],
    "events": {
     "https://luma.com/fdfiostx": "2026-11-16T19:00",
-    "https://luma.com/xvjrwk39": "2026-11-17T19:00",
-    "https://luma.com/6yd9kbw8": "2026-11-18T19:00"
+    "https://luma.com/6yd9kbw8": "2026-11-18T19:00",
+    "https://luma.com/xvjrwk39": "2026-11-19T19:00"
    },
    "depends_on": "2026-11-13-carousel",
-   "fingerprint": "0c9c30aa3083b2d314c9e39141a23c8ebee6fe95f8025d89d45d187c40721e0a"
+   "fingerprint": "d7633e57c80fe8cede426cb2794126d6d7811aa6955e0bd65d7e9a3977a9d10d"
   },
   {
    "id": "2026-11-16-story",
@@ -168,25 +168,6 @@
    "fingerprint": "d4de02b499dd77202a2e85c726f83dfaa821793263c476a39accc7f892d462ad"
   },
   {
-   "id": "2026-11-17-story",
-   "kind": "story",
-   "what": "Day-of Story: DC Liberation Center",
-   "post_at": "2026-11-17T11:00",
-   "slides": [
-    {
-     "image": "images/2026-11-17-liberation-center-story.jpg",
-     "sha256": "c22e0ff4a5f19283f05d0d0d7f6bbb4fa675321c63ecc2f6c9261a1f0d40bf30",
-     "event": "https://luma.com/xvjrwk39"
-    }
-   ],
-   "caption_lines": [],
-   "events": {
-    "https://luma.com/xvjrwk39": "2026-11-17T19:00"
-   },
-   "depends_on": null,
-   "fingerprint": "2df996395438b2a8785ddf487c32b361b42137458c54e3985d3ec74e80da33ad"
-  },
-  {
    "id": "2026-11-18-story",
    "kind": "story",
    "what": "Day-of Story: Online",
@@ -204,6 +185,25 @@
    },
    "depends_on": null,
    "fingerprint": "8d25e7af161c0455e261814e9e31a1ad21864f3ff37b56b9a8323a8c9088b1bb"
+  },
+  {
+   "id": "2026-11-19-story",
+   "kind": "story",
+   "what": "Day-of Story: DC Liberation Center",
+   "post_at": "2026-11-19T11:00",
+   "slides": [
+    {
+     "image": "images/2026-11-19-liberation-center-story.jpg",
+     "sha256": "d8b337ad6d9ffb101eb60c74235a43c14286596af0de8f176c5ba9c29f11f6ac",
+     "event": "https://luma.com/xvjrwk39"
+    }
+   ],
+   "caption_lines": [],
+   "events": {
+    "https://luma.com/xvjrwk39": "2026-11-19T19:00"
+   },
+   "depends_on": null,
+   "fingerprint": "04388d42615ea2979a2f2899d9febb7ea2001bd7a6e23e67683bbbeffcecd335"
   },
   {
    "id": "2026-11-20-carousel",
@@ -3169,10 +3169,7 @@
  ],
  "approved": {
   "2026-11-11-story": "f47b10efa20fd0ef98b765c0e009d75bab93c212c40582d54a3b6088345bfcf1",
-  "2026-11-13-carousel": "55911736d86589c0af9bc58363b7ca2b61d8f2875d3635a1ba2ff22faaa96fc1",
-  "2026-11-13-cover-story": "0c9c30aa3083b2d314c9e39141a23c8ebee6fe95f8025d89d45d187c40721e0a",
   "2026-11-16-story": "d4de02b499dd77202a2e85c726f83dfaa821793263c476a39accc7f892d462ad",
-  "2026-11-17-story": "2df996395438b2a8785ddf487c32b361b42137458c54e3985d3ec74e80da33ad",
   "2026-11-18-story": "8d25e7af161c0455e261814e9e31a1ad21864f3ff37b56b9a8323a8c9088b1bb",
   "2026-11-20-carousel": "2171e67522fa009107c10cff9bd496c8bc7ffedd335f2ca885c7464ef16aeef9",
   "2026-11-20-cover-story": "3f051ca2c95f12b30fd362e39a40c178ac188bf70b944b00f25ae47ed4ded315",
@@ -3262,6 +3259,9 @@
   "2027-05-07-carousel": "42e315bcac0702e7235ab457014477a1dcb25c5ad2987e8dd343b80f0069f6a6",
   "2027-05-07-cover-story": "25a4fa862bda12fbae00b7807e0d30c84523e9c1c4a1e91bad1a224a5b933893",
   "2027-05-10-story": "a68ea5bf8814dde8bcc175bb5a24634067bc577e5b9746f728387a65234ba4e8",
-  "2027-05-12-story": "35a48d2e6938fa13208fe42e4597c3b5cebeb7e71337eb8126fde5447870801e"
+  "2027-05-12-story": "35a48d2e6938fa13208fe42e4597c3b5cebeb7e71337eb8126fde5447870801e",
+  "2026-11-13-carousel": "88de7078761aabf1d191f1ebf22a74cb0a53bd48151ff09d30ccd2120924b4e6",
+  "2026-11-13-cover-story": "d7633e57c80fe8cede426cb2794126d6d7811aa6955e0bd65d7e9a3977a9d10d",
+  "2026-11-19-story": "04388d42615ea2979a2f2899d9febb7ea2001bd7a6e23e67683bbbeffcecd335"
  }
 }
