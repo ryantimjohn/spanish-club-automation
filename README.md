@@ -1,7 +1,7 @@
 # Spanish Club for Socialists: automation
 
 This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs four jobs on GitHub Actions:
-- **Instagram auto-poster** (`post.py`, the "Instagram" workflow), described first below.
+- **Instagram auto-poster** (`post.py`, the "Instagram" workflow), described first below. The same workflow posts the Friday post to the club's **Facebook Page** (see "Facebook Page").
 - **Luma invites** (`luma-invites/`, the "Luma invites" workflow).
 - **Meetup listings** (`meetup/`, the "Meetup" workflow).
 - **Eventbrite listings** (`eventbrite/`, the "Eventbrite" workflow), described at the end.
@@ -49,6 +49,28 @@ That's the only secret the Instagram poster uses. The Luma invites use `LUMA_API
 - `check-key`: checks the Instagram key without posting.
 
 To pause everything: Actions → Instagram → "…" → Disable workflow.
+
+## Facebook Page
+
+The same Instagram workflow also posts the Friday post to the club's Facebook Page ("Spanish Club for Socialists"):
+- **Fridays, 9 AM Eastern:** next week's carousel images as one multi-photo post. The winter break post goes too. Stories don't.
+- **Text:** the approved Instagram caption, with each event's Luma link (`RSVP: https://luma.com/…`) under its line, since links work on Facebook. Instagram @handles and "link in bio" are left out.
+- **Same safety rules:** only approved posts; Luma is checked first, and a flyer whose event is gone or has moved is left out with its caption line, link and cover (if nothing is left, the post is skipped); each post goes out at most once, recorded under `"facebook"` in `log/posted.json`.
+- **Separate from Instagram:** it's its own step, run after Instagram even if Instagram failed, with its own key. A Facebook problem never stops, repeats or double-posts an Instagram post, and the reverse.
+- **Switching it on:** nothing is posted until `FB_LIVE_FROM` (a Friday) is set in `post.py`. `FB_PAGE_ID` is the Page's ID, which isn't secret.
+
+**How you'll hear about it:** a comment on the **"Facebook log"** issue after every post, skip or problem.
+
+**Secret:** `FACEBOOK_ACCESS_TOKEN`, a system-user token of the club's second Meta app, "Spanish Club Page Poster" (Live mode, since Meta hides posts made by apps in Development mode). Permissions: `pages_show_list`, `pages_read_engagement`, `pages_manage_posts`, `business_management`. The Page's own token is fetched with it at each run and never saved. Each Sunday, once it's switched on, the workflow checks the key without posting. The app's privacy policy is `PRIVACY.md`.
+
+**Running it by hand (Actions → Instagram → Run workflow):**
+- `test`: shows what's due right now for Instagram and Facebook. Posts nothing.
+- `facebook-post-one`: posts one approved Friday post to the Page now. Enter its id, e.g. `2026-11-20-carousel`.
+- `facebook-check-key`: checks the Facebook key and Page without posting.
+
+On your own computer, `python post.py facebook --as-of 2026-11-20T09:07` shows exactly what would post that Friday.
+
+**To pause only Facebook:** set `FB_LIVE_FROM = None` in `post.py`. (Disabling the workflow pauses Instagram too.)
 
 ## Luma invites
 

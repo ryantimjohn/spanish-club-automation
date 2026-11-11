@@ -1,8 +1,13 @@
-# Posts the approved Spanish Club for Socialists Instagram posts on schedule.
+# Posts the approved Spanish Club for Socialists Instagram posts on schedule, and the Friday
+# feed post to the club's Facebook Page.
 #
 # GitHub's schedule is in UTC and can run a few minutes late, so it runs every hour from
 # 8 AM to noon Eastern (both winter and summer time) and post.py decides what is due by
 # checking the Eastern time itself. Each post goes out once; post.py keeps a log.
+#
+# Facebook is its own step after Instagram, with its own key and log entry. It runs even if the
+# Instagram step failed, and it can't change what Instagram does. Nothing goes to Facebook
+# before FB_LIVE_FROM in post.py.
 
 name: Instagram
 
@@ -15,15 +20,15 @@ on:
       action:
         description: "What to do"
         type: choice
-        options: [test, post-due, post-one, check-key]
+        options: [test, post-due, post-one, check-key, facebook-post-one, facebook-check-key]
         default: test
       item:
-        description: "For post-one: the post's id from manifest.json, e.g. 2026-11-13-carousel"
+        description: "For post-one or facebook-post-one: the post's id from manifest.json, e.g. 2026-11-13-carousel"
         required: false
 
 permissions:
   contents: write   # save log/posted.json
-  issues: write     # comment on the "Instagram log" issue, which emails the owner
+  issues: write     # comment on the "Instagram log" and "Facebook log" issues, which email the owner
 
 concurrency:
   group: instagram
@@ -40,7 +45,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run
+      - name: Instagram
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
@@ -59,5 +64,31 @@ jobs:
               post-due)  python post.py run --live ;;
               post-one)  python post.py run --live --item "$ITEM" ;;
               check-key) python post.py check ;;
+              *)         echo "Nothing for Instagram to do." ;;
+            esac
+          fi
+
+      - name: Facebook
+        if: ${{ !cancelled() }}
+        env:
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          ACTION: ${{ inputs.action }}
+          ITEM: ${{ inputs.item }}
+        run: |
+          python -m unittest -q test_post.py
+          if [ "$EVENT" = "schedule" ] && [ "$SCHEDULE" = "17 15 * * 0" ]; then
+            python post.py check-facebook --if-live
+          elif [ "$EVENT" = "schedule" ]; then
+            python post.py facebook --live
+          else
+            case "$ACTION" in
+              test)               python post.py facebook ;;
+              post-due)           python post.py facebook --live ;;
+              facebook-post-one)  python post.py facebook --live --item "$ITEM" ;;
+              facebook-check-key) python post.py check-facebook ;;
+              *)                  echo "Nothing for Facebook to do." ;;
             esac
           fi

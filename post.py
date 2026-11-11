@@ -12,6 +12,20 @@ Commands:
     python post.py run --live --item ID    Post one approved post now, ignoring its scheduled time.
     python post.py check                   Read-only check that the Instagram key works (GitHub runs it weekly).
 
+    python post.py facebook                Test mode for the Facebook Page: show what is due now. Posts nothing.
+    python post.py facebook --as-of 2026-11-13T09:07
+    python post.py facebook --live         Post the Friday post to the Page if due (GitHub Actions does this).
+    python post.py facebook --live --item ID
+                                           Post one approved Friday post to the Page now.
+    python post.py check-facebook          Read-only check of the Facebook key and Page (GitHub runs it weekly).
+
+Facebook: the Friday feed posts (the weekly carousel and the winter break post, never Stories) also
+go to the club's Facebook Page as one multi-photo post: the same approved images, and the approved
+caption with each event's Luma link added (Instagram @handles and "link in bio" left out). It runs
+as its own step after Instagram, with its own key, log entry ("facebook" in log/posted.json) and
+issue ("Facebook log"), so neither can block, retry or double-post the other. Nothing goes to
+Facebook before FB_LIVE_FROM.
+
 Safety rules built in:
 - Only posts listed in manifest.json under "approved", with an unchanged fingerprint, are posted.
 - Before each post, Luma's public calendar feed is read. A flyer whose event is gone or has
@@ -37,7 +51,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -52,6 +66,14 @@ LUMA_FEED = "https://api.lu.ma/ics/get?entity=calendar&id=cal-ITgDf27EcKUkodA"
 LATE_LIMIT = timedelta(hours=4)  # a post more than 4 hours late is reported as missed, not posted
 UA = "spanish-club-instagram/1.0"
 IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
+
+# Facebook Page. Its own key: FACEBOOK_ACCESS_TOKEN, a system-user token of the "Spanish Club Page Poster" app.
+FB_LIVE_FROM = None     # date(YYYY, M, D), a Friday: the first Friday posted to the Page. None = off.
+FB_PAGE_ID = None       # the club's Page ID (not secret); `check-facebook` lists the Pages the key reaches.
+FB_PAGE_NAME = "Spanish Club for Socialists"  # checked before every post
+FB_NEEDED_SCOPES = {"pages_show_list", "pages_read_engagement", "pages_manage_posts"}
+FEED_KINDS = ("carousel", "image")  # what goes to Facebook: the Friday feed posts, never Stories
+IG_ONLY = re.compile(r" ?\(@[\w.]+\)|\s*RSVP at the link in bio\.")  # Instagram-only bits of a caption
 
 
 # ---------- small helpers ----------
@@ -80,37 +102,54 @@ def save(path, data):
 
 
 _TOKEN = None
+_FB_TOKEN = None
+_PAGE_TOKEN = None  # the Page's own token, fetched with the Facebook key at run time; only ever in memory
+
+
+def secret(name):
+    """A key from the environment (GitHub secret), or on Windows from the user's env vars. Never printed."""
+    value = os.environ.get(name, "").strip()
+    if not value and os.name == "nt":
+        value = subprocess.run(
+            ["powershell.exe", "-NoProfile", "-Command", f"[Environment]::GetEnvironmentVariable('{name}','User')"],
+            capture_output=True, text=True).stdout.strip()
+    return value
 
 
 def token():
-    """The Instagram key: from the environment (GitHub secret), or on Windows from the user's env vars."""
+    """The Instagram key."""
     global _TOKEN
     if _TOKEN is None:
-        _TOKEN = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "").strip()
-        if not _TOKEN and os.name == "nt":
-            _TOKEN = subprocess.run(
-                ["powershell.exe", "-NoProfile", "-Command",
-                 "[Environment]::GetEnvironmentVariable('INSTAGRAM_ACCESS_TOKEN','User')"],
-                capture_output=True, text=True).stdout.strip()
+        _TOKEN = secret("INSTAGRAM_ACCESS_TOKEN")
     return _TOKEN
 
 
+def fb_token():
+    """The Facebook key (a system-user token of the Page poster app)."""
+    global _FB_TOKEN
+    if _FB_TOKEN is None:
+        _FB_TOKEN = secret("FACEBOOK_ACCESS_TOKEN")
+    return _FB_TOKEN
+
+
 def scrub(text):
-    t = token()
     text = str(text)
-    return text.replace(t, "***") if t else text
+    for t in (_TOKEN, _FB_TOKEN, _PAGE_TOKEN):
+        if t:
+            text = text.replace(t, "***")
+    return text
 
 
 class Problem(Exception):
     """Something went wrong; the message is safe to show (no key in it)."""
 
 
-def http(method, url, params=None, auth=True, raw=False, timeout=60):
-    """auth=True adds the Instagram key as the access_token parameter (Meta's documented way)."""
+def http(method, url, params=None, auth=True, raw=False, timeout=60, key=None):
+    """auth=True adds the Instagram key (or `key`, if given) as the access_token parameter (Meta's documented way)."""
     headers = {"user-agent": UA}
     data = None
     if auth:
-        params = dict(params or {}, access_token=token())
+        params = dict(params or {}, access_token=key if key is not None else token())
     if params and method == "GET":
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
     elif params:
@@ -130,6 +169,13 @@ def http(method, url, params=None, auth=True, raw=False, timeout=60):
 
 def graph(method, path, **params):
     return http(method, f"{GRAPH}/{path}", params or None)
+
+
+def fb_graph(method, path, key, **params):
+    """A Graph API call with a Facebook key (the system-user key, or the Page's own token)."""
+    if not key:
+        raise Problem("No Facebook key is set (FACEBOOK_ACCESS_TOKEN).")
+    return http(method, f"{GRAPH}/{path}", params or None, key=key)
 
 
 # ---------- Luma ----------
@@ -223,8 +269,8 @@ def push_log(message):
     raise Problem("Couldn't save the post log to GitHub.")
 
 
-def notify(text):
-    """Comment on the 'Instagram log' issue so GitHub emails the owner. Prints when testing."""
+def notify(text, issue_title="Instagram log"):
+    """Comment on the 'Instagram log' (or 'Facebook log') issue so GitHub emails the owner. Prints when testing."""
     print("NOTICE:", text)
     if not IN_ACTIONS:
         return
@@ -240,9 +286,9 @@ def notify(text):
             return json.loads(r.read())
 
     issues = call("GET", api + "?state=open&per_page=100")
-    issue = next((i for i in issues if i["title"] == "Instagram log" and "pull_request" not in i), None)
+    issue = next((i for i in issues if i["title"] == issue_title and "pull_request" not in i), None)
     if not issue:
-        issue = call("POST", api, {"title": "Instagram log",
+        issue = call("POST", api, {"title": issue_title,
                                    "body": "The auto-poster comments here after every post, skip or problem."})
     call("POST", f"{api}/{issue['number']}/comments", {"body": f"@{owner} {text}" if owner else text})
 
@@ -475,26 +521,262 @@ def check():
     print("Publishing limit:", json.dumps(limit.get("data", limit)))
 
 
+# ---------- Facebook Page ----------
+
+FB_LOG = "Facebook log"
+
+
+def fb_caption(item, bad):
+    """The approved caption for Facebook. Each event line gets its Luma link under it (links are clickable on
+    Facebook), Instagram @handles and "link in bio" are left out, and lines for gone or moved events are dropped.
+    A link for an event that no line names (the break post's return night) ends the next-to-last paragraph."""
+    lines, linked, after_event = [], set(), False
+    for line in item["caption_lines"]:
+        url = line.get("event")
+        if url and url in bad:
+            continue
+        text = IG_ONLY.sub("", line["text"]).rstrip()
+        if line["text"].strip() and not text:
+            continue  # the line was only Instagram text
+        if url:
+            if after_event:
+                lines.append("")
+            lines += [text, f"RSVP: {url}"]
+            linked.add(url)
+        else:
+            lines.append(text)
+        after_event = bool(url)
+    paragraphs = [p.strip("\n") for p in re.split(r"\n\s*\n", "\n".join(lines)) if p.strip()]
+    leftover = [u for u in item["events"] if u not in bad and u not in linked]
+    if leftover and paragraphs:
+        at = len(paragraphs) - 2 if len(paragraphs) > 1 else 0
+        paragraphs[at] += "".join(f"\nRSVP: {u}" for u in leftover)
+    return "\n\n".join(paragraphs)
+
+
+def fb_plan(item, luma):
+    """(slides, caption, notes) for the Page after the Luma check: Instagram's slides, Facebook's caption."""
+    slides, _, notes, _, _ = plan(item, luma)
+    notes = [n for n in notes if "location tag" not in n]  # Facebook posts carry no location tag
+    return slides, fb_caption(item, event_problems(item, luma)), notes
+
+
+def fb_due(items, fb_log, now, live_from, approved):
+    """(due, missed): the Friday feed posts (never Stories) due on the Page now. Nothing before live_from
+    (None = off). Only approved posts are reported as missed."""
+    due, missed = [], []
+    if live_from is None:
+        return due, missed
+    for item in items:
+        if item["kind"] not in FEED_KINDS or item["id"] in fb_log:
+            continue
+        at = parse_et(item["post_at"])
+        if at.date() < live_from:
+            continue
+        if at <= now < at + LATE_LIMIT:
+            due.append(item)
+        elif now >= at + LATE_LIMIT and approved.get(item["id"]) == item["fingerprint"]:
+            missed.append(item)
+    return due, missed
+
+
+def attached_media(photo_ids):
+    """The feed post's attached_media parameters, in slide order (Meta's documented form)."""
+    return {f"attached_media[{n}]": json.dumps({"media_fbid": pid}, separators=(",", ":"))
+            for n, pid in enumerate(photo_ids)}
+
+
+def facebook_page():
+    """(id, name) of the club's Page after checking the key reaches it. Keeps the Page's own token in memory."""
+    global _PAGE_TOKEN
+    if not FB_PAGE_ID:
+        raise Problem("FB_PAGE_ID isn't set in post.py, so nothing was posted to Facebook.")
+    page = fb_graph("GET", FB_PAGE_ID, fb_token(), fields="id,name,access_token")
+    _PAGE_TOKEN = page.get("access_token") or None
+    if page.get("name", "") != FB_PAGE_NAME:
+        raise Problem(f"Page {FB_PAGE_ID} is \"{page.get('name')}\", not \"{FB_PAGE_NAME}\", so nothing was posted.")
+    if not _PAGE_TOKEN:
+        raise Problem("The Facebook key can't get the Page's token. Check the system user has access to the Page.")
+    return page["id"], page["name"]
+
+
+def describe_fb(slides, caption, notes):
+    lines = [f"  Would post to the Facebook Page: one post with {len(slides)} photo(s)"]
+    lines += [f"    {n}. {s['image']}" for n, s in enumerate(slides, 1)]
+    lines.append("  Text:")
+    lines += [f"    | {line}" for line in caption.split("\n")]
+    lines += [f"  Note: {n}" for n in notes]
+    return "\n".join(lines)
+
+
+def run_facebook(live, as_of=None, only=None):
+    manifest = load("manifest.json", None)
+    if not manifest:
+        raise Problem("manifest.json is missing.")
+    log = load("log/posted.json", {})
+    fb = log.get("facebook", {})
+    now = parse_et(as_of) if as_of else now_et()
+    approved = manifest.get("approved", {})
+    items = {i["id"]: i for i in manifest["items"]}
+
+    def record(item_id, entry, message):
+        fb[item_id] = entry
+        log["facebook"] = fb
+        save("log/posted.json", log)
+        push_log(message)
+
+    print(("LIVE" if live else "TEST MODE: nothing will be posted.") + f" Facebook Page. Time: {nice(now)} Eastern.")
+
+    if only:
+        if only not in items or items[only]["kind"] not in FEED_KINDS:
+            raise Problem(f"No Friday feed post called {only} in the manifest.")
+        if fb.get(only, {}).get("status") in ("posted", "publishing"):
+            raise Problem(f"{only} has already been posted to Facebook (see log/posted.json).")
+        due = [items[only]]
+    else:
+        if live and (FB_LIVE_FROM is None or now.date() < FB_LIVE_FROM):
+            print("Not switched on yet (FB_LIVE_FROM), so nothing was done.")
+            return 0
+        due, missed = fb_due(manifest["items"], fb, now, FB_LIVE_FROM if live else date.min, approved)
+        for item in missed if live else []:
+            record(item["id"], {"status": "missed", "at": now.isoformat(timespec="minutes")},
+                   f"Facebook: missed {item['id']}")
+            notify(f"Missed on Facebook: {item['what']} was due {nice(parse_et(item['post_at']))} but the scheduler "
+                   "didn't run in time, so it wasn't posted.", FB_LOG)
+    if not due:
+        nxt = min((i for i in manifest["items"] if i["kind"] in FEED_KINDS and i["id"] not in fb
+                   and parse_et(i["post_at"]) > now), key=lambda i: i["post_at"], default=None)
+        print("Nothing is due for Facebook." + (f" Next: {nxt['what']}, {nice(parse_et(nxt['post_at']))}." if nxt else ""))
+        return 0
+
+    if live and not any(approved.get(i["id"]) == i["fingerprint"] for i in due):
+        print("Due, but not approved, so nothing will be posted: " + ", ".join(i["id"] for i in due))
+        return 0
+
+    luma = luma_events()
+    print(f"Luma: {len(luma)} events in the public calendar feed.")
+    page_id = None
+    if fb_token() and FB_PAGE_ID:
+        page_id, name = facebook_page()
+        print(f"Facebook: posting to the Page \"{name}\".")
+    elif live:
+        raise Problem("No Facebook key is set (FACEBOOK_ACCESS_TOKEN)." if not fb_token() else
+                      "FB_PAGE_ID isn't set in post.py.")
+
+    failures = 0
+    for item in due:
+        print(f"\n{item['id']}: {item['what']} (due {nice(parse_et(item['post_at']))})")
+        if approved.get(item["id"]) != item["fingerprint"]:
+            if live:
+                print("  Not approved (or changed since approval), so it won't be posted.")
+                continue
+            print("  NOT APPROVED YET: shown here, but a live run would hold it back.")
+        slides, caption, notes = fb_plan(item, luma)
+        if not slides:
+            msg = f"Skipped on Facebook: {item['what']}. " + " ".join(notes)
+            print("  " + msg)
+            if live:
+                record(item["id"], {"status": "skipped", "at": now.isoformat(timespec="minutes"),
+                                    "note": " ".join(notes)}, f"Facebook: skipped {item['id']}")
+                notify(msg, FB_LOG)
+            continue
+        print(describe_fb(slides, caption, notes))
+        if not live:
+            for s in slides:
+                check_image(s, online=False)
+            continue
+        try:
+            for s in slides:
+                check_image(s, online=True)
+            photos = [fb_graph("POST", f"{page_id}/photos", _PAGE_TOKEN, url=public_url(s["image"]),
+                               published="false")["id"] for s in slides]
+            record(item["id"], {"status": "publishing", "at": now_et().isoformat(timespec="minutes")},
+                   f"Facebook: publishing {item['id']}")
+            post_id = fb_graph("POST", f"{page_id}/feed", _PAGE_TOKEN, message=caption, **attached_media(photos))["id"]
+            try:
+                link = fb_graph("GET", post_id, _PAGE_TOKEN, fields="permalink_url").get("permalink_url", "")
+            except Problem:
+                link = ""
+            record(item["id"], {"status": "posted", "at": now_et().isoformat(timespec="minutes"), "post_id": post_id,
+                                "permalink": link, "photos": len(photos), "notes": notes},
+                   f"Facebook: posted {item['id']}")
+            notify(f"Posted on Facebook: {item['what']}. {link}" + (" " + " ".join(notes) if notes else ""), FB_LOG)
+        except Problem as e:
+            failures += 1
+            if fb.get(item["id"], {}).get("status") in ("publishing", "posted"):
+                notify(f"PROBLEM: {item['what']} may or may not have posted on Facebook. Please check the Page. "
+                       f"It won't be retried. Details: {e}", FB_LOG)
+            else:
+                notify(f"FAILED: {item['what']} wasn't posted on Facebook. It will be tried again on the next run "
+                       f"within {LATE_LIMIT.seconds // 3600} hours of its time. Details: {e}", FB_LOG)
+    return 1 if failures else 0
+
+
+def check_facebook(if_live=False):
+    """Read-only check of the Facebook key and Page. Raises (and so emails, on GitHub) if anything is off."""
+    if if_live and FB_LIVE_FROM is None:
+        print("Facebook isn't switched on yet (FB_LIVE_FROM), so its key wasn't checked.")
+        return
+    key = fb_token()
+    if not key:
+        raise Problem("No Facebook key found (FACEBOOK_ACCESS_TOKEN).")
+    granted = {p["permission"] for p in fb_graph("GET", "me/permissions", key).get("data", [])
+               if p.get("status") == "granted"}
+    if not FB_NEEDED_SCOPES <= granted:
+        raise Problem("The Facebook key is missing permission(s): " + ", ".join(sorted(FB_NEEDED_SCOPES - granted)) + ".")
+    pages = fb_graph("GET", "me/accounts", key, fields="id,name,tasks").get("data", [])
+    print("The Facebook key works.")
+    for p in pages:
+        print(f"  It reaches the Page \"{p.get('name')}\" (ID {p.get('id')}). Tasks: {', '.join(p.get('tasks', []))}.")
+    if not FB_PAGE_ID:
+        raise Problem("FB_PAGE_ID isn't set in post.py yet. Set it to the club Page's ID.")
+    page_id, name = facebook_page()
+    tasks = next((p.get("tasks", []) for p in pages if p.get("id") == page_id), None)
+    if tasks is not None and "CREATE_CONTENT" not in tasks:
+        raise Problem("The Facebook key can see the Page but can't post to it. Give the system user Content access.")
+    print(f"It can post to the Page \"{name}\" (ID {page_id}).")
+    try:
+        info = fb_graph("GET", "debug_token", key, input_token=key).get("data", {})
+    except Problem:
+        info = {}
+    expires = info.get("expires_at")
+    if expires is None:
+        print("Expiry: not shown to this key. (A key that stops working fails this check, which emails you.)")
+    elif expires == 0:
+        print("Expiry: never.")
+    else:
+        when = datetime.fromtimestamp(expires, TZ)
+        print(f"Expiry: {nice(when)}.")
+        if when - now_et() < WARN_BEFORE_EXPIRY:
+            raise Problem(f"The Facebook key expires {nice(when)}. Make a new one and save it as the "
+                          "FACEBOOK_ACCESS_TOKEN secret, or Facebook posting will stop.")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    r = sub.add_parser("run")
-    r.add_argument("--live", action="store_true")
-    r.add_argument("--as-of")
-    r.add_argument("--item")
+    for name in ("run", "facebook"):
+        r = sub.add_parser(name)
+        r.add_argument("--live", action="store_true")
+        r.add_argument("--as-of")
+        r.add_argument("--item")
     sub.add_parser("check")
+    sub.add_parser("check-facebook").add_argument("--if-live", action="store_true")
     a = ap.parse_args()
+    facebook = a.cmd in ("facebook", "check-facebook")
     try:
-        if a.cmd == "run":
+        if a.cmd in ("run", "facebook"):
             if a.live and a.as_of:
                 raise Problem("--as-of is for test mode only.")
-            return run(a.live, a.as_of, a.item)
+            return (run_facebook if facebook else run)(a.live, a.as_of, a.item)
+        if a.cmd == "check-facebook":
+            return check_facebook(a.if_live) or 0
         return check() or 0
     except Problem as e:
-        if a.cmd == "run" and not a.live:
+        if a.cmd in ("run", "facebook") and not a.live:
             print("PROBLEM:", e)
         else:
-            notify(f"FAILED ({a.cmd}): {e}")
+            notify(f"FAILED ({a.cmd}): {e}", FB_LOG if facebook else "Instagram log")
         return 1
 
 
