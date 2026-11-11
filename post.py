@@ -20,8 +20,9 @@ Commands:
     python post.py check-facebook          Read-only check of the Facebook key and Page (GitHub runs it weekly).
 
 Facebook: the Friday feed posts (the weekly carousel and the winter break post, never Stories) also
-go to the club's Facebook Page as one multi-photo post: the same approved images, and the approved
-caption with each event's Luma link added (Instagram @handles and "link in bio" left out). It runs
+go to the club's Facebook Page as one post: each night's approved square flyer (facebook/squares.json;
+Facebook's photo grid crops 4:5 images) without the cover and closing slide, and the approved caption
+with each event's Luma link added (Instagram @handles and "link in bio" left out). It runs
 as its own step after Instagram, with its own key, log entry ("facebook" in log/posted.json) and
 issue ("Facebook log"), so neither can block, retry or double-post the other. Nothing goes to
 Facebook before FB_LIVE_FROM.
@@ -554,10 +555,28 @@ def fb_caption(item, bad):
     return "\n\n".join(paragraphs)
 
 
-def fb_plan(item, luma):
-    """(slides, caption, notes) for the Page after the Luma check: Instagram's slides, Facebook's caption."""
+def fb_slides(slides, squares):
+    """Facebook's photos: each night's approved square flyer, without the weekly cover and closing slide (Facebook
+    crops 4:5 photos in a multi-photo post's grid, and the post's text already lists the week). If any flyer has no
+    approved square, Instagram's own images are used, with a note. A post with no flyers (the break post) is unchanged.
+    Returns (slides, notes)."""
+    flyers = [s for s in slides if s.get("event")]
+    if not flyers:
+        return slides, []
+    missing = [s["image"] for s in flyers if not (squares.get(s["image"]) or {}).get("approved")]
+    if missing:
+        return slides, [f"No approved square flyer for {', '.join(missing)}, so Instagram's 4:5 images were used."]
+    return [{"image": squares[s["image"]]["image"], "sha256": squares[s["image"]]["sha256"], "event": s["event"]}
+            for s in flyers], []
+
+
+def fb_plan(item, luma, squares):
+    """(slides, caption, notes) for the Page after the Luma check: the square flyers and Facebook's caption."""
     slides, _, notes, _, _ = plan(item, luma)
     notes = [n for n in notes if "location tag" not in n]  # Facebook posts carry no location tag
+    if slides:
+        slides, more = fb_slides(slides, squares)
+        notes += more
     return slides, fb_caption(item, event_problems(item, luma)), notes
 
 
@@ -615,6 +634,7 @@ def run_facebook(live, as_of=None, only=None):
         raise Problem("manifest.json is missing.")
     log = load("log/posted.json", {})
     fb = log.get("facebook", {})
+    squares = load("facebook/squares.json", {}).get("squares", {})
     now = parse_et(as_of) if as_of else now_et()
     approved = manifest.get("approved", {})
     items = {i["id"]: i for i in manifest["items"]}
@@ -671,7 +691,7 @@ def run_facebook(live, as_of=None, only=None):
                 print("  Not approved (or changed since approval), so it won't be posted.")
                 continue
             print("  NOT APPROVED YET: shown here, but a live run would hold it back.")
-        slides, caption, notes = fb_plan(item, luma)
+        slides, caption, notes = fb_plan(item, luma, squares)
         if not slides:
             msg = f"Skipped on Facebook: {item['what']}. " + " ".join(notes)
             print("  " + msg)

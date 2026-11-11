@@ -6,9 +6,12 @@ import sys
 import unittest
 from datetime import date, timedelta
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+HERE = pathlib.Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE / "facebook"))
+import collect_squares  # noqa: E402
 import post  # noqa: E402
-from post import attached_media, fb_caption, fb_due, fb_plan, parse_et  # noqa: E402
+from post import attached_media, fb_caption, fb_due, fb_plan, fb_slides, parse_et  # noqa: E402
 
 STEPHENS, ONLINE, LIBERATION = "https://luma.com/fdfiostx", "https://luma.com/6yd9kbw8", "https://luma.com/xvjrwk39"
 
@@ -65,6 +68,18 @@ LUMA_OK = {STEPHENS: "2026-11-16T19:00", ONLINE: "2026-11-18T19:00", LIBERATION:
            JAN_4: "2027-01-04T19:00"}
 
 
+def square(slug, approved=True):
+    return {"image": f"facebook/images/{slug}-square.jpg", "sha256": f"sq-{slug}", "approved": approved}
+
+
+SQUARES = {"images/2026-11-16-st-stephens-45.jpg": square("2026-11-16-st-stephens"),
+           "images/2026-11-18-online-45.jpg": square("2026-11-18-online"),
+           "images/2026-11-19-liberation-center-45.jpg": square("2026-11-19-liberation-center")}
+NOV_13_SQUARES = ["facebook/images/2026-11-16-st-stephens-square.jpg", "facebook/images/2026-11-18-online-square.jpg",
+                  "facebook/images/2026-11-19-liberation-center-square.jpg"]
+NOV_13_45S = [s["image"] for s in NOV_13["slides"]]
+
+
 class Caption(unittest.TestCase):
     def test_nov_13_adds_each_events_luma_link(self):
         self.assertEqual(fb_caption(NOV_13, {}),
@@ -103,28 +118,68 @@ class Caption(unittest.TestCase):
 
 
 class Plan(unittest.TestCase):
-    def test_all_slides_when_luma_matches(self):
-        slides, caption, notes = fb_plan(NOV_13, LUMA_OK)
-        self.assertEqual([s["image"] for s in slides], [s["image"] for s in NOV_13["slides"]])
+    def test_square_flyers_only_when_luma_matches(self):
+        slides, caption, notes = fb_plan(NOV_13, LUMA_OK, SQUARES)
+        self.assertEqual([s["image"] for s in slides], NOV_13_SQUARES)
+        self.assertEqual([s["event"] for s in slides], [STEPHENS, ONLINE, LIBERATION])
+        self.assertEqual(slides[0]["sha256"], "sq-2026-11-16-st-stephens")
         self.assertEqual(notes, [])
 
-    def test_moved_event_drops_its_flyer_and_the_cover(self):
+    def test_moved_event_drops_its_square(self):
         luma = dict(LUMA_OK, **{ONLINE: "2026-11-19T19:00"})
-        slides, caption, notes = fb_plan(NOV_13, luma)
-        images = [s["image"] for s in slides]
-        self.assertNotIn("images/2026-11-18-online-45.jpg", images)
-        self.assertNotIn("images/2026-11-13-cover.jpg", images)
+        slides, caption, notes = fb_plan(NOV_13, luma, SQUARES)
+        self.assertEqual([s["image"] for s in slides], [NOV_13_SQUARES[0], NOV_13_SQUARES[2]])
         self.assertNotIn(ONLINE, caption)
         self.assertTrue(any("moved" in n for n in notes))
 
     def test_no_location_note_on_facebook(self):
         luma = {k: v for k, v in LUMA_OK.items() if k != STEPHENS}
-        _, _, notes = fb_plan(NOV_13, luma)
+        _, _, notes = fb_plan(NOV_13, luma, SQUARES)
         self.assertFalse(any("location" in n.lower() for n in notes))
 
     def test_nothing_left_means_no_slides(self):
-        slides, _, _ = fb_plan(NOV_13, {JAN_4: "2027-01-04T19:00"})
+        slides, _, _ = fb_plan(NOV_13, {JAN_4: "2027-01-04T19:00"}, SQUARES)
         self.assertEqual(slides, [])
+
+    def test_break_post_keeps_its_own_image(self):
+        slides, _, notes = fb_plan(BREAK, LUMA_OK, SQUARES)
+        self.assertEqual([s["image"] for s in slides], ["images/2026-12-18-winter-break.jpg"])
+        self.assertEqual(notes, [])
+
+
+class Squares(unittest.TestCase):
+    def test_an_unapproved_square_means_instagrams_images(self):
+        squares = dict(SQUARES, **{"images/2026-11-18-online-45.jpg": square("2026-11-18-online", approved=False)})
+        slides, notes = fb_slides(NOV_13["slides"], squares)
+        self.assertEqual([s["image"] for s in slides], NOV_13_45S)
+        self.assertEqual(len(notes), 1)
+        self.assertIn("images/2026-11-18-online-45.jpg", notes[0])
+
+    def test_no_squares_at_all_means_instagrams_images(self):
+        slides, notes = fb_slides(NOV_13["slides"], {})
+        self.assertEqual([s["image"] for s in slides], NOV_13_45S)
+        self.assertEqual(len(notes), 1)
+
+    def test_a_post_without_flyers_is_unchanged(self):
+        self.assertEqual(fb_slides(BREAK["slides"], SQUARES), (BREAK["slides"], []))
+
+    def test_square_names_follow_the_instagram_flyer(self):
+        self.assertEqual(collect_squares.square_for("images/2026-11-16-st-stephens-45.jpg"),
+                         ("flyers/St. Stephen's/2026-11-16 Spanish Club for Socialists St. Stephen's – square.png",
+                          "facebook/images/2026-11-16-st-stephens-square.jpg"))
+        self.assertEqual(collect_squares.square_for("images/2026-11-19-liberation-center-45.jpg")[0],
+                         "flyers/Liberation Center/2026-11-19 Spanish Club for Socialists Liberation Center – square.png")
+
+    def test_only_flyers_have_squares(self):
+        self.assertIsNone(collect_squares.square_for("images/2026-11-13-cover.jpg"))
+        self.assertIsNone(collect_squares.square_for("images/2026-11-13-end-slide.jpg"))
+
+    def test_a_changed_square_needs_approval_again(self):
+        old = {"images/a-45.jpg": {"image": "facebook/images/a-square.jpg", "sha256": "old", "approved": True}}
+        new = collect_squares.merge(old, {"images/a-45.jpg": {"image": "facebook/images/a-square.jpg", "sha256": "new"}})
+        self.assertFalse(new["images/a-45.jpg"]["approved"])
+        same = collect_squares.merge(old, {"images/a-45.jpg": {"image": "facebook/images/a-square.jpg", "sha256": "old"}})
+        self.assertTrue(same["images/a-45.jpg"]["approved"])
 
 
 class Due(unittest.TestCase):

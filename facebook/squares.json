@@ -1,0 +1,230 @@
+{
+ "about": "Square flyers posted to the Facebook Page in place of Instagram's 4:5 flyers (see post.py). Made by facebook/collect_squares.py. Only approved squares with a matching fingerprint are posted.",
+ "squares": {
+  "images/2026-11-16-st-stephens-45.jpg": {
+   "image": "facebook/images/2026-11-16-st-stephens-square.jpg",
+   "sha256": "80aa917e0ee9c1adc075e58d2922577e585bd265a673dbf57f731fc8792b9d33",
+   "approved": true
+  },
+  "images/2026-11-18-online-45.jpg": {
+   "image": "facebook/images/2026-11-18-online-square.jpg",
+   "sha256": "3aec6d28b90a2a7b986f5d7a579f6b08b6076755056c0b29b05a96206d99e2aa",
+   "approved": true
+  },
+  "images/2026-11-19-liberation-center-45.jpg": {
+   "image": "facebook/images/2026-11-19-liberation-center-square.jpg",
+   "sha256": "ed8056a9f92a1138eb9814616bc795a763e680f5f7214f622e0cb9f8a005ee64",
+   "approved": true
+  },
+  "images/2026-11-23-st-stephens-45.jpg": {
+   "image": "facebook/images/2026-11-23-st-stephens-square.jpg",
+   "sha256": "ed1c07ea1a3841f8c6697ed094b1a716155eee7af11ef52b3dca3c5c3dbe29dd",
+   "approved": false
+  },
+  "images/2026-11-30-st-stephens-45.jpg": {
+   "image": "facebook/images/2026-11-30-st-stephens-square.jpg",
+   "sha256": "c56ec11085508df67cdbf8711fdd7c166679422867f95d973abf3aff5bcd4499",
+   "approved": false
+  },
+  "images/2026-12-02-online-45.jpg": {
+   "image": "facebook/images/2026-12-02-online-square.jpg",
+   "sha256": "6f15a20b808417b7db6123db778fd84bb79dfb979ea4ded0feb97c34ae46ce3a",
+   "approved": false
+  },
+  "images/2026-12-07-st-stephens-45.jpg": {
+   "image": "facebook/images/2026-12-07-st-stephens-square.jpg",
+   "sha256": "6e0e4a06a64e0d1fa242b8357536e95c41ff60c76af28e09e4f8f860385ef6a7",
+   "approved": false
+  },
+  "images/2026-12-09-online-45.jpg": {
+   "image": "facebook/images/2026-12-09-online-square.jpg",
+   "sha256": "f1a548beea3946742450c34363573ae4ddfc62abfebaf7ebcc0c34030fc1a19b",
+   "approved": false
+  },
+  "images/2026-12-14-st-stephens-45.jpg": {
+   "image": "facebook/images/2026-12-14-st-stephens-square.jpg",
+   "sha256": "5239c15d0f735dcbbf5c4d5ba08542bbd809df8031230f06cc979e2fd7a4ebae",
+   "approved": false
+  },
+  "images/2026-12-16-online-45.jpg": {
+   "image": "facebook/images/2026-12-16-online-square.jpg",
+   "sha256": "e4b01fc69f5a509bf1c8633ee3a1dfe51af0bede2d3bd9c267ed722c763e21d7",
+   "approved": false
+  },
+  "images/2027-01-04-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-01-04-st-stephens-square.jpg",
+   "sha256": "41ff057a4654c7f75b675f84650df19c2c686d93496aa720b4cf01ae5890f451",
+   "approved": false
+  },
+  "images/2027-01-06-online-45.jpg": {
+   "image": "facebook/images/2027-01-06-online-square.jpg",
+   "sha256": "3e0b102949f79af3c5634f30a61f8ab8c937e83337c65188f5916c76bf1f2369",
+   "approved": false
+  },
+  "images/2027-01-11-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-01-11-st-stephens-square.jpg",
+   "sha256": "5ec47ac1545aafa16033cc90a82fb3286f6e8d4810710f032c90af8444733804",
+   "approved": false
+  },
+  "images/2027-01-13-online-45.jpg": {
+   "image": "facebook/images/2027-01-13-online-square.jpg",
+   "sha256": "9d17ecf32492b1eb0ec0a8acbfb1bc7fd19b9c8b3ff361ebe1a30ff82e8c9045",
+   "approved": false
+  },
+  "images/2027-01-20-online-45.jpg": {
+   "image": "facebook/images/2027-01-20-online-square.jpg",
+   "sha256": "defa3f18d17bb674baa522e12347c9630073f450585dd0a6530a98cedb651b64",
+   "approved": false
+  },
+  "images/2027-01-25-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-01-25-st-stephens-square.jpg",
+   "sha256": "4f606375fd2899f1fe3e8a302f8941431a2523b64e9472d0404e527cf5a4030c",
+   "approved": false
+  },
+  "images/2027-01-27-online-45.jpg": {
+   "image": "facebook/images/2027-01-27-online-square.jpg",
+   "sha256": "1dcc09ce557026c332a2f1b75d3a6df31765f3ecb9334be800eabfbbba901839",
+   "approved": false
+  },
+  "images/2027-02-01-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-02-01-st-stephens-square.jpg",
+   "sha256": "29cc90f84b655bf4c265a5c99caf8a2443be26ce2d7facfe0c0de23acb1ad9ec",
+   "approved": false
+  },
+  "images/2027-02-03-online-45.jpg": {
+   "image": "facebook/images/2027-02-03-online-square.jpg",
+   "sha256": "6a6f764413b10a1a622b52479d48316d404d6e8b9f4099ab7c949d951ae13c71",
+   "approved": false
+  },
+  "images/2027-02-08-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-02-08-st-stephens-square.jpg",
+   "sha256": "043faf845690b89aa02aae7ecdf1a13b4a3db0ce71906bc27470e3a4a232ff2b",
+   "approved": false
+  },
+  "images/2027-02-10-online-45.jpg": {
+   "image": "facebook/images/2027-02-10-online-square.jpg",
+   "sha256": "932a182dfc1b56cddb0b2d907d322aae9f72abd937255d8d4d67bf06e3ccd61f",
+   "approved": false
+  },
+  "images/2027-02-17-online-45.jpg": {
+   "image": "facebook/images/2027-02-17-online-square.jpg",
+   "sha256": "9cd3396a1b006d87e3060ffb85f8f608666f858d08ca600255e6714bd4afda63",
+   "approved": false
+  },
+  "images/2027-02-22-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-02-22-st-stephens-square.jpg",
+   "sha256": "147918d865488417971ee1a7d8afb461f93db684ec35b6a014b03ea48b87faba",
+   "approved": false
+  },
+  "images/2027-02-24-online-45.jpg": {
+   "image": "facebook/images/2027-02-24-online-square.jpg",
+   "sha256": "e5b832f520f72f5127bc8ff0dca6b8bb715e23cd2253613d5c666dde05868f46",
+   "approved": false
+  },
+  "images/2027-03-01-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-03-01-st-stephens-square.jpg",
+   "sha256": "8c4e22c7586424fab463b55d41a59e461a819b9ebbe04ac79fd9c57fe0a2b91c",
+   "approved": false
+  },
+  "images/2027-03-03-online-45.jpg": {
+   "image": "facebook/images/2027-03-03-online-square.jpg",
+   "sha256": "a721746919ed4f9eda4a528de5b2a85b663da679d484070deeb3ccb2ea3f64b2",
+   "approved": false
+  },
+  "images/2027-03-08-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-03-08-st-stephens-square.jpg",
+   "sha256": "aa5bab57ad7f39a8e32b7326fa35860080071d1edc77860f6a9152ded3b29375",
+   "approved": false
+  },
+  "images/2027-03-10-online-45.jpg": {
+   "image": "facebook/images/2027-03-10-online-square.jpg",
+   "sha256": "dcf2d3a5084098f19efa2fe238a8035abe57bfc7be8cd75e0a10a69706c8e377",
+   "approved": false
+  },
+  "images/2027-03-15-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-03-15-st-stephens-square.jpg",
+   "sha256": "01b981961ca6b6a0f590f4d92c424738ee1d368187aab0efe4f941c9257d51e7",
+   "approved": false
+  },
+  "images/2027-03-17-online-45.jpg": {
+   "image": "facebook/images/2027-03-17-online-square.jpg",
+   "sha256": "cc5c4e16689977698570a017c72860fce756c0d041fc4cc751039c93e315f4e9",
+   "approved": false
+  },
+  "images/2027-03-22-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-03-22-st-stephens-square.jpg",
+   "sha256": "4f447f134ace29f6a09142fa8d96b2bb4847efd2a9db82e6f2cea9b0b057b744",
+   "approved": false
+  },
+  "images/2027-03-24-online-45.jpg": {
+   "image": "facebook/images/2027-03-24-online-square.jpg",
+   "sha256": "6295ce649011d193cafa2d0ae21d29dbdf30d6c4f125b1418a3ce50f94f09506",
+   "approved": false
+  },
+  "images/2027-03-29-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-03-29-st-stephens-square.jpg",
+   "sha256": "8e1692ebafa77b11a0ac4bb02f887a39f4a96c56131baf796a11657c2356c392",
+   "approved": false
+  },
+  "images/2027-03-31-online-45.jpg": {
+   "image": "facebook/images/2027-03-31-online-square.jpg",
+   "sha256": "efe145b39aba190543df7adb5ff7763081f35c804e9e0a880e6754e11447a9a4",
+   "approved": false
+  },
+  "images/2027-04-05-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-04-05-st-stephens-square.jpg",
+   "sha256": "fbee84b434be93c8f7c5ae0b567fe5ff3f8f87030284e6e1ccbd560b9b0c68c2",
+   "approved": false
+  },
+  "images/2027-04-07-online-45.jpg": {
+   "image": "facebook/images/2027-04-07-online-square.jpg",
+   "sha256": "2c6b324d6638e4ffd81ebb1ef176666b4314348fdf47e67ae61baefd565ae9f3",
+   "approved": false
+  },
+  "images/2027-04-12-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-04-12-st-stephens-square.jpg",
+   "sha256": "ecc26176e3b6c707389406e445d0931b28e08a0cc041039b8720e065a0ab3627",
+   "approved": false
+  },
+  "images/2027-04-14-online-45.jpg": {
+   "image": "facebook/images/2027-04-14-online-square.jpg",
+   "sha256": "20168d677e7bf26535cf11714242d179ae9bd20daf4fa2b003b728632095f28a",
+   "approved": false
+  },
+  "images/2027-04-19-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-04-19-st-stephens-square.jpg",
+   "sha256": "760995788a765a9f2d2bf1e6835a3d8ef01c64cc69b10cd033ed32fad5380f47",
+   "approved": false
+  },
+  "images/2027-04-26-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-04-26-st-stephens-square.jpg",
+   "sha256": "6240e00be9e4c7ae93f057150e7c325c01bb1787cddde4967d20ed1560dac4ff",
+   "approved": false
+  },
+  "images/2027-04-28-online-45.jpg": {
+   "image": "facebook/images/2027-04-28-online-square.jpg",
+   "sha256": "0cc080152e1024a361fd60f9f46d3be3d7cd4647b9b243e7892ac6d177b37f6f",
+   "approved": false
+  },
+  "images/2027-05-03-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-05-03-st-stephens-square.jpg",
+   "sha256": "1f529adbe10df8056667b67a17544c63be9483a3044d0a28f6a17e6af57c15ac",
+   "approved": false
+  },
+  "images/2027-05-05-online-45.jpg": {
+   "image": "facebook/images/2027-05-05-online-square.jpg",
+   "sha256": "813481e14e7ebf921871a519bb5d89df4d5dc9319f4a0b02bf6b3175f04db4c3",
+   "approved": false
+  },
+  "images/2027-05-10-st-stephens-45.jpg": {
+   "image": "facebook/images/2027-05-10-st-stephens-square.jpg",
+   "sha256": "c1f7d1c6370ad6d9214df6e532a0051e402f56fbbc266250730249fc9acfd72f",
+   "approved": false
+  },
+  "images/2027-05-12-online-45.jpg": {
+   "image": "facebook/images/2027-05-12-online-square.jpg",
+   "sha256": "5ca3006a2eb9a9d9d414a3e5069ed880d6d94d7c35d2759fe31f89ba7e310926",
+   "approved": false
+  }
+ }
+}

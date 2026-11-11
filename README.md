@@ -53,7 +53,8 @@ To pause everything: Actions → Instagram → "…" → Disable workflow.
 ## Facebook Page
 
 The same Instagram workflow also posts the Friday post to the club's Facebook Page ("Spanish Club for Socialists"):
-- **Fridays, 9 AM Eastern:** next week's carousel images as one multi-photo post. The winter break post goes too. Stories don't.
+- **Fridays, 9 AM Eastern:** one post with each of next week's nights as its **square flyer**, without the cover and closing slide (Facebook crops 4:5 photos in a multi-photo post, and the text already lists the week). The winter break post goes too, as it is. Stories don't.
+- **Square flyers:** `facebook/collect_squares.py`, run on the organizer's computer, copies each night's "– square.png" flyer into `facebook/images/` and lists it in `facebook/squares.json`. A square is used only once it's approved there (`--approve`, with the organizer's OK); a changed image needs approval again. Until every flyer of a post has an approved square, that post uses Instagram's own images.
 - **Text:** the approved Instagram caption, with each event's Luma link (`RSVP: https://luma.com/…`) under its line, since links work on Facebook. Instagram @handles and "link in bio" are left out.
 - **Same safety rules:** only approved posts; Luma is checked first, and a flyer whose event is gone or has moved is left out with its caption line, link and cover (if nothing is left, the post is skipped); each post goes out at most once, recorded under `"facebook"` in `log/posted.json`.
 - **Separate from Instagram:** it's its own step, run after Instagram even if Instagram failed, with its own key. A Facebook problem never stops, repeats or double-posts an Instagram post, and the reverse.
