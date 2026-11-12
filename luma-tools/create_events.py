@@ -75,8 +75,48 @@ COURSE = ("Want to practice Spanish between conversation classes? "
 
 # Since Nov 10, 2026 the course line is gone from Luma (it belongs in Discord).
 # COURSE stays here only so luma_cleanup.py can find old copies of it.
-DISCORD = ("Keep practicing between sessions on our Discord: "
-           "[discord.gg/HuefQSfHVm](https://discord.gg/HuefQSfHVm)")
+
+# Event descriptions, written by the organizer and approved Nov 11, 2026 (see the Handbook's "About the
+# club"). Luma shows the date, time, address, map and door note itself, so the text leaves them out.
+# Meetup, Eventbrite and Partiful copy this text and drop any paragraph with the Zoom link, so the Zoom
+# link stays alone in its paragraph. The guide's title leads the in-person text, for regulars.
+DISCORD_LINK = "[discord.gg/HuefQSfHVm](https://discord.gg/HuefQSfHVm)"
+VENMO = "@timjohnryan"  # the organizer's Venmo; fine to show publicly (organizer, Nov 11, 2026)
+VENMO_LINE = f"We accept Venmo donations to help cover the cost of the space: {VENMO}"
+LIBERATION_LINE = ("We're at the DC Liberation Center this week. Please help support the space with a "
+                   "[donation to the DC Liberation Center](https://www.paypal.com/donate?campaign_id=62V54PRH9J97Q).")
+BASICS = ("This isn't a Spanish class, so even in the beginner group, it helps everyone if you have the "
+          "basics down: introducing yourself, what you do for fun, where you live.")
+IN_PERSON = (
+    "This week's conversation guide:  \n{guide}\n\n"
+    "About the event:\n\n"
+    "A free Spanish conversation club for socialists. Many of us first came to practice for organizing work "
+    "like food distribution, legal aid, ICE patrols and tenant organizing. Everyone's welcome, and nobody "
+    "will talk your ear off about crypto.\n\n"
+    f"{BASICS}\n\n"
+    "We split into three levels, beginner, intermediate and advanced, and you pick yours. Not sure which "
+    "level you're at? Each week's conversation guide is broken out by level, so looking it over is a great "
+    "way to find out.\n\n"
+    "Keep practicing between sessions on our Discord, which also has resources if you're just starting "
+    f"out: {DISCORD_LINK}\n\n"
+    "{support}\n\n"
+    "¡Nos vemos!"
+)
+ONLINE = (
+    "A free Spanish conversation club for socialists, on Zoom. Everyone's welcome, wherever you are.\n\n"
+    f"Zoom link: [{ZOOM_URL}]({ZOOM_URL})\n\n"
+    f"{BASICS}\n\n"
+    "We split into Zoom breakout rooms by level, beginner, intermediate and advanced, and you pick yours. "
+    "The host often brings conversation topics to get things going.\n\n"
+    "Our Discord has resources if you're just starting out, and it's where we keep practicing between "
+    f"sessions: {DISCORD_LINK}\n\n"
+    "¡Nos vemos!"
+)
+
+
+def in_person(guide, support=VENMO_LINE):
+    """The in-person text, given the guide as a markdown link and the closing support line."""
+    return IN_PERSON.replace("{guide}", guide).replace("{support}", support)
 QUESTION = {
     "id": "how-did-you-hear",
     "label": "How did you hear about us?",
@@ -121,16 +161,7 @@ SERIES = [
             "font": "snpro",
             "tint_color": "#26374b",
         },
-        "description": (
-            "Event is from 7:00 pm to 8:30 pm at St Stephen's:\n\n"
-            "1525 Newton St NW, Washington, DC 20010, USA\n\n"
-            "[Open in Google Maps](https://maps.app.goo.gl/STyU4m8YTYPtgi149)\n\n"
-            "Here's the conversation guide. You can determine your level by reading it and "
-            "seeing which most fits your level of speaking:\n\n"
-            "{guide}\n\n"
-            "{course}\n\n"
-            "We accept Venmo donations to offset costs for the rental of the space."
-        ),
+        "description": IN_PERSON.replace("{support}", VENMO_LINE),
     },
     {
         "key": "Dupont",
@@ -152,16 +183,7 @@ SERIES = [
             "font": "geist-mono",
             "tint_color": "#422544",
         },
-        "description": (
-            "Event is from 7:30 pm to 9:00 pm at Patchwork DC:\n\n"
-            "1901 18th St NW, Washington, DC\n\n"
-            "[Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Patchwork%2C%201901%2018th%20St%20NW%2C%20Washington%2C%20DC)\n\n"
-            "Here's the conversation guide for this week. You can determine your level by reading it "
-            "and seeing which most fits your level of speaking:\n\n"
-            "{guide}\n\n"
-            "{course}\n\n"
-            "We accept Venmo donations to offset costs for the rental of the space."
-        ),
+        "description": IN_PERSON.replace("{support}", VENMO_LINE),
     },
     {
         "key": "Online",
@@ -176,13 +198,7 @@ SERIES = [
             "font": "new-spirit",
             "tint_color": "#486849",
         },
-        "description": (
-            f"[{ZOOM_URL}]"
-            f"({ZOOM_URL})\n\n"
-            "Hey friends. Join us to practice Spanish together on Wednesday nights on Zoom. "
-            "Beginner, Intermediate, Advanced are all welcome.\n\n"
-            "{course}"
-        ),
+        "description": ONLINE,
     },
 ]
 
@@ -203,8 +219,7 @@ COMMON = {
 
 def guide_link(num):
     doc_id, title = DOCS[num]
-    return (f"[Club de Conversación - {num} - {title} - Google Docs]"
-            f"(https://docs.google.com/document/d/{doc_id}/edit)")
+    return f"[{title}](https://docs.google.com/document/d/{doc_id}/edit)"
 
 
 def build_schedule():
@@ -223,7 +238,7 @@ def build_schedule():
             body = dict(COMMON, **s["fields"])
             body["start_at"] = start.astimezone(ZoneInfo("UTC")).isoformat().replace("+00:00", "Z")
             body["end_at"] = end.astimezone(ZoneInfo("UTC")).isoformat().replace("+00:00", "Z")
-            body["description_md"] = s["description"].replace("{guide}", guide_link(doc)).replace("{course}", DISCORD)
+            body["description_md"] = s["description"].replace("{guide}", guide_link(doc))
             held.append({"local_start": start, "series": s["key"],
                          "doc": doc if s["with_guide"] else None, "body": body})
         if held:

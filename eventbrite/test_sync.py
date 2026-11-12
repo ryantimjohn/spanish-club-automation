@@ -64,6 +64,11 @@ class Fields(unittest.TestCase):
         self.assertIn(sync.FOLLOW.split(":")[0], h)
         self.assertNotIn("<br", h)
 
+    def test_side_door_first_when_there_is_no_map_link(self):
+        h = sync.html_description("This week's conversation guide:  \n[Guía](https://docs.google.com/x)\n\nAbout",
+                                  "Please come in the side door!")
+        self.assertTrue(h.startswith("<p>Please come in the side door!</p>"))
+
     def test_line_breaks_and_markdown_link_with_url_text(self):
         h = sync.eventbrite_fields(LIB)["description"]
         self.assertIn("below:</p><p><a href=\"https://share.google/abc\">https://share.google/abc</a></p>", h)

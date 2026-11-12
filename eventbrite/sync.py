@@ -52,7 +52,8 @@ CATEGORY_ID = "113"     # Community & Culture (Eventbrite ids, not secret; None 
 SUBCATEGORY_ID = "13009"  # Language
 FORMAT_ID = "10"        # Meeting or Networking Event
 FOLLOW = "Get weekly reminders and see every event: follow us on Luma, https://luma.com/spanishclubforsocialists"
-SUMMARY = "Free Spanish conversation practice{where}. Beginner, intermediate and advanced are all welcome."
+SUMMARY = ("A free Spanish conversation club for socialists{where}. Beginner, intermediate and advanced, "
+           "and everyone's welcome.")
 
 KINDS = {  # Luma name contains -> (kind, image slug, venue key, extra line for the description)
     "St. Stephen": ("St. Stephen's", "st-stephens", "st-stephens", "Please come in the side door!"),
@@ -130,7 +131,7 @@ def html_description(md, extra=None):
     paras = [p.strip() for p in re.split(r"\n\s*\n", md or "") if p.strip()]
     paras = [p for p in paras if not ZOOM.search(p) and not SECRET_HINT.search(p)]
     if extra:
-        at = next((i + 1 for i, p in enumerate(paras) if "google maps" in p.lower()), min(1, len(paras)))
+        at = next((i + 1 for i, p in enumerate(paras) if "google maps" in p.lower()), 0)  # no map link: first
         paras.insert(at, extra)
     lines = [ln.strip() for p in paras + [FOLLOW] for ln in p.split("\n") if ln.strip()]
     return "".join(f"<p>{_line_html(ln)}</p>" for ln in lines)
