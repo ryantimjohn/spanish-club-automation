@@ -82,7 +82,8 @@ COURSE = ("Want to practice Spanish between conversation classes? "
 # link stays alone in its paragraph. The guide's title leads the in-person text, for regulars.
 DISCORD_LINK = "[discord.gg/HuefQSfHVm](https://discord.gg/HuefQSfHVm)"
 VENMO = "@timjohnryan"  # the organizer's Venmo; fine to show publicly (organizer, Nov 11, 2026)
-VENMO_LINE = f"We accept Venmo donations to help cover the cost of the space: {VENMO}"
+VENMO_URL = "https://venmo.com/code?user_id=1670525508124672305&created=1794452651"  # organizer's link
+VENMO_LINE = f"We accept Venmo donations to help cover the cost of the space: [{VENMO}]({VENMO_URL})"
 LIBERATION_LINE = ("We're at the DC Liberation Center this week. Please help support the space with a "
                    "[donation to the DC Liberation Center](https://www.paypal.com/donate?campaign_id=62V54PRH9J97Q).")
 BASICS = ("This isn't a Spanish class, so even in the beginner group, it helps everyone if you have the "
