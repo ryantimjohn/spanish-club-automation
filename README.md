@@ -1,10 +1,13 @@
 # Spanish Club for Socialists: automation
 
-This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs four jobs on GitHub Actions:
+This repository (renamed from `spanish-club-instagram` on Nov 10, 2026) runs five jobs on GitHub Actions:
 - **Instagram auto-poster** (`post.py`, the "Instagram" workflow), described first below. The same workflow posts the Friday post to the club's **Facebook Page** (see "Facebook Page").
 - **Luma invites** (`luma-invites/`, the "Luma invites" workflow).
 - **Meetup listings** (`meetup/`, the "Meetup" workflow).
-- **Eventbrite listings** (`eventbrite/`, the "Eventbrite" workflow), described at the end.
+- **Eventbrite listings** (`eventbrite/`, the "Eventbrite" workflow).
+- **Discord weekly post** (`discord/`, the "Discord" workflow).
+
+A daily check on the organizer's computer (`run-check/`, see "Checking that the jobs ran" at the end) reports any job that GitHub ran late or skipped.
 
 The season scripts for Luma (`luma-tools/`) run on the organizer's computer.
 
@@ -155,3 +158,28 @@ To pause: Actions → Luma invites → "…" → Disable workflow.
 ## Discord weekly post
 
 Every Friday at about 9 AM Eastern, `discord/weekly.py` (the "Discord" workflow) posts next week's events from Luma in the Discord server's #announcements, through a webhook. Nothing is posted until `LIVE_FROM` is set. Secrets: `DISCORD_ANNOUNCEMENTS_WEBHOOK`, `DISCORD_SERVER_BOTS_WEBHOOK` (samples only) and `LUMA_API_KEY`. Results go to the **"Discord log"** issue. The details, and how to run or pause it, are in `discord/README.md`.
+
+## Checking that the jobs ran
+
+GitHub's schedule can run late or skip runs. On Nov 11 and 12, 2026 every job missed its morning runs. So once a day at about 12:15 PM Eastern, a scheduled task on the organizer's computer runs `run-check/check_runs.py`. It reads each workflow's cron lines and GitHub's run history, and gives each job one status for the day:
+- **OK:** it ran in its window.
+- **LATE:** it ran, but only after its window.
+- **MISSED:** it didn't run.
+- **FAILED:** it ran and failed.
+
+If any job isn't OK, the organizer gets a notification. The check never starts or re-runs a job itself.
+
+Each job's window (Eastern), all of them ending at noon:
+- **Instagram:** 8 AM to noon.
+- **Luma invites:** 10 AM to noon. They only send at or after 10.
+- **Meetup and Eventbrite:** 6 AM to noon.
+- **Discord:** Fridays, 9 AM to noon.
+
+Before noon, `--latest` checks yesterday. If you add or move a schedule, update `JOBS` in the script; a test fails if a scheduled workflow is missing from it.
+
+```bash
+python -I -X utf8 run-check/check_runs.py --schedule   # today's expected times
+python -I -X utf8 run-check/check_runs.py              # today so far
+python -I -X utf8 run-check/check_runs.py --latest     # the latest finished day
+python -X utf8 -m unittest run-check/test_check_runs.py
+```
