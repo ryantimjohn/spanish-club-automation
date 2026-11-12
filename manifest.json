@@ -1,6 +1,6 @@
 {
  "about": "Posts the Spanish Club for Socialists Instagram account may publish. Only posts listed under 'approved' with a matching fingerprint are ever posted.",
- "built_at": "2026-11-11T02:54:56+00:00",
+ "built_at": "2026-11-12T02:14:40+00:00",
  "timezone": "America/New_York",
  "items": [
   {
@@ -40,6 +40,75 @@
    },
    "depends_on": null,
    "fingerprint": "f47b10efa20fd0ef98b765c0e009d75bab93c212c40582d54a3b6088345bfcf1"
+  },
+  {
+   "id": "2026-11-12-our-story",
+   "kind": "carousel",
+   "what": "About the club: our story",
+   "post_at": "2026-11-12T09:00",
+   "slides": [
+    {
+     "image": "images/2026-11-12-our-story-1.jpg",
+     "sha256": "8b1cac64d913df8f08226b6d0633559a324240b1c7c3f8cc99cd49730429a2e9",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-12-our-story-2.jpg",
+     "sha256": "dfa78e1d94dbb828cf2b5a224b8956f5ddb97d6d583ec794fa19ceffe2f06aa1",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-12-our-story-3.jpg",
+     "sha256": "3798a0251838a4926bee91a4a942ef6f8f379d32ea5c6b6ce29c12121c32ddcb",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-12-our-story-4.jpg",
+     "sha256": "c7643099e79f1e72f623dc2d6e49b7bd09a549440a834e8358a68c7afd41cc1d",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-12-our-story-5.jpg",
+     "sha256": "321eb4650a8d92fc06165418d30a3b723dfc9b3813470548bfe73be0a00d1c61",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-12-our-story-6.jpg",
+     "sha256": "79559f33e67bbb4a33d600bafd53b25c40af0d6bad0e9d39b7396715c2b2a8a6",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-12-our-story-7.jpg",
+     "sha256": "67feed9aec8ddcfdbf7ea0ef44b365269519622ff615b5a4d0b45e38fe248da2",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Why is there a Spanish club for socialists? Swipe for our story."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "We started in July 2025, when organizers in DC doing food distribution, legal aid and tenant organizing wanted a place to practice their Spanish. Then the immigration crackdown hit DC, and it mattered even more."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "On Saturday: what a Spanish Club actually looks like."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Free and open to all levels. RSVP at the link in bio."
+    }
+   ],
+   "events": {},
+   "depends_on": null,
+   "fingerprint": "a47dd0401e2366990b810b14138a440521e56e3f20396ac0d7d27f4a18624369"
   },
   {
    "id": "2026-11-13-carousel",
@@ -147,6 +216,80 @@
    },
    "depends_on": "2026-11-13-carousel",
    "fingerprint": "d7633e57c80fe8cede426cb2794126d6d7811aa6955e0bd65d7e9a3977a9d10d"
+  },
+  {
+   "id": "2026-11-14-how-it-works",
+   "kind": "carousel",
+   "what": "About the club: how it works",
+   "post_at": "2026-11-14T09:00",
+   "slides": [
+    {
+     "image": "images/2026-11-14-how-it-works-1.jpg",
+     "sha256": "5c869d41eba341992ed3ef7e4a427af278d759a0b1331511fa5e67981aacea57",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-14-how-it-works-2.jpg",
+     "sha256": "5bc21fabbe10ae8909494a53d0d4baa94823bcb1c9bc5912953cf96dcc589a94",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-14-how-it-works-3.jpg",
+     "sha256": "2a88213fe69c597e8fe0a5b9d2c8b090a20ec5faf1a4623052354bd556930af1",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-14-how-it-works-4.jpg",
+     "sha256": "7756c29cd1fdc8f2be87c01d7af3b5e46e9d89818622a754d1450f9c2f332ce6",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-14-how-it-works-5.jpg",
+     "sha256": "840e207ebc72714e65f3a0763ddcc7974fad9c6b0dd621f4be2354c062a1e599",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-14-how-it-works-6.jpg",
+     "sha256": "dfe3d369e4fe4c18809778a9004b726aa6bf1cb77b39cbca5849e5f6b0f23ddd",
+     "event": null
+    },
+    {
+     "image": "images/2026-11-14-how-it-works-7.jpg",
+     "sha256": "87fbd48dbf73c5fa55c0ccf70abf0c83a3749ec4f0dfc750a11703a1cad1b2ec",
+     "event": null
+    }
+   ],
+   "caption_lines": [
+    {
+     "text": "Never been to Spanish Club? Here's what actually happens."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "It's free and everyone's welcome. An hour and a half of Spanish practice in three levels (beginner, intermediate and advanced), mostly in small groups, with one-on-one \"speed dating\" for beginners and sometimes games."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "Just starting out? Join our Discord for learning resources."
+    },
+    {
+     "text": ""
+    },
+    {
+     "text": "RSVP and Discord: link in bio. ¡Nos vemos!"
+    }
+   ],
+   "events": {},
+   "depends_on": null,
+   "location": {
+    "id": "13539212969",
+    "name": "St. Stephen & the Incarnation Episcopal Church",
+    "events": []
+   },
+   "fingerprint": "30c26a0538ec8fcefd1cf22ceaef1093717615488a79a010216f434d8cffcea0"
   },
   {
    "id": "2026-11-16-story",
@@ -3262,6 +3405,8 @@
   "2027-05-12-story": "35a48d2e6938fa13208fe42e4597c3b5cebeb7e71337eb8126fde5447870801e",
   "2026-11-13-carousel": "88de7078761aabf1d191f1ebf22a74cb0a53bd48151ff09d30ccd2120924b4e6",
   "2026-11-13-cover-story": "d7633e57c80fe8cede426cb2794126d6d7811aa6955e0bd65d7e9a3977a9d10d",
-  "2026-11-19-story": "04388d42615ea2979a2f2899d9febb7ea2001bd7a6e23e67683bbbeffcecd335"
+  "2026-11-19-story": "04388d42615ea2979a2f2899d9febb7ea2001bd7a6e23e67683bbbeffcecd335",
+  "2026-11-12-our-story": "a47dd0401e2366990b810b14138a440521e56e3f20396ac0d7d27f4a18624369",
+  "2026-11-14-how-it-works": "30c26a0538ec8fcefd1cf22ceaef1093717615488a79a010216f434d8cffcea0"
  }
 }

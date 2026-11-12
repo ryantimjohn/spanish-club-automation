@@ -31,7 +31,8 @@ Safety rules built in:
 - Only posts listed in manifest.json under "approved", with an unchanged fingerprint, are posted.
 - Before each post, Luma's public calendar feed is read. A flyer whose event is gone or has
   moved is left out, along with its caption line and the cover that lists it. If nothing is
-  left, the post is skipped. Nothing new is ever added.
+  left, the post is skipped. Nothing new is ever added. A post about the club itself, with no
+  events at all, has nothing to check and goes out as approved.
 - Each image is downloaded from its public link and checked against its fingerprint before
   Instagram is asked to fetch it.
 - A post is marked "publishing" in log/posted.json (and pushed) before it is published, so a
@@ -233,7 +234,9 @@ def plan(item, luma):
     caption = "\n".join(line["text"] for line in item["caption_lines"]
                         if not (line.get("event") and line["event"] in bad))
     has_event_content = any(s.get("event") or s.get("lists_events") for s in slides)
-    if not has_event_content:
+    # A post about the club itself (like "how it works") lists no events, so there's nothing on Luma to lose.
+    about_club = not item["events"] and not any(s.get("event") or s.get("lists_events") for s in item["slides"])
+    if not has_event_content and not about_club:
         slides = []
     if bad and slides:
         notes.append("Left out of this post: the flyer, caption line and cover that mention it.")

@@ -15,8 +15,9 @@ This posts the club's Instagram posts on schedule, so nobody has to remember to.
 - **Fridays, 9 AM Eastern:** next week's carousel (the cover, that week's flyers, the closing slide) and its caption. The cover also goes to the Story.
 - **Event days, 11 AM Eastern:** that night's flyer as a Story.
 - **Breaks:** a heads-up before the winter break, and "We're back!" before Jan 4.
+- **About the club:** carousels about the club itself: "Our story" (Thu Nov 12) and "How it works" (Sat Nov 14), both at 9 AM. They list no events, so there's nothing to check on Luma and they go out as approved. Pin them to the top of the profile in the app (the API can't pin).
 
-Carousels with a St. Stephen's night, and the winter break post, are tagged with the church's location, so they also show on its Instagram location page. The tag uses the church's Facebook "delegate Page ID", `13539212969` (not secret). If the St. Stephen's night is cancelled, the tag is left off. If Instagram refuses the tag, the post goes out without it and the notice says so. Stories can't be tagged with a location through the API.
+Carousels with a St. Stephen's night, the winter break post and "How it works" are tagged with the church's location, so they also show on its Instagram location page. The tag uses the church's Facebook "delegate Page ID", `13539212969` (not secret). If the St. Stephen's night is cancelled, the tag is left off. If Instagram refuses the tag, the post goes out without it and the notice says so. Stories can't be tagged with a location through the API.
 
 Reels and link stickers stay manual. Instagram's API can't add stickers.
 
