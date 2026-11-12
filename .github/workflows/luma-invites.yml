@@ -1,7 +1,8 @@
 # Sends Spanish Club for Socialists Luma invites 6 days before each event, at about 10 AM Eastern.
 #
-# GitHub's schedule is in UTC and can run a few minutes late, so it runs at 14:03 and 15:03 UTC
-# (10 AM Eastern in summer and winter) and invite.py checks the Eastern time itself. Each event is
+# GitHub's schedule is in UTC and can run late or skip runs (on Nov 11-12, 2026 it did both), so it
+# runs every hour at :03 from 14:03 to 23:03 UTC (about 9 AM to 6 PM Eastern in winter, 10 AM to 7 PM
+# in summer) and invite.py checks the Eastern time itself: it sends on the first run at or after 10 AM. Each event is
 # sent once; luma-invites/sent.json keeps the record. Nothing is sent until LIVE_FROM is set in
 # luma-invites/invite.py. Results go to the "Luma invite log" issue, which emails the owner.
 
@@ -9,7 +10,7 @@ name: Luma invites
 
 on:
   schedule:
-    - cron: "3 14,15 * * *"
+    - cron: "3 14-23 * * *"   # hourly, about 9 AM - 6 PM Eastern (10 AM - 7 PM in summer)
   workflow_dispatch:
     inputs:
       action:

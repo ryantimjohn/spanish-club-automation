@@ -1,15 +1,18 @@
 # Keeps the Spanish Club for Socialists Meetup group in step with Luma: lists each event 5 weeks
 # ahead and follows Luma when an event moves or is cancelled. See meetup/sync.py.
 #
-# GitHub's schedule is in UTC, so it runs at 14:20 and 15:20 UTC (about 10:20 AM Eastern in summer
-# and winter). Nothing changes on Meetup until LIVE_FROM is set in meetup/sync.py. Results go to the
-# "Meetup log" issue, which emails the owner.
+# GitHub's schedule is in UTC and can run late or skip runs (on Nov 11-12, 2026 it did both), so it
+# is scheduled every hour at :20 from 14:20 to 23:20 UTC (about 9:20 AM to 6:20 PM Eastern in winter).
+# The first scheduled run that succeeds each day (Eastern) syncs; later scheduled runs that day see it
+# and do nothing, so the extra runs are only backups.
+# Nothing changes on Meetup until LIVE_FROM is set in meetup/sync.py. Results go to the "Meetup log"
+# issue, which emails the owner.
 
 name: Meetup
 
 on:
   schedule:
-    - cron: "20 14,15 * * *"
+    - cron: "20 14-23 * * *"   # hourly, about 9 AM - 6 PM Eastern (10 AM - 7 PM in summer)
   workflow_dispatch:
     inputs:
       action:
@@ -19,6 +22,7 @@ on:
         default: test
 
 permissions:
+  actions: read     # see whether today's sync already ran
   contents: write   # save meetup/events.json and meetup/venues.json
   issues: write     # comment on the "Meetup log" issue, which emails the owner
 
@@ -37,10 +41,23 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Skip if a scheduled run already synced today
+        id: guard
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          since=$(python -c "from datetime import datetime, time, timezone; from zoneinfo import ZoneInfo; et = ZoneInfo('America/New_York'); print(datetime.combine(datetime.now(et).date(), time(0), et).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))")
+          n=$(gh run list -R "$GITHUB_REPOSITORY" -w "$GITHUB_WORKFLOW" -e schedule -s success --created ">=$since" --json databaseId -q length) || n=0
+          echo "Successful scheduled runs since midnight Eastern: ${n:-0}"
+          if [ "${n:-0}" -gt 0 ]; then echo "skip=true" >> "$GITHUB_OUTPUT"; echo "Already synced today, so this run does nothing."; fi
+
       - name: Test the logic
+        if: steps.guard.outputs.skip != 'true'
         run: python -m unittest meetup/test_sync.py
 
       - name: Run
+        if: steps.guard.outputs.skip != 'true'
         env:
           LUMA_API_KEY: ${{ secrets.LUMA_API_KEY }}
           MEETUP_CLIENT_KEY: ${{ secrets.MEETUP_CLIENT_KEY }}

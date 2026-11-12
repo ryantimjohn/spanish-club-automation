@@ -44,13 +44,17 @@ JOBS = [
         "post can still go out up to 10 hours late, but never after the night it lists starts. This window is the "
         "early warning"),
     Job("Luma invites", "luma-invites.yml", DAILY, time(10), time(12),
-        "sends Luma invites for events 6 days out; sends only at or after 10 AM"),
+        "sends Luma invites for events 6 days out; sends on the first run at or after 10 AM, and runs go on hourly "
+        "until about 6 PM"),
     Job("Meetup", "meetup.yml", DAILY, time(6), time(12),
-        "copies Luma events to Meetup (off until Meetup approves the API)"),
+        "copies Luma events to Meetup (off until Meetup approves the API); the first scheduled run that works each "
+        "day syncs, and later ones that day do nothing"),
     Job("Eventbrite", "eventbrite.yml", DAILY, time(6), time(12),
-        "copies Luma events to Eventbrite"),
+        "copies Luma events to Eventbrite; the first scheduled run that works each day syncs, and later ones that "
+        "day do nothing"),
     Job("Discord", "discord.yml", frozenset({4}), time(9), time(12),
-        "posts next week's events in Discord on Fridays; posts only at or after 9 AM"),
+        "posts next week's events in Discord on Fridays; posts on the first run at or after 9 AM, and runs go on "
+        "hourly until about 6 PM"),
 ]
 
 

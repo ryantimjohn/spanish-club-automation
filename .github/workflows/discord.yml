@@ -1,16 +1,16 @@
 # Posts next week's Spanish Club for Socialists events in Discord's #announcements every Friday at
 # about 9 AM Eastern, through a webhook. See discord/weekly.py.
 #
-# GitHub's schedule is in UTC and can run late, so it runs at 13:07, 14:07, 15:07 and 16:07 UTC on
-# Fridays and weekly.py checks the Eastern time itself (9 AM is 13:00 UTC in summer, 14:00 in
-# winter). Each Friday is posted once; discord/posted.json keeps the record. Nothing is posted until
+# GitHub's schedule is in UTC and can run late or skip runs (on Nov 11-12, 2026 it did both), so it
+# runs every hour at :07 from 13:07 to 23:07 UTC on Fridays (about 8 AM to 6 PM Eastern in winter) and
+# weekly.py checks the Eastern time itself: it posts on the first run at or after 9 AM. Each Friday is posted once; discord/posted.json keeps the record. Nothing is posted until
 # LIVE_FROM is set in discord/weekly.py. Results go to the "Discord log" issue, which emails the owner.
 
 name: Discord
 
 on:
   schedule:
-    - cron: "7 13,14,15,16 * * 5"
+    - cron: "7 13-23 * * 5"   # Fridays, hourly, about 8 AM - 6 PM Eastern (9 AM - 7 PM in summer)
   workflow_dispatch:
     inputs:
       action:

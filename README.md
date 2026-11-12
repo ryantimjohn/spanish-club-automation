@@ -177,6 +177,12 @@ Each job's window (Eastern), all of them ending at noon:
 - **Meetup and Eventbrite:** 6 AM to noon.
 - **Discord:** Fridays, 9 AM to noon.
 
+The windows end at noon, but the jobs keep running after that, so a job that missed the morning can still catch up. The check is the early warning:
+- **Instagram:** twice an hour, until about 7 PM.
+- **Luma invites:** every hour, until about 6 PM.
+- **Discord:** every hour on Fridays, until about 6 PM.
+- **Meetup and Eventbrite:** every hour, until about 6 PM. Only the first scheduled run that works each day syncs; later runs that day see it and stop, so waiting-for-a-flyer notices still come once a day.
+
 Before noon, `--latest` checks yesterday. If you add or move a schedule, update `JOBS` in the script; a test fails if a scheduled workflow is missing from it.
 
 ```bash
