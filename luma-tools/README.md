@@ -16,13 +16,16 @@ Run Python with `python -I -X utf8`.
 
 ## create_events.py
 Makes a season of weekly events: St. Stephen's on Mondays, Online on Wednesdays, and Dupont on Tuesdays when it's running.
-- **Every event gets:** the map link, the Venmo note, the Discord invite line and the optional "How did you hear about us?" question.
-- **St. Stephen's events get:** that week's conversation guide.
+- **Every event gets:** the organizer's description (`IN_PERSON` or `ONLINE`, from Nov 11, 2026), with the Discord invite line, and the optional "How did you hear about us?" question. The text leaves out the date, time and address, since Luma shows them itself. Meetup, Eventbrite and Partiful copy it, and drop the paragraph with the Zoom link, so keep that link alone in its paragraph.
+- **In-person events get:** that week's conversation guide, by title, at the top, and the Venmo line (`VENMO_LINE`). A Liberation Center night uses `LIBERATION_LINE` instead.
 - **Before a new season, edit:** `FIRST_WEEK`, the `DOCS` guide list, `SKIP` (holidays and breaks), and the Dupont address. Patchwork's new space is 1901 18th St NW.
 - **How to run it:** a plain run prints the schedule. `--only N` creates event N, so make one as a sample first. `--apply` creates the rest and skips events that already exist.
 
 ## luma_cleanup.py
 The Nov 10, 2026 cleanup: it swapped the free-course line for the Discord line and added the question. A plain run is a dry run, `--only EVENT_ID` changes one event, and `--apply` changes all of them. Edits go out with `suppress_email`, so guests get no emails. You can run it again safely: events that are already done are skipped.
+
+## update_descriptions.py
+Rewrites every upcoming event's description to the current text in `create_events.py`, keeping each in-person event's own guide link. A plain run is a dry run (the Zoom passcode is masked), `--only EVENT_ID` changes one event, and `--apply` changes all of them. Edits go out with `suppress_email`, so guests get no emails. You can run it again safely: events that already match are skipped. After a text change, edit `create_events.py`, run this once as a sample with `--only`, then `--apply`.
 
 ## update_covers.py
 Sets each upcoming event's Luma cover to its dated square flyer from the club folder's `flyers` directory. Uploads are logged in `covers_done.json`, so a rerun only uploads flyers that changed. A plain run is a dry run, `--only EVENT_ID` does one event, `--apply` does all of them, and `--skip EVENT_ID` leaves one out.
