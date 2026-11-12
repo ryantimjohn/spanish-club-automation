@@ -91,7 +91,7 @@ IN_PERSON = (
     "This week's conversation guide:  \n{guide}\n\n"
     "About the event:\n\n"
     "A free Spanish conversation club for socialists. Many of us first came to practice for organizing work "
-    "like food distribution, legal aid, ICE patrols and tenant organizing. Everyone's welcome, and nobody "
+    "like food distribution, legal aid, anti-ICE patrols and tenant organizing. Everyone's welcome, and nobody "
     "will talk your ear off about crypto.\n\n"
     f"{BASICS}\n\n"
     "We split into three levels, beginner, intermediate and advanced, and you pick yours. Not sure which "
