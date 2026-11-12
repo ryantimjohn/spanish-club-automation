@@ -36,8 +36,10 @@ Instagram downloads each image from its public GitHub link, so if this repositor
 ## How you'll hear about it
 After every post, skip or problem, a comment appears on the **"Instagram log"** issue in this repository, and GitHub emails it to you. GitHub also emails you if a run fails outright.
 
+**When GitHub runs late:** GitHub's timer often runs hours late or skips runs (on Nov 11–12, 2026 it ran 5–7 hours late). So the workflow is asked to run twice an hour from about 7 AM to 7 PM Eastern, and an Instagram post can still go out up to 10 hours after its time. It never goes out once the night it lists has started, so a "Tonight!" Story stops at 7 PM. To post a late one now: Actions → Instagram → Run workflow → `post-due`. (Facebook still allows 4 hours.)
+
 ## If a notice says something failed
-- **"FAILED … will be tried again"**: nothing to do. It retries every hour for up to 4 hours.
+- **"FAILED … will be tried again"**: nothing to do. It tries again on each run until the time in the notice.
 - **"PROBLEM … may or may not have posted"**: open Instagram and check. It won't be retried, to avoid a double post.
 - **"Missed"**: GitHub didn't run the schedule in time. Post it by hand if it still matters (the images are in `images/`).
 - **Anything about the key**: see "Secrets" below.

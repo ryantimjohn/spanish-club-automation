@@ -5,7 +5,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from post import plan  # noqa: E402
+from post import ig_deadline, nice, plan  # noqa: E402
 
 EVENT = "https://luma.com/fdfiostx"
 LOCATION = {"id": "13539212969", "name": "St. Stephen & the Incarnation Episcopal Church", "events": []}
@@ -45,6 +45,23 @@ class AboutTheClub(unittest.TestCase):
     def test_weekly_post_unchanged(self):
         slides, _, notes, cover, _ = plan(WEEK, {EVENT: "2026-11-16T19:00"})
         self.assertEqual((len(slides), notes, cover), (3, [], True))
+
+
+class Deadline(unittest.TestCase):
+    """GitHub's timer can run hours late, so a post may go out up to 10 hours late, but never after its night starts."""
+
+    def test_friday_carousel_until_seven_pm(self):
+        item = dict(WEEK, post_at="2026-11-13T09:00")
+        self.assertEqual(nice(ig_deadline(item)), "Fri Nov 13, 7:00 PM")
+
+    def test_tonight_story_stops_when_the_night_starts(self):
+        story = {"post_at": "2026-11-16T11:00", "events": {EVENT: "2026-11-16T19:00"}}
+        self.assertEqual(nice(ig_deadline(story)), "Mon Nov 16, 7:00 PM")
+        early = {"post_at": "2026-11-16T11:00", "events": {EVENT: "2026-11-16T15:30"}}
+        self.assertEqual(nice(ig_deadline(early)), "Mon Nov 16, 3:30 PM")
+
+    def test_post_with_no_events(self):
+        self.assertEqual(nice(ig_deadline(dict(ABOUT, post_at="2026-11-14T09:00"))), "Sat Nov 14, 7:00 PM")
 
 
 if __name__ == "__main__":

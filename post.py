@@ -65,7 +65,9 @@ IG_USER_ID = os.environ.get("IG_USER_ID", "17841429526104661")
 IG_USERNAME = "spanishclubforsocialists"
 WARN_BEFORE_EXPIRY = timedelta(days=21)
 LUMA_FEED = "https://api.lu.ma/ics/get?entity=calendar&id=cal-ITgDf27EcKUkodA"
-LATE_LIMIT = timedelta(hours=4)  # a post more than 4 hours late is reported as missed, not posted
+LATE_LIMIT = timedelta(hours=4)  # Facebook: a post more than 4 hours late is reported as missed, not posted
+# Instagram waits longer, since GitHub's timer ran 5-7 hours late on Nov 11 and 12, 2026 (see ig_deadline).
+IG_LATE_LIMIT = timedelta(hours=10)
 UA = "spanish-club-instagram/1.0"
 IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
 
@@ -90,6 +92,14 @@ def parse_et(s):
 
 def nice(dt):
     return f"{dt:%a %b} {dt.day}, {dt:%I:%M %p}".replace(" 0", " ")
+
+
+def ig_deadline(item):
+    """The latest an Instagram post may still go out: 10 hours after its time, and never once a night it lists has
+    started (so a "Tonight!" Story due at 11 AM can go until 7 PM, and a Friday carousel until 7 PM)."""
+    at = parse_et(item["post_at"])
+    starts = [parse_et(s) for s in item.get("events", {}).values()]
+    return min([at + IG_LATE_LIMIT] + [s for s in starts if s > at])
 
 
 def load(path, default):
@@ -396,10 +406,10 @@ def run(live, as_of=None, only=None):
         for item in manifest["items"]:
             if item["id"] in log:
                 continue
-            at = parse_et(item["post_at"])
-            if at <= now < at + LATE_LIMIT:
+            at, deadline = parse_et(item["post_at"]), ig_deadline(item)
+            if at <= now < deadline:
                 due.append(item)
-            elif now >= at + LATE_LIMIT and approved.get(item["id"]) == item["fingerprint"] and live:
+            elif now >= deadline and approved.get(item["id"]) == item["fingerprint"] and live:
                 missed.append(item)
         for item in missed:
             log[item["id"]] = {"status": "missed", "at": now.isoformat(timespec="minutes")}
@@ -482,7 +492,7 @@ def run(live, as_of=None, only=None):
                        f"It won't be retried. Details: {e}")
             else:
                 notify(f"FAILED: {item['what']} wasn't posted. It will be tried again on the next run "
-                       f"within {LATE_LIMIT.seconds // 3600} hours of its time. Details: {e}")
+                       f"until {nice(ig_deadline(item))}. Details: {e}")
     return 1 if failures else 0
 
 

@@ -1,9 +1,11 @@
 # Posts the approved Spanish Club for Socialists Instagram posts on schedule, and the Friday
 # feed post to the club's Facebook Page.
 #
-# GitHub's schedule is in UTC and can run a few minutes late, so it runs every hour from
-# 8 AM to noon Eastern (both winter and summer time) and post.py decides what is due by
-# checking the Eastern time itself. Each post goes out once; post.py keeps a log.
+# GitHub's schedule is in UTC and can run late or not at all (on Nov 11-12, 2026 it ran 5-7 hours
+# late and skipped most runs), so it is asked to run twice an hour from about 7 AM to 7 PM Eastern,
+# and post.py decides what is due by checking the Eastern time itself (a post can go out up to
+# 10 hours late, never after the night it lists has started). Each post goes out once; post.py
+# keeps a log, so extra runs never double-post.
 #
 # Facebook is its own step after Instagram, with its own key and log entry. It runs even if the
 # Instagram step failed, and it can't change what Instagram does. Nothing goes to Facebook
@@ -13,7 +15,7 @@ name: Instagram
 
 on:
   schedule:
-    - cron: "7 12-17 * * *"   # hourly, about 8 AM - 1 PM Eastern
+    - cron: "7,37 12-23 * * *"   # twice an hour, about 7 AM - 7 PM Eastern (8 AM - 8 PM in summer)
     - cron: "17 15 * * 0"     # Sundays: check the Instagram key still works (emails if not)
   workflow_dispatch:
     inputs:
