@@ -91,6 +91,20 @@
   "ticket_end": "2026-12-15T01:30:00Z",
   "title": "Spanish Club for Socialists - St. Stephen's"
  },
+ "evt-clZ5VTUtnaxnF7W": {
+  "draft": false,
+  "eventbrite_id": "2004794496306",
+  "eventbrite_url": "https://www.eventbrite.com/e/spanish-club-for-socialists-online-tickets-2004794496306",
+  "fingerprint": "59540fe931e6c9e7",
+  "image_sha": "0281dbad69461ce7",
+  "luma_url": "https://luma.com/spanish-jbk8",
+  "made_by": "sync",
+  "start": "2026-12-17T00:00:00.000Z",
+  "status": "published",
+  "ticket_class_id": "3460237909",
+  "ticket_end": "2026-12-17T00:45:00Z",
+  "title": "Spanish Club for Socialists - Online"
+ },
  "evt-cpTGXWsa9rvurzm": {
   "draft": false,
   "eventbrite_id": "2004696017754",
