@@ -12,6 +12,7 @@ ZOOM_PWD and is masked in everything this prints.
 import importlib.util
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 spec = importlib.util.spec_from_file_location("ce", Path(__file__).with_name("create_events.py"))
@@ -65,7 +66,8 @@ def masked(text):
 def upcoming():
     out, cursor = [], None
     while True:
-        q = "/v1/calendars/events/list?after=2026-11-11T12:00:00Z&pagination_limit=100&sort_direction=asc"
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")  # events that haven't started yet
+        q = f"/v1/calendars/events/list?after={now}&pagination_limit=100&sort_direction=asc"
         if cursor:
             q += f"&pagination_cursor={cursor}"
         page = ce.call("GET", q)

@@ -81,7 +81,11 @@ COURSE = ("Want to practice Spanish between conversation classes? "
 # Meetup, Eventbrite and Partiful copy this text and drop any paragraph with the Zoom link, so the Zoom
 # link stays alone in its paragraph. The guide's title leads the in-person text, for regulars.
 DISCORD_LINK = "[discord.gg/HuefQSfHVm](https://discord.gg/HuefQSfHVm)"
-VENMO = "@timjohnryan"  # the organizer's Venmo; fine to show publicly (organizer, Nov 11, 2026)
+# One fixed line on every event page (organizer, Nov 13, 2026), to turn regulars into Instagram followers.
+# The link text is the bare address, so Partiful writes it once. Meetup, Eventbrite and Partiful copy it.
+INSTAGRAM_LINE = ("Follow us on Instagram: "
+                  "[instagram.com/spanishclubforsocialists](https://www.instagram.com/spanishclubforsocialists/)")
+VENMO ="@timjohnryan"  # the organizer's Venmo; fine to show publicly (organizer, Nov 11, 2026)
 VENMO_URL = "https://venmo.com/code?user_id=1670525508124672305&created=1794452651"  # organizer's link
 VENMO_LINE = (f"We accept Venmo donations to help cover the cost of the space: [{VENMO}]({VENMO_URL}). "
               "If Venmo asks for the last 4 digits of a phone number, just tap \"Pay Without Confirming\".")
@@ -101,6 +105,7 @@ IN_PERSON = (
     "Keep practicing between sessions on our Discord, which also has resources if you're just starting "
     f"out: {DISCORD_LINK}\n\n"
     "{support}\n\n"
+    f"{INSTAGRAM_LINE}\n\n"
     "¡Nos vemos!"
 )
 ONLINE = (
@@ -111,6 +116,7 @@ ONLINE = (
     "The host often brings conversation topics to get things going.\n\n"
     "Our Discord has resources if you're just starting out, and it's where we keep practicing between "
     f"sessions: {DISCORD_LINK}\n\n"
+    f"{INSTAGRAM_LINE}\n\n"
     "¡Nos vemos!"
 )
 
