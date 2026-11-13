@@ -191,3 +191,23 @@ python -I -X utf8 run-check/check_runs.py              # today so far
 python -I -X utf8 run-check/check_runs.py --latest     # the latest finished day
 python -X utf8 -m unittest run-check/test_check_runs.py
 ```
+
+## Daily check-in (starts what GitHub missed)
+
+`run-check/catch_up.py` runs from a scheduled task on the organizer's computer at about 9:30 AM, 11:30 AM and 1:30 PM Eastern, while the Claude app is open. It looks at what actually went out, not just whether GitHub ran. It reads each job's own record on GitHub:
+- **Instagram:** `log/posted.json` against `manifest.json`.
+- **Discord:** `discord/posted.json`.
+- **Luma invites:** `luma-invites/sent.json`, plus Luma's event list.
+- **Eventbrite and Meetup:** today's successful runs.
+
+When something due hasn't gone out and no run of that job is already going, it starts the job with the same live action its schedule uses: `post-due`, `send-due` or `sync-now`. Each job still decides what is due and does each thing only once. This was the organizer's OK on Nov 13, 2026, after GitHub ran nothing on time for three days.
+
+From 1 PM, or whenever something needs the organizer, it sends its summary to the **"Daily check-in"** issue through the "Check-in note" workflow (`checkin-note.yml`). The comment comes from GitHub's bot, so GitHub emails it. A comment made with the owner's own login wouldn't be emailed.
+
+```bash
+python -I -X utf8 run-check/catch_up.py          # report only, changes nothing
+python -I -X utf8 run-check/catch_up.py --auto   # start missed jobs; send the summary from 1 PM
+python -X utf8 -m unittest run-check/test_catch_up.py
+```
+
+To pause it, turn off the "Check the GitHub jobs ran" task under Scheduled in the Claude app.

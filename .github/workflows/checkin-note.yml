@@ -1,0 +1,36 @@
+# Posts the daily check-in's summary as a comment on the "Daily check-in" issue. The check-in is
+# run-check/catch_up.py, run on the organizer's computer. The comment comes from GitHub's bot and
+# mentions the owner, so GitHub emails it (a comment made with the owner's own login wouldn't be
+# emailed). This job only ever comments on that one issue.
+name: Check-in note
+
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "The check-in summary"
+        required: true
+
+permissions:
+  issues: write
+
+jobs:
+  note:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Comment on the Daily check-in issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TEXT: ${{ inputs.text }}
+        run: |
+          title="Daily check-in"
+          n=$(gh issue list -R "$GITHUB_REPOSITORY" --state open -L 100 --json number,title \
+                -q ".[] | select(.title == \"$title\") | .number" | head -1)
+          if [ -z "$n" ]; then
+            url=$(gh issue create -R "$GITHUB_REPOSITORY" --title "$title" \
+                    --body "The daily check-in (run-check/catch_up.py, on the organizer's computer) comments here with what went out each day and anything that needs you.")
+            n="${url##*/}"
+          fi
+          printf '@%s %s\n' "$GITHUB_REPOSITORY_OWNER" "$TEXT" > "$RUNNER_TEMP/note.md"
+          gh issue comment "$n" -R "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/note.md"
