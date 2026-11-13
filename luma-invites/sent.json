@@ -2,7 +2,9 @@
  "evt-32cWw3477hs8SAF": {
   "at": "2026-11-13T12:44-05:00",
   "event": "2026-11-13",
-  "status": "sending"
+  "invited": 757,
+  "skipped": 0,
+  "status": "sent"
  },
  "evt-gNkVxaoC0i0mFQO": {
   "at": "2026-11-12T17:07-05:00",
