@@ -1,0 +1,8 @@
+# The Spanish Club timer: a Cloudflare Worker that starts the GitHub jobs on time. See README.md.
+name = "spanish-club-timer"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = false   # no public web address: it only runs on its timer
+
+[triggers]
+crons = ["7,37 * * * *"]   # every hour at :07 and :37 UTC; src/index.js picks the Eastern times
