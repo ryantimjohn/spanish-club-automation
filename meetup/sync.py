@@ -45,7 +45,7 @@ from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 # ---------- settings ----------
-GROUP = "spanish-club-for-socialists"
+GROUP = "spanishclubforsocialists"  # the group's address; was spanish-club-for-socialists until Nov 13, 2026
 WEEKS_AHEAD = 5
 LIVE_FROM = None        # date(YYYY, M, D): when the daily run may start changing Meetup, set with the organizer's OK.
 MEMBER_ID = "4255800"   # Timothy Ryan, the group's organizer. Not secret.

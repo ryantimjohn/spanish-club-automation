@@ -110,7 +110,7 @@ To pause: Actions → Luma invites → "…" → Disable workflow.
 
 ## Meetup listings
 
-`meetup/sync.py` keeps the Meetup group (meetup.com/spanish-club-for-socialists) in step with Luma, which is always the source of truth:
+`meetup/sync.py` keeps the Meetup group (meetup.com/spanishclubforsocialists) in step with Luma, which is always the source of truth:
 - **5 weeks ahead:** each Luma event goes up on Meetup once it's within 5 weeks, under Luma's exact title, so people know it's a club for socialists. Meetup then sends its usual announcement.
 - **Follows Luma:** if a Luma event changes, its Meetup event is updated. If it's gone from Luma (checked twice), the Meetup event is *cancelled*, never deleted.
 - **Online:** the Zoom link goes only in Meetup's attendee link, never in the description.
