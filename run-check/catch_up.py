@@ -213,6 +213,7 @@ def send_note(text):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--auto", action="store_true", help="start missed jobs, and send the summary from 1 PM")
+    ap.add_argument("--note", action="store_true", help="send the summary now, whatever the time")
     args = ap.parse_args(argv)
     now = datetime.now(TZ)
 
@@ -258,7 +259,7 @@ def main(argv=None):
                          "Each job comments on its own log issue when it posts or sends."] if started else [])
                      + (["Needs you:"] + [f"- {n}" for n in needs] if needs else []))
     print(text)
-    if args.auto and (now.hour >= REPORT_FROM or needs or broken):
+    if args.note or (args.auto and (now.hour >= REPORT_FROM or needs or broken)):
         ok, msg = send_note(text)
         print("Summary sent to the Daily check-in issue." if ok else f"Couldn't send the summary: {msg}")
     return 2 if broken else 1 if needs else 0
