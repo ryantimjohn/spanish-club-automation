@@ -40,8 +40,9 @@ class Job:
 # Each job's useful window, from the scripts' own time checks. Keep in step with the workflows.
 JOBS = [
     Job("Instagram", "instagram.yml", DAILY, time(8), time(12),
-        "posts that day's Instagram posts (and the Friday Facebook post). Runs go on until about 7 PM, and a "
-        "post can still go out up to 10 hours late, but never after the night it lists starts. This window is the "
+        "posts that day's Instagram posts (and the Friday Facebook post). Runs go on until about 11:30 PM, "
+        "since a night's Story posts at 9 PM the evening before. A post can still go out up to 10 hours late (a "
+        "night's Story until its night starts), but never after the night it lists starts. This window is the "
         "early warning"),
     Job("Luma invites", "luma-invites.yml", DAILY, time(10), time(12),
         "sends Luma invites for events 6 days out; sends on the first run at or after 10 AM, and runs go on hourly "

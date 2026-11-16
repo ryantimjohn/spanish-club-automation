@@ -4,7 +4,7 @@ GitHub's own schedule ran hours late, or not at all, on Nov 11 to 13, 2026. A jo
 
 | Job | Started at (Eastern) |
 | --- | --- |
-| Instagram (`post-due`) | every hour at :07, 8:07 AM to 6:07 PM |
+| Instagram (`post-due`) | every hour at :07, 8:07 AM to 6:07 PM, then 9:07, 9:37 and 10:07 PM for the night Stories (posted at 9 PM the evening before) |
 | Luma invites (`send-due`) | 10:07 AM, 12:07 PM, 3:07 PM |
 | Discord (`post-due`) | Fridays 9:07 AM, 10:07 AM, 12:07 PM |
 | Eventbrite (`sync-now`) | 10:37 AM |
@@ -12,7 +12,7 @@ GitHub's own schedule ran hours late, or not at all, on Nov 11 to 13, 2026. A jo
 
 There are three backups:
 - **GitHub's own schedules** still run, late. The extra runs are harmless, and Eventbrite and Meetup skip once that day's sync has run.
-- **The daily check-in** (`run-check/catch_up.py`) runs on the organizer's computer at 9:30 AM, 11:30 AM and 1:30 PM. It starts anything that still hasn't gone out.
+- **The daily check-in** (`run-check/catch_up.py`) runs on the organizer's computer at 9:30 AM, 11:30 AM and 1:30 PM. It starts anything that still hasn't gone out, including a night Story that didn't post the evening before.
 - **The Sunday Instagram key check** stays on GitHub's schedule.
 
 ## The GitHub key

@@ -3,6 +3,7 @@ name = "spanish-club-timer"
 main = "src/index.js"
 compatibility_date = "2026-09-01"
 workers_dev = false   # no public web address: it only runs on its timer
+preview_urls = false  # no preview addresses either
 
 [triggers]
 crons = ["7,37 * * * *"]   # every hour at :07 and :37 UTC; src/index.js picks the Eastern times

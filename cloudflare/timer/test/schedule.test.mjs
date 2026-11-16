@@ -23,9 +23,17 @@ test("Discord only on Fridays, invites at 10:07, syncs at 10:37", () => {
   assert.deepEqual(names("2026-11-12T15:37:00Z"), ["eventbrite.yml sync-now", "meetup.yml sync-now"]);
 });
 
-test("nothing at night", () => {
+test("9 PM night Stories: Instagram at 9:07, 9:37 and 10:07 PM", () => {
+  assert.deepEqual(names("2026-11-17T02:07:00Z"), ["instagram.yml post-due"]); // Mon 9:07 PM, winter
+  assert.deepEqual(names("2026-11-17T02:37:00Z"), ["instagram.yml post-due"]);
+  assert.deepEqual(names("2026-11-17T03:07:00Z"), ["instagram.yml post-due"]);
+  assert.deepEqual(names("2026-07-07T01:07:00Z"), ["instagram.yml post-due"]); // Mon 9:07 PM, summer
+});
+
+test("nothing overnight or in the early evening", () => {
   assert.deepEqual(names("2026-11-13T07:07:00Z"), []);
   assert.deepEqual(names("2026-11-14T01:07:00Z"), []); // 8:07 PM Eastern
+  assert.deepEqual(names("2026-11-17T03:37:00Z"), []); // 10:37 PM Eastern
 });
 
 test("every time is on the cron's :07 or :37", () => {

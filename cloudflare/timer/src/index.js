@@ -14,7 +14,8 @@ const FRIDAY = [5];
 // Eastern times, at :07 or :37 (the Worker's cron wakes then). Keep in step with the Handbook.
 export const SCHEDULE = [
   { workflow: "instagram.yml", action: "post-due", days: DAILY,
-    times: ["08:07", "09:07", "10:07", "11:07", "12:07", "13:07", "14:07", "15:07", "16:07", "17:07", "18:07"] },
+    times: ["08:07", "09:07", "10:07", "11:07", "12:07", "13:07", "14:07", "15:07", "16:07", "17:07", "18:07",
+            "21:07", "21:37", "22:07"] }, // the evening slots are for the 9 PM night Stories
   { workflow: "luma-invites.yml", action: "send-due", days: DAILY, times: ["10:07", "12:07", "15:07"] },
   { workflow: "discord.yml", action: "post-due", days: FRIDAY, times: ["09:07", "10:07", "12:07"] },
   { workflow: "eventbrite.yml", action: "sync-now", days: DAILY, times: ["10:37"] },

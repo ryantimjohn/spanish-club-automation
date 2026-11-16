@@ -66,6 +66,20 @@ class Instagram(unittest.TestCase):
         self.assertTrue(cu.instagram(FRI_1230, POST)[2])
 
 
+    def test_last_nights_story_is_checked_the_next_morning(self):
+        story = {"id": "2026-11-18-online-story", "what": "Online Story", "kind": "story",
+                 "post_at": "2026-11-17T21:00", "fingerprint": "s1", "events": {}}
+        with_records({"manifest.json": {"items": [story], "approved": {story["id"]: "s1"}}})
+        post = SimpleNamespace(FB_LIVE_FROM=None, fb_due=lambda *a: ([], []),
+                               ig_deadline=lambda item: datetime(2026, 11, 18, 19, tzinfo=TZ))
+        lines, pending, needs = cu.instagram(datetime(2026, 11, 18, 9, 30, tzinfo=TZ), post)
+        self.assertTrue(pending)
+        self.assertIn("was due at 9:00 PM yesterday and hasn't posted yet", lines[0])
+
+    def test_yesterdays_daytime_posts_are_left_out(self):
+        with_records(self.manifest())
+        self.assertEqual(cu.instagram(datetime(2026, 11, 14, 9, 30, tzinfo=TZ), POST), ([], False, []))
+
 class Discord(unittest.TestCase):
     weekly = SimpleNamespace(LIVE_FROM=date(2026, 11, 13), POST_HOUR=9, CHANNEL_ID="c",
                              is_due=lambda now, posted, lf: now.hour >= 9 and now.date().isoformat() not in posted)

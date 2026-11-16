@@ -2,7 +2,8 @@
 
 GitHub's schedule ran hours late or not at all on Nov 11-13, 2026, so this runs on the organizer's
 computer at about 9:30 AM, 11:30 AM and 1:30 PM Eastern. For each job it reads the job's own record
-on GitHub (what was posted or sent), works out what was due by now, and reports it with links.
+on GitHub (what was posted or sent), works out what was due by now, and reports it with links. For
+Instagram that includes last night's 9 PM Stories, which can still go out the next morning if missed.
 
     python -I -X utf8 run-check/catch_up.py           # report only; changes nothing
     python -I -X utf8 run-check/catch_up.py --auto    # also start missed jobs and send the summary
@@ -87,6 +88,11 @@ def clock(d):
     return d.strftime("%I:%M %p").lstrip("0")
 
 
+def clock_on(d, now):
+    """The time, with "yesterday" when it isn't today."""
+    return clock(d) if d.date() == now.date() else f"{clock(d)} yesterday"
+
+
 # ---- what each job owes today -------------------------------------------------------------
 # Each returns (lines, pending, needs_you): report lines, True if something due hasn't gone out and
 # can still go out (so starting the job would help), and lines for things the organizer must handle.
@@ -98,28 +104,31 @@ def instagram(now, post):
     lines, pending, needs = [], False, []
     for item in manifest.get("items", []):
         at = et(item["post_at"])
-        if at.date() != now.date():
+        # Today's posts, and last night's (a night's Story posts at 9 PM the evening before, and if it was
+        # missed it can still go out the next morning, until its night starts).
+        last_night = at.date() == now.date() - timedelta(days=1) and at.hour >= 18
+        if at.date() != now.date() and not last_night:
             continue
         name = f'"{item.get("what") or item["id"]}"'
         entry = log.get(item["id"])
         if entry:
             st = entry.get("status")
             link = entry.get("permalink", "")
-            when = f" at {clock(et(entry['at']))}" if entry.get("at") else ""
+            when = f" at {clock_on(et(entry['at']), now)}" if entry.get("at") else ""
             lines.append(f"Instagram: {name} {st}{when} {link}".rstrip())
             if st not in ("posted", "skipped"):
                 needs.append(f"Instagram: {name} is marked {st}. Check Instagram and the Instagram log issue.")
         elif approved.get(item["id"]) != item.get("fingerprint"):
             lines.append(f"Instagram: {name} isn't approved, so it won't post.")
             if now >= at:
-                needs.append(f"Instagram: {name} was due at {clock(at)} but isn't approved.")
+                needs.append(f"Instagram: {name} was due at {clock_on(at, now)} but isn't approved.")
         elif now < at:
             lines.append(f"Instagram: {name} is due at {clock(at)}.")
         elif now < post.ig_deadline(item):
-            lines.append(f"Instagram: {name} was due at {clock(at)} and hasn't posted yet.")
+            lines.append(f"Instagram: {name} was due at {clock_on(at, now)} and hasn't posted yet.")
             pending = True
         else:
-            lines.append(f"Instagram: {name} was due at {clock(at)} and is now too late to post.")
+            lines.append(f"Instagram: {name} was due at {clock_on(at, now)} and is now too late to post.")
             needs.append(f"Instagram: {name} didn't post, and it's past its last posting time. Post it by hand "
                          "if it still matters.")
     # Facebook: the Friday feed post, from FB_LIVE_FROM.
