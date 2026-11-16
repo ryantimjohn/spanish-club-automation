@@ -1,11 +1,15 @@
 """Tests for the Instagram Luma check in post.py (plan()); nothing is posted.
 Run: python -m unittest -v test_instagram_plan.py"""
+import hashlib
 import pathlib
 import sys
+import tempfile
 import unittest
+from unittest import mock
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from post import ig_deadline, nice, plan  # noqa: E402
+import post  # noqa: E402
+from post import Problem, ig_deadline, make_containers, nice, plan  # noqa: E402
 
 EVENT = "https://luma.com/fdfiostx"
 LOCATION = {"id": "13539212969", "name": "St. Stephen & the Incarnation Episcopal Church", "events": []}
@@ -62,6 +66,82 @@ class Deadline(unittest.TestCase):
 
     def test_post_with_no_events(self):
         self.assertEqual(nice(ig_deadline(dict(ABOUT, post_at="2026-11-14T09:00"))), "Sat Nov 14, 7:00 PM")
+
+
+class VideoStory(unittest.TestCase):
+    """A Story with music goes up as its video, uploaded straight to Meta; any trouble falls back to the image."""
+
+    VIDEO = b"pretend mp4 bytes"
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        root = pathlib.Path(self.tmp.name)
+        (root / "videos").mkdir()
+        (root / "videos" / "2026-11-18-online-story.mp4").write_bytes(self.VIDEO)
+        self.slide = {"image": "images/2026-11-18-online-story.jpg", "sha256": "x", "event": EVENT,
+                      "video": "videos/2026-11-18-online-story.mp4",
+                      "video_sha256": hashlib.sha256(self.VIDEO).hexdigest(),
+                      "music": {"title": "Son de máquina", "performer": "Orquesta Antonio M. Romeu", "year": "1915"}}
+        self.story = {"id": "2026-11-18-story", "kind": "story", "events": {EVENT: "2026-11-18T19:00"}}
+        self.calls = []
+        patches = [mock.patch.object(post, "ROOT", root), mock.patch.object(post, "wait_ready", lambda c: None),
+                   mock.patch.object(post, "graph", self.fake_graph)]
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+        self.addCleanup(self.tmp.cleanup)
+
+    def fake_graph(self, method, path, **params):
+        self.calls.append(params)
+        if params.get("upload_type") == "resumable":
+            return {"id": "video-container", "uri": "https://rupload.facebook.com/ig-api-upload/v27.0/video-container"}
+        return {"id": "image-container"}
+
+    def test_video_is_uploaded(self):
+        sent = []
+        with mock.patch.object(post, "upload_video", lambda uri, data: sent.append((uri, data))):
+            notes = []
+            c = make_containers(self.story, [self.slide], "", "123", notes=notes)
+        self.assertEqual(c, "video-container")
+        self.assertEqual(sent, [("https://rupload.facebook.com/ig-api-upload/v27.0/video-container", self.VIDEO)])
+        self.assertEqual(self.calls, [{"media_type": "STORIES", "upload_type": "resumable"}])
+        self.assertEqual(notes, [])
+
+    def test_failed_upload_falls_back_to_the_image(self):
+        def boom(uri, data):
+            raise Problem("The video upload failed (500): oops")
+        with mock.patch.object(post, "upload_video", boom):
+            notes = []
+            c = make_containers(self.story, [self.slide], "", "123", notes=notes)
+        self.assertEqual(c, "image-container")
+        self.assertIn("image_url", self.calls[-1])
+        self.assertTrue(notes[0].startswith("Posted without music"))
+
+    def test_changed_video_falls_back_without_uploading(self):
+        (post.ROOT / self.slide["video"]).write_bytes(b"something else")
+        with mock.patch.object(post, "upload_video", lambda uri, data: self.fail("uploaded a changed video")):
+            notes = []
+            c = make_containers(self.story, [self.slide], "", "123", notes=notes)
+        self.assertEqual(c, "image-container")
+        self.assertEqual(len(self.calls), 1)
+        self.assertIn("has changed", notes[0])
+
+    def test_story_without_music_is_unchanged(self):
+        slide = {k: v for k, v in self.slide.items() if k not in ("video", "video_sha256", "music")}
+        c = make_containers(self.story, [slide], "", "123", notes=[])
+        self.assertEqual(c, "image-container")
+        self.assertEqual(self.calls[0]["media_type"], "STORIES")
+
+    def test_key_only_goes_to_meta_upload_host(self):
+        with mock.patch.object(urllib_request(), "urlopen", lambda *a, **k: self.fail("sent the key elsewhere")):
+            with self.assertRaises(Problem):
+                post.upload_video("https://example.com/ig-api-upload/v27.0/1", b"x")
+            with self.assertRaises(Problem):
+                post.upload_video("http://rupload.facebook.com/ig-api-upload/v27.0/1", b"x")
+
+
+def urllib_request():
+    return post.urllib.request
 
 
 if __name__ == "__main__":

@@ -35,6 +35,9 @@ Safety rules built in:
   events at all, has nothing to check and goes out as approved.
 - Each image is downloaded from its public link and checked against its fingerprint before
   Instagram is asked to fetch it.
+- A Story with music is a short video (the Story image plus about 10 seconds of a public-domain
+  record from before 1926). It's checked against its fingerprint and uploaded straight to Meta.
+  If Meta won't take it, the plain image Story goes up instead and the log says so.
 - A post is marked "publishing" in log/posted.json (and pushed) before it is published, so a
   crash can never cause a double post. An unclear result is reported, never retried.
 - Every post, skip and failure is reported as a comment on the "Instagram log" issue, which
@@ -70,6 +73,9 @@ LATE_LIMIT = timedelta(hours=4)  # Facebook: a post more than 4 hours late is re
 IG_LATE_LIMIT = timedelta(hours=10)
 UA = "spanish-club-instagram/1.0"
 IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
+# Story videos (a Story image with a few seconds of an old public-domain record) go straight to Meta's upload
+# service, so they need no public link. Only this host is ever sent the key in an upload.
+RUPLOAD_HOST = "rupload.facebook.com"
 
 # Facebook Page. Its own key: FACEBOOK_ACCESS_TOKEN, a system-user token of the "Spanish Club Page Poster" app.
 FB_LIVE_FROM = date(2026, 11, 20)  # first Friday posted to the Page (organizer's OK after the Nov 11 sample). None = off.
@@ -338,10 +344,48 @@ def wait_ready(container):
     raise Problem("Instagram took more than 5 minutes to prepare the post.")
 
 
+def video_ok(slide):
+    """True if the slide's video is on disk and matches its approved fingerprint."""
+    p = ROOT / slide["video"]
+    return p.exists() and hashlib.sha256(p.read_bytes()).hexdigest() == slide.get("video_sha256")
+
+
+def upload_video(uri, data):
+    """Send the video's bytes to Meta's resumable upload address (one request, from the start)."""
+    u = urllib.parse.urlparse(uri)
+    if u.scheme != "https" or u.hostname != RUPLOAD_HOST:
+        raise Problem(f"Instagram gave an unexpected upload address ({u.scheme}://{u.hostname}).")
+    req = urllib.request.Request(uri, data=data, method="POST", headers={
+        "user-agent": UA, "authorization": f"OAuth {token()}", "offset": "0", "file_size": str(len(data)),
+        "content-type": "application/octet-stream"})
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r:
+            body = json.loads(r.read() or b"{}")
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", "replace")[:600]
+        raise Problem(scrub(f"The video upload failed ({e.code}): {detail}")) from None
+    except (urllib.error.URLError, TimeoutError) as e:
+        raise Problem(scrub(f"The video upload failed: {getattr(e, 'reason', e)}")) from None
+    if not body.get("success"):
+        raise Problem(scrub(f"The video upload didn't finish: {str(body)[:300]}"))
+
+
+def video_story_container(slide, user_id):
+    """A Story container made from the slide's approved video, uploaded from this checkout."""
+    if not video_ok(slide):
+        raise Problem(f"{slide['video']} is missing or has changed since it was approved.")
+    data = (ROOT / slide["video"]).read_bytes()
+    r = graph("POST", f"{user_id}/media", media_type="STORIES", upload_type="resumable")
+    upload_video(r.get("uri") or f"https://{RUPLOAD_HOST}/ig-api-upload/v27.0/{r['id']}", data)
+    wait_ready(r["id"])
+    return r["id"]
+
+
 def make_containers(item, slides, caption, user_id, location=None, notes=None):
     """Prepare the post on Instagram (not published yet). A location goes on a single image or the carousel itself
     (Meta doesn't allow it on carousel slides or Stories). If Instagram refuses the location, the post is made
-    without it and a note says so, so the post still goes out."""
+    without it and a note says so, so the post still goes out. A Story with music goes up as its video; if Meta
+    won't take the video, the plain image goes up instead and a note says so."""
     def feed_container(**params):
         if location:
             try:
@@ -355,6 +399,13 @@ def make_containers(item, slides, caption, user_id, location=None, notes=None):
         return graph("POST", f"{user_id}/media", **params)["id"]
 
     if item["kind"] == "story":
+        if slides[0].get("video"):
+            try:
+                return video_story_container(slides[0], user_id)
+            except Problem as e:
+                if notes is not None:
+                    notes.append(f"Posted without music: Instagram didn't take the video, so the plain image went "
+                                 f"up instead. Details: {e}")
         c = graph("POST", f"{user_id}/media", image_url=public_url(slides[0]["image"]), media_type="STORIES")["id"]
     elif len(slides) == 1:
         c = feed_container(image_url=public_url(slides[0]["image"]), caption=caption)
@@ -375,6 +426,10 @@ def describe(item, slides, caption, notes, location=None):
     lines = [f"  Would post: {kind} with {len(slides)} image(s)"]
     for n, s in enumerate(slides, 1):
         lines.append(f"    {n}. {s['image']}")
+        if s.get("video"):
+            m = s.get("music") or {}
+            ok = "" if video_ok(s) else " (MISSING OR CHANGED: the plain image would go up)"
+            lines.append(f"       with music: {s['video']}{ok}: {m.get('title')}, {m.get('performer')}, {m.get('year')}")
     if location:
         lines.append(f"  Location: {location['name']} (Facebook Page {location['id']})")
     if caption:

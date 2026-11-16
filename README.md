@@ -24,6 +24,8 @@ Carousels with a St. Stephen's night, the winter break post and "How it works" a
 
 Reels and link stickers stay manual. Instagram's API can't add stickers.
 
+**Stories with music:** each Story can go up as a 10-second video: the Story image plus a few seconds of an old Latin American record from before 1926 (public domain in the US). The tracks are from the Library of Congress National Jukebox; the list is in `social/story-music/story-music-tracks.md` in the club's folder. The videos are in `videos/` and are fingerprinted with their Story, so a new video needs approval like a new image. The poster uploads the video straight to Meta (no public link needed). If Meta won't take it, the plain image Story goes up instead and the notice says "Posted without music". Instagram's own music library can't be used through the API.
+
 ## Keep this repository public
 Instagram downloads each image from its public GitHub link, so if this repository is made private, every post fails. Nothing in it is secret: the Instagram key is stored separately as a GitHub secret.
 
