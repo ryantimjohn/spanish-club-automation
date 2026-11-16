@@ -14,6 +14,8 @@ Usage (run with: python -I -X utf8 partiful.py ...):
   record LUMA_ID URL STATUS  save a listing in events.json. STATUS: creating (about to save it on Partiful),
                              private (saved, link-only, waiting for the organizer's OK), published (live:
                              Public for in-person nights, Private for Online), cancelled
+  check-public URL           check a listing as a signed-out visitor sees it: Public, published, no Luma or
+                             Zoom link (a Luma link in the club's profile bio is reported separately)
   list                       show events.json
 
 LUMA_API_KEY and ZOOM_PWD are read from the environment or the Windows user env vars.
@@ -37,7 +39,10 @@ WEEKS_AHEAD = 5
 # Online nights: "skip" (not listed; the organizer's decision on Nov 10, 2026), or "private" (link-only
 # event; the Zoom link would go in Partiful's Location, which Partiful hides before RSVP only on private events).
 ONLINE = "skip"
-FOLLOW = "Get weekly reminders and see every event: follow us on Luma, https://luma.com/spanishclubforsocialists"
+# No third-party links on Partiful (the organizer, Nov 16, 2026). Partiful wrote that the listings "direct guests to
+# another platform to buy tickets, which is against our Terms of Service" and asked for all third-party links and
+# references to go. So there's no "follow us on Luma" line, and any paragraph of Luma's text with a Luma link or a
+# Venmo or PayPal mention is left out, with nothing in its place. The events stay free RSVPs on Partiful.
 ZOOM_MEETING = "https://us02web.zoom.us/j/83064162001?pwd="
 
 FLYERS = Path(r"C:\Users\John\Documents\Spanish Club Flyers\flyers")
@@ -60,6 +65,8 @@ EVENTS = HERE / "events.json"
 TZ = ZoneInfo("America/New_York")
 LUMA = "https://public-api.luma.com"
 ZOOM = re.compile(r"https?://[\w.-]*zoom\.us/\S*")
+LUMA_LINK = re.compile(r"(?<![\w.-])(?:https?://)?(?:[\w-]+\.)*(?:luma\.com|lu\.ma)(?![\w-])", re.I)
+PAYMENT = re.compile(r"venmo|paypal", re.I)  # any mention, links included
 MD_LINK = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
 
 
@@ -146,26 +153,33 @@ def _bare(url):
 
 
 def plain_description(event):
-    """Luma's text as Partiful's plain text: no Zoom link, links written out, the Luma line at the end."""
+    """Luma's text as Partiful's plain text: links written out; no Zoom, Luma, Venmo or PayPal anywhere."""
     info = kind_info(event) or {}
     paras = [p.strip() for p in re.split(r"\n\s*\n", event.get("description_md") or "") if p.strip()]
     out = [info["first_line"]] if info.get("first_line") else []
     for p in paras:
         if ZOOM.search(p):
             continue  # the Zoom link never goes in a description
+        if LUMA_LINK.search(p) or PAYMENT.search(p):
+            continue  # no Luma links and no Venmo or PayPal on Partiful
         p = p.replace("  \n", "\n").replace("\\", "")
         p = MD_LINK.sub(lambda m: m[2] if _bare(m[1]) == _bare(m[2]) else f"{m[1]}: {m[2]}", p)
         out.append(p)
-    out.append(FOLLOW)
-    return "\n\n".join(out)
+    text = "\n\n".join(out)
+    if LUMA_LINK.search(text) or ZOOM.search(text) or PAYMENT.search(text):
+        raise Problem(f"{event.get('id')}: the Partiful description still has a Luma, Zoom, Venmo or PayPal link. "
+                      "Don't post it.")
+    return text
 
 
 def flyer(event):
+    """The night's Partiful-only square flyer (no Luma line), or None. Never the regular square flyer, which prints
+    the Luma address."""
     info = kind_info(event)
     if not info:
         return None
     day = parse(event["start_at"]).astimezone(TZ).strftime("%Y-%m-%d")
-    hits = sorted((FLYERS / info["folder"]).glob(f"{day} *– square.png"))
+    hits = sorted((FLYERS / info["folder"]).glob(f"{day} *– Partiful square.png"))
     return str(hits[0]) if hits else None
 
 
@@ -233,7 +247,14 @@ def plan(now=None):
         elif m.get("fingerprint") != fingerprint(f):
             changed = [k for k in ("title", "start", "end", "location", "description", "audience", "image")
                        if k in m.get("fields", {}) and m["fields"][k] != (Path(f[k]).name if k == "image" and f[k] else f[k])]
-            rows.append(("update", e["id"], f"{when}: {f['title']} -> {m.get('partiful_url')} (changed: {', '.join(changed) or 'details'})"))
+            note = ""
+            if not f["image"]:  # the Partiful flyer isn't made yet: leave the poster as it is
+                changed = [k for k in changed if k != "image"]
+                note = "; no Partiful flyer yet, so keep the current poster"
+            if changed or not m.get("fields"):
+                rows.append(("update", e["id"], f"{when}: {f['title']} -> {m.get('partiful_url')} (changed: {', '.join(changed) or 'details'}{note})"))
+            else:
+                rows.append(("no_flyer", e["id"], f"{when}: {f['title']} -> {m.get('partiful_url')} (waiting for its Partiful flyer)"))
         else:
             rows.append(("ok", e["id"], f"{when}: {f['title']} -> {m.get('partiful_url')}"))
     for lid, m in record.items():
@@ -246,6 +267,27 @@ def plan(now=None):
                 ev = luma_event(lid)
                 rows.append(("update", lid, f"{m['title']} -> {m.get('partiful_url')} (moved on Luma to {fields(ev)['date']})"))
     return rows
+
+
+# ---------- public page check ----------
+
+BIO = re.compile(r'"bio":\{"value":"(?:[^"\\]|\\.)*"')
+
+
+def public_check(html):
+    """What a signed-out visitor's copy of a listing shows: public?, published?, Luma links outside the host bio."""
+    bio_luma = any(LUMA_LINK.search(m[0]) for m in BIO.finditer(html))
+    rest = BIO.sub("", html)
+    return {"public": '"isPublic":true' in rest, "published": '"status":"PUBLISHED"' in rest,
+            "luma_links": sorted(set(m[0] for m in LUMA_LINK.finditer(rest))),
+            "payment_links": sorted(set(m[0].lower() for m in re.finditer(r'(?:venmo|paypal)\.com[^\s"\\]*', rest, re.I))),
+            "zoom_link": bool(ZOOM.search(rest)), "luma_in_profile_bio": bio_luma}
+
+
+def fetch_public(url):
+    req = urllib.request.Request(url, headers={"user-agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return r.read().decode("utf-8", "replace")
 
 
 # ---------- clipboard ----------
@@ -311,6 +353,14 @@ def main(argv):
         record[lid] = m
         save(record)
         print(f"Recorded {lid}: {status} {m.get('partiful_url', '')}")
+    elif cmd == "check-public":
+        c = public_check(fetch_public(args[0]))
+        ok = c["public"] and c["published"] and not c["luma_links"] and not c["zoom_link"] and not c["payment_links"]
+        print(("OK" if ok else "PROBLEM") + f": public={c['public']} published={c['published']} "
+              f"luma_links={c['luma_links'] or 'none'} payment_links={c['payment_links'] or 'none'} "
+              f"zoom_link={c['zoom_link']}"
+              + (" (note: the club's profile bio has a Luma link)" if c["luma_in_profile_bio"] else ""))
+        return 0 if ok else 1
     elif cmd == "list":
         for lid, m in sorted(load().items(), key=lambda kv: kv[1].get("start", "")):
             if not lid.startswith("_"):
