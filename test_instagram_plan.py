@@ -67,6 +67,14 @@ class Deadline(unittest.TestCase):
     def test_post_with_no_events(self):
         self.assertEqual(nice(ig_deadline(dict(ABOUT, post_at="2026-11-14T09:00"))), "Sat Nov 14, 7:00 PM")
 
+    def test_night_before_story_keeps_trying_until_the_night(self):
+        story = {"kind": "story", "post_at": "2026-11-17T21:00", "events": {EVENT: "2026-11-18T19:00"}}
+        self.assertEqual(nice(ig_deadline(story)), "Wed Nov 18, 7:00 PM")
+
+    def test_friday_cover_story_still_gets_ten_hours(self):
+        cover = {"kind": "story", "post_at": "2026-11-20T09:05", "events": {EVENT: "2026-11-23T19:00"}}
+        self.assertEqual(nice(ig_deadline(cover)), "Fri Nov 20, 7:05 PM")
+
 
 class VideoStory(unittest.TestCase):
     """A Story with music goes up as its video, uploaded straight to Meta; any trouble falls back to the image."""

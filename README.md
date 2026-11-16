@@ -16,7 +16,7 @@ The season scripts for Luma (`luma-tools/`) run on the organizer's computer.
 This posts the club's Instagram posts on schedule, so nobody has to remember to.
 
 - **Fridays, 9 AM Eastern:** next week's carousel (the cover, that week's flyers, the closing slide) and its caption. The cover also goes to the Story.
-- **Event days, 11 AM Eastern:** that night's flyer as a Story.
+- **The evening before each night, 9 PM Eastern:** that night's flyer as a Story. A Story lasts 24 hours, so it's still up when the night starts. (Until Nov 16, 2026 it went up at 11 AM on the day.)
 - **Breaks:** a heads-up before the winter break, and "We're back!" before Jan 4.
 - **About the club:** carousels about the club itself: "Our story" (Thu Nov 12) and "How it works" (Sat Nov 14), both at 9 AM. They list no events, so there's nothing to check on Luma and they go out as approved. Pin them to the top of the profile in the app (the API can't pin).
 
@@ -38,7 +38,7 @@ Instagram downloads each image from its public GitHub link, so if this repositor
 ## How you'll hear about it
 After every post, skip or problem, a comment appears on the **"Instagram log"** issue in this repository, and GitHub emails it to you. GitHub also emails you if a run fails outright.
 
-**When GitHub runs late:** GitHub's timer often runs hours late or skips runs (on Nov 11–12, 2026 it ran 5–7 hours late). So the workflow is asked to run twice an hour from about 7 AM to 7 PM Eastern, and an Instagram post can still go out up to 10 hours after its time. It never goes out once the night it lists has started, so a "Tonight!" Story stops at 7 PM. To post a late one now: Actions → Instagram → Run workflow → `post-due`. (Facebook still allows 4 hours.)
+**When GitHub runs late:** GitHub's timer often runs hours late or skips runs (on Nov 11–12, 2026 it ran 5–7 hours late). So the workflow is asked to run twice an hour from about 7 AM to 11:30 PM Eastern (none overnight), and an Instagram post can still go out up to 10 hours after its time. A night's own Story keeps trying until that night starts: if the 9 PM runs don't happen, it goes out the next morning. Nothing goes out once the night it lists has started. To post a late one now: Actions → Instagram → Run workflow → `post-due`. (Facebook still allows 4 hours.)
 
 ## If a notice says something failed
 - **"FAILED … will be tried again"**: nothing to do. It tries again on each run until the time in the notice.

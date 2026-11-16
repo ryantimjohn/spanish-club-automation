@@ -102,10 +102,13 @@ def nice(dt):
 
 def ig_deadline(item):
     """The latest an Instagram post may still go out: 10 hours after its time, and never once a night it lists has
-    started (so a "Tonight!" Story due at 11 AM can go until 7 PM, and a Friday carousel until 7 PM)."""
+    started (so a Friday carousel can go until 7 PM). A night's own Story, posted the evening before, can go any time
+    until its night starts: if GitHub skips the 9 PM runs, it goes out the next morning instead."""
     at = parse_et(item["post_at"])
-    starts = [parse_et(s) for s in item.get("events", {}).values()]
-    return min([at + IG_LATE_LIMIT] + [s for s in starts if s > at])
+    starts = sorted(s for s in (parse_et(s) for s in item.get("events", {}).values()) if s > at)
+    if item.get("kind") == "story" and starts and starts[0] - at <= timedelta(hours=24):
+        return starts[0]
+    return min([at + IG_LATE_LIMIT] + starts)
 
 
 def load(path, default):
