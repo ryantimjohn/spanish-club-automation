@@ -1,5 +1,7 @@
 """Tests for the GitHub run check. Run: python -X utf8 -m unittest -v run-check/test_check_runs.py"""
+import contextlib
 import importlib.util
+import io
 import pathlib
 import unittest
 from datetime import date, datetime
@@ -97,6 +99,78 @@ class Judge(unittest.TestCase):
     def test_discord_only_on_fridays(self):
         self.assertEqual(cr.judge(JOB["Discord"], [], THU, AT_1230)[0], "OFF")
         self.assertEqual(cr.judge(JOB["Discord"], [], FRI, datetime(2026, 11, 13, 12, 30, tzinfo=cr.TZ))[0], "MISSED")
+
+
+# Days with the Cloudflare timer's current times (live since Nov 16, 2026).
+THU2 = date(2026, 11, 19)
+FRI2 = date(2026, 11, 20)
+THU2_1230 = datetime(2026, 11, 19, 12, 30, tzinfo=cr.TZ)
+
+
+def hhmm(times):
+    return [t.strftime("%H:%M") for t in times]
+
+
+class TimerSchedule(unittest.TestCase):
+    def test_reads_the_timer_times(self):
+        ig = hhmm(cr.timer_slots(JOB["Instagram"], THU2))
+        self.assertEqual(len(ig), 14)
+        self.assertEqual(ig[0], "08:07")
+        self.assertEqual(ig[-3:], ["21:07", "21:37", "22:07"])
+        self.assertEqual(hhmm(cr.timer_slots(JOB["Luma invites"], THU2)), ["10:07", "12:07", "15:07"])
+        self.assertEqual(hhmm(cr.timer_slots(JOB["Eventbrite"], THU2)), ["10:37"])
+
+    def test_discord_timer_only_on_fridays(self):
+        self.assertEqual(cr.timer_slots(JOB["Discord"], THU2), [])
+        self.assertEqual(hhmm(cr.timer_slots(JOB["Discord"], FRI2)), ["09:07", "10:07", "12:07"])
+
+    def test_days_before_the_timer_have_no_timer_starts(self):
+        self.assertEqual(cr.timer_slots(JOB["Luma invites"], THU), [])
+
+    def test_every_timer_workflow_is_a_job(self):
+        self.assertTrue(cr.timer_schedule())
+        self.assertLessEqual(set(cr.timer_schedule()), {j.file for j in cr.JOBS})
+
+    def test_schedule_lists_the_timer_times(self):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            self.assertEqual(cr.main(["--schedule", "--date", "2026-11-19"]), 0)
+        self.assertIn("the timer starts it at 10:07 AM, 12:07 PM, 3:07 PM", out.getvalue())
+
+
+class JudgeWithTimer(unittest.TestCase):
+    def test_timer_start_counts_as_on_time(self):
+        runs = [run("2026-11-19T15:07:49Z", event="workflow_dispatch"),
+                run("2026-11-19T17:07:48Z", event="workflow_dispatch")]
+        s, d = cr.judge(JOB["Luma invites"], runs, THU2, THU2_1230)
+        self.assertEqual(s, "OK")
+        self.assertIn("timer started it at: 10:07 AM, 12:07 PM", d)
+
+    def test_missed_timer_start_is_flagged_even_when_ok(self):
+        # At 12:30 PM the 12:07 start is overdue; the 3:07 PM one hasn't come yet.
+        s, d = cr.judge(JOB["Luma invites"], [run("2026-11-19T15:07:49Z", event="workflow_dispatch")], THU2, THU2_1230)
+        self.assertEqual(s, "OK, timer missed 1")
+        self.assertIn("timer missed 12:07 PM", d)
+        self.assertNotIn("3:07 PM", d)
+
+    def test_check_in_start_is_not_the_timer(self):
+        # The 9:40 AM check-in started Eventbrite, but the timer's 10:37 start never came.
+        s, d = cr.judge(JOB["Eventbrite"], [run("2026-11-19T14:40:14Z", event="workflow_dispatch")], THU2, THU2_1230)
+        self.assertEqual(s, "MISSED")
+        self.assertIn("1 started by hand or by the check-in", d)
+        self.assertIn("timer missed 10:37 AM", d)
+
+    def test_github_schedule_still_counts(self):
+        runs = [run("2026-11-19T15:37:48Z", event="workflow_dispatch"), run("2026-11-19T21:27:00Z")]
+        s, d = cr.judge(JOB["Meetup"], runs, THU2, datetime(2026, 11, 19, 17, 0, tzinfo=cr.TZ))
+        self.assertEqual(s, "OK")
+        self.assertIn("GitHub's schedule ran at: 4:27 PM", d)
+
+    def test_which_statuses_need_a_look(self):
+        for s in ("OK", "RUNNING", "WAITING", "OFF"):
+            self.assertFalse(cr.needs_look(s), s)
+        for s in ("MISSED", "LATE", "FAILED", "OK, with failures", "OK, timer missed 1"):
+            self.assertTrue(cr.needs_look(s), s)
 
 
 if __name__ == "__main__":
