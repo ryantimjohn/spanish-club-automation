@@ -115,17 +115,21 @@ To pause: Actions → Luma invites → "…" → Disable workflow.
 
 `meetup/sync.py` keeps the Meetup group (meetup.com/spanishclubforsocialists) in step with Luma, which is always the source of truth:
 - **5 weeks ahead:** each Luma event goes up on Meetup once it's within 5 weeks, under Luma's exact title, so people know it's a club for socialists. Meetup then sends its usual announcement.
-- **Follows Luma:** if a Luma event changes, its Meetup event is updated. If it's gone from Luma (checked twice), the Meetup event is *cancelled*, never deleted.
-- **Online:** the Zoom link goes only in Meetup's attendee link, never in the description.
-- **Description:** Luma's text, ending with a line pointing back to Luma.
-- **Photo:** the event's wide flyer. Run `python meetup/sync.py collect` on the organizer's computer to copy the "– Meetup 16 9.png" flyers into `meetup/images/`, then commit them. An event without its photo waits.
-- **Only its own events:** it edits or cancels only events recorded in `meetup/events.json`, never anything posted by hand.
+- **Follows Luma:** if a Luma event changes, its Meetup event is updated, even after it moves past the 5 weeks. If it's gone from Luma (checked twice), the Meetup event is *cancelled*, never deleted.
+- **Place:** St. Stephen's, the DC Liberation Center or Patchwork (venue ids in `meetup/venues.json`). An in-person event whose Luma address doesn't match waits. St. Stephen's puts "Please come in the side door!" in Meetup's "How to find us".
+- **Online:** the Zoom link goes only in Meetup's attendee-only link field (`howToFindUs`), never in the description; a paragraph with a Zoom link or passcode is left out.
+- **Description:** Luma's markdown as it is, ending with a line pointing back to Luma. Meetup stores descriptions as markdown; HTML runs its paragraphs together and turns links into plain text.
+- **Photo:** the event's wide flyer. Run `python meetup/sync.py collect` on the organizer's computer to copy the "– Meetup 16 9.png" flyers into `meetup/images/`, then commit them. An event without its photo waits. A new event goes up as a draft, gets its flyer, then is published, so it's never public without it. A changed flyer is uploaded again.
+- **Checks its work:** after every change it reads the event back from Meetup and reports any difference from Luma (title, start, end, place, the Zoom link, or a Zoom link in the description).
+- **Only its own events:** it edits or cancels only events recorded in `meetup/events.json`. The six events posted by hand on Nov 10 are recorded there, so the sync looks after them too.
 
 **Secrets:**
-- `MEETUP_CLIENT_KEY`, `MEETUP_SIGNING_KEY_ID`, `MEETUP_PRIVATE_KEY`: from the "Spanish Club events" API client at meetup.com/api/oauth/list. Meetup API access needs the Pro subscription.
+- `MEETUP_CLIENT_KEY`, `MEETUP_SIGNING_KEY_ID`, `MEETUP_PRIVATE_KEY`: from the "Spanish Club events" API client at meetup.com/api/oauth/list (client 210611). The organizer made the signing key; the private key is the whole PEM file. The script signs Meetup's JWT itself (RS256, standard library), so no key file is ever written. Meetup API access needs the Pro subscription.
 - `LUMA_API_KEY`.
 
-**Switching it on:** nothing changes on Meetup until `LIVE_FROM` is set in `sync.py`. The first event is made by hand as a draft (`run --live --draft --only LUMA_EVENT_ID`) for the organizer to check. Drafts are published with `publish --live` after their OK.
+**Switching it on:** nothing changes on Meetup until `LIVE_FROM` is set in `sync.py`. The first event is made by hand as a draft (`run --live --draft --only LUMA_EVENT_ID`) for the organizer to check. Drafts are published with `publish --live` after their OK. Live since Tue Nov 17, 2026: the organizer approved the Mon Dec 7 sample that day. Set `LIVE_FROM = None` to stop it.
+
+**Photos:** flyers go up as JPEG (`jpeg()` converts them with Pillow, which the workflow installs), as album photos the way Meetup's own event editor does it, never as the group's main photo. A PNG or an `EVENT_PHOTO` upload through the API is stored but never shows up.
 
 **Running it by hand (Actions → Meetup → Run workflow):**
 - `test`: shows what it would do.

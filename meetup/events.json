@@ -32,6 +32,19 @@
   "status": "published",
   "title": "Spanish Club for Socialists - St. Stephen's"
  },
+ "evt-cpTGXWsa9rvurzm": {
+  "draft": false,
+  "fingerprint": "e64d691b91e9f656",
+  "image_sha": "b321fd16887285da",
+  "luma_url": "https://luma.com/spanish-2ey3",
+  "made_by": "sync",
+  "meetup_event_id": "317466567",
+  "meetup_url": "https://www.meetup.com/spanishclubforsocialists/events/317466567/",
+  "photo": true,
+  "start": "2026-12-08T00:00:00.000Z",
+  "status": "published",
+  "title": "Spanish Club for Socialists - St. Stephen's"
+ },
  "evt-gNkVxaoC0i0mFQO": {
   "luma_url": "https://luma.com/6yd9kbw8",
   "made_by": "hand (Claude in Chrome), 2026-11-10",
