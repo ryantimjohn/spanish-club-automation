@@ -29,6 +29,20 @@ class Descriptions(unittest.TestCase):
         for gone in ("1525 Newton", "7:00 pm", "Google Maps", "{"):
             self.assertNotIn(gone, new)
 
+    def test_guide_note_and_levels_line(self):
+        """Organizer's wording, Nov 17, 2026: a note under the guide link and a new levels line."""
+        for event in (STS, LIB):
+            new, _ = ud.new_description(event)
+            paras = new.split("\n\n")
+            self.assertTrue(paras[0].startswith("This week's conversation guide:  \n["))
+            self.assertEqual(paras[1], "Haven't read it? Come anyway. Most of the night is casual conversation, "
+                                       "and the guide is just there if you want a topic.")
+            self.assertEqual(paras[2], "About the event:")
+            self.assertIn("We split into three levels, beginner, intermediate and advanced, and you pick yours. "
+                          "Not sure where you fit? The guide has a section for each group, and a quick look can "
+                          "help you choose.", paras)
+            self.assertNotIn("Not sure which level you're at?", new)
+
     def test_rerun_keeps_the_same_text(self):
         new, _ = ud.new_description(STS)
         self.assertEqual(ud.new_description(dict(STS, description_md=new))[0], new)

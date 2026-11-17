@@ -17,7 +17,7 @@ Run Python with `python -I -X utf8`.
 ## create_events.py
 Makes a season of weekly events: St. Stephen's on Mondays, Online on Wednesdays, and Dupont on Tuesdays when it's running.
 - **Every event gets:** the organizer's description (`IN_PERSON` or `ONLINE`, from Nov 11, 2026), with the Discord invite line, and the optional "How did you hear about us?" question. The text leaves out the date, time and address, since Luma shows them itself. Meetup, Eventbrite and Partiful copy it, and drop the paragraph with the Zoom link, so keep that link alone in its paragraph.
-- **In-person events get:** that week's conversation guide, by title, at the top, and the Venmo line (`VENMO_LINE`). A Liberation Center night uses `LIBERATION_LINE` instead.
+- **In-person events get:** that week's conversation guide, by title, at the top, then "Haven't read it? Come anyway…" (organizer's wording, Nov 17, 2026), and the Venmo line (`VENMO_LINE`). A Liberation Center night uses `LIBERATION_LINE` instead.
 - **Before a new season, edit:** `FIRST_WEEK`, the `DOCS` guide list, `SKIP` (holidays and breaks), and the Dupont address. Patchwork's new space is 1901 18th St NW.
 - **How to run it:** a plain run prints the schedule. `--only N` creates event N, so make one as a sample first. `--apply` creates the rest and skips events that already exist.
 

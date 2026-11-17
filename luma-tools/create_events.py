@@ -93,15 +93,17 @@ LIBERATION_LINE = ("We're at the DC Liberation Center this week. Please help sup
                    "[donation to the DC Liberation Center](https://www.paypal.com/donate?campaign_id=62V54PRH9J97Q).")
 BASICS = ("This isn't a Spanish class, so even in the beginner group, it helps everyone if you have the "
           "basics down: introducing yourself, what you do for fun, where you live.")
+# The note under the guide link and the levels line: the organizer's wording, Nov 17, 2026.
 IN_PERSON = (
     "This week's conversation guide:  \n{guide}\n\n"
+    "Haven't read it? Come anyway. Most of the night is casual conversation, and the guide is just there if "
+    "you want a topic.\n\n"
     "About the event:\n\n"
     "A free Spanish conversation club for socialists. Everyone's welcome, and our big hope is that practicing "
     "here helps people organize in Spanish-speaking communities.\n\n"
     f"{BASICS}\n\n"
-    "We split into three levels, beginner, intermediate and advanced, and you pick yours. Not sure which "
-    "level you're at? Each week's conversation guide is broken out by level, so looking it over is a great "
-    "way to find out.\n\n"
+    "We split into three levels, beginner, intermediate and advanced, and you pick yours. Not sure where you "
+    "fit? The guide has a section for each group, and a quick look can help you choose.\n\n"
     "Keep practicing between sessions on our Discord, which also has resources if you're just starting "
     f"out: {DISCORD_LINK}\n\n"
     "{support}\n\n"
