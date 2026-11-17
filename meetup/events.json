@@ -1,12 +1,14 @@
 {
  "evt-32cWw3477hs8SAF": {
+  "fingerprint": "76e3ad075a8208d1",
+  "image_sha": "0f751dad0c48fd96",
   "luma_url": "https://luma.com/xvjrwk39",
   "made_by": "hand (browser), 2026-11-10",
   "meetup_event_id": "317378045",
   "meetup_url": "https://www.meetup.com/spanishclubforsocialists/events/317378045/",
   "photo": true,
   "published": "2026-11-10, by hand (Nov 16 by the organizer; Nov 19, 23, 30 by the coordinator with the organizer's OK)",
-  "start": "2026-11-19T19:00",
+  "start": "2026-11-20T00:00:00.000Z",
   "status": "published",
   "title": "Spanish Club for Socialists H Street at the DC Liberation Center"
  },
