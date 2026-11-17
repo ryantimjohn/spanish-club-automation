@@ -9,7 +9,9 @@
  "evt-Wc8cRPNIvNrXaX9": {
   "at": "2026-11-17T10:07-05:00",
   "event": "2026-11-17",
-  "status": "sending"
+  "invited": 758,
+  "skipped": 0,
+  "status": "sent"
  },
  "evt-gNkVxaoC0i0mFQO": {
   "at": "2026-11-12T17:07-05:00",
