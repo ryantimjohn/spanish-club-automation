@@ -96,6 +96,7 @@ Settings are at the top of `invite.py`:
 **What keeps it safe:**
 - Each event is sent once. `luma-invites/sent.json` marks it "sending" before any invite goes out, so a crash can't cause a second send. It's reported instead.
 - If Luma's contact list looks wrong (under 100 people), nothing is sent.
+- If more than 25 people are tagged removed-from-group at once (`MAX_REMOVALS`), it looks like a mistake, so nobody is removed and nothing is sent; the log says so. Untag anyone who shouldn't have it on Luma's People page, or remove the rest there by hand, and the next run sends as usual.
 - This repository is public, so the log shows counts, event names and links only. It never shows names or emails.
 
 **How you'll hear about it:** a comment on the **"Luma invite log"** issue whenever it removes people, sends invites, or hits a problem. GitHub emails it to you.

@@ -3,6 +3,7 @@ import pathlib
 import sys
 import unittest
 from datetime import date, datetime
+from unittest import mock
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import invite  # noqa: E402
@@ -64,6 +65,29 @@ class Guard(unittest.TestCase):
         with self.assertRaises(Problem):
             guard_contacts([{"id": str(i)} for i in range(5)])
         guard_contacts([{"id": str(i)} for i in range(150)])
+
+
+class GuardRemovals(unittest.TestCase):
+    """A mass tagging (say the Google Group sync misfires) must not wipe the calendar."""
+
+    def test_guard_removals_refuses_more_than_the_cap(self):
+        with self.assertRaises(Problem) as cm:
+            invite.guard_removals([{"id": str(i)} for i in range(invite.MAX_REMOVALS + 1)])
+        self.assertIn(str(invite.MAX_REMOVALS + 1), str(cm.exception))
+        self.assertNotIn("@", str(cm.exception))
+
+    def test_guard_removals_allows_up_to_the_cap(self):
+        invite.guard_removals([])
+        invite.guard_removals([{"id": str(i)} for i in range(invite.MAX_REMOVALS)])
+
+    def test_run_removes_and_sends_nothing_over_the_cap(self):
+        tagged = [{"id": f"usr-{i}"} for i in range(invite.MAX_REMOVALS + 1)]
+        calls = []
+        with mock.patch.object(invite, "LIVE_FROM", date(2026, 11, 11)),                 mock.patch.object(invite, "paginate", return_value=tagged),                 mock.patch.object(invite, "luma", side_effect=lambda *a, **k: calls.append(a) or {}),                 mock.patch.object(invite, "save_sent") as save,                 mock.patch.object(invite, "notify"):
+            with self.assertRaises(Problem):
+                invite.run(live=True, as_of="2026-11-17T10:05")
+        self.assertEqual(calls, [])
+        save.assert_not_called()
 
 
 class Report(unittest.TestCase):

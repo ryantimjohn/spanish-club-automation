@@ -36,6 +36,7 @@ Every day at 10:00 AM Eastern, a script:
 - **Late-made events:** an event created less than 6 days ahead is sent at the next 10 AM run, under the same rule.
 - **No double sends:** the event's guest list is the record. Anyone already on it in any status is skipped, so a rerun can't double-send. The script also keeps a small committed log of events (`luma-invites/sent.json`). An event is marked "sending" and pushed before its invites go out. If a run finds an event still marked "sending" (a crash mid-send), it doesn't resend and reports it instead.
 - **Fail closed:** if Luma's contact list or guest list comes back empty or errors, it sends nothing and reports the problem.
+- **Removal cap (added Nov 17, 2026, organizer's OK):** if more than 25 people are tagged `removed-from-group` at once, that looks like a mistake (say the Google Group sync misfires), so the run removes nobody, sends nothing and reports it. This stops one bad tagging from taking everyone off the calendar. Invites go out on the next run once the tag is fixed; a delayed event still catches up as long as it's more than 24 hours away.
 - **Send limit:** Luma Plus allows 5,000 invites a week once the calendar is verified (Settings → Send Limit). About 760 people × 3 events is about 2,300 a week. If Luma refuses a send, the log says so, and that event is retried at the next run.
 
 ## Modes, for setup and testing

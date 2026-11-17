@@ -21,6 +21,7 @@ Safety rules built in:
 - An event is marked "sending" in sent.json (and pushed) before its invites go out, so a crash
   can't cause a second send. A run that finds "sending" reports it instead of resending.
 - If Luma's contact list looks wrong (under MIN_CONTACTS people), nothing is sent.
+- If more than MAX_REMOVALS people are tagged at once, nobody is removed and nothing is sent.
 - Reports go to the "Luma invite log" issue, which GitHub emails to the owner. They hold counts,
   event names, dates and links only. This repository is public, so names and emails are never
   printed or saved. The Luma key is never printed or written to a file.
@@ -46,6 +47,8 @@ NOTE = ""               # Optional note on each invite (max 200 characters). Emp
 TAG = "removed-from-group"
 LIVE_FROM = date(2026, 11, 11)  # Go-live, with the organizer's OK on Nov 10, 2026. Set to None to stop sending.
 MIN_CONTACTS = 100      # Fewer contacts than this means Luma's answer looks wrong: send nothing.
+MAX_REMOVALS = 25       # More people tagged than this at once looks like a mistake: remove and send nothing
+                        # (organizer's OK, Nov 17, 2026).
 BATCH = 100             # Guests per send-invites call.
 MIN_LEAD = timedelta(hours=24)
 
@@ -103,6 +106,16 @@ def guard_contacts(contacts):
     if len(contacts) < MIN_CONTACTS:
         raise Problem(f"Luma returned only {len(contacts)} calendar contacts (expected at least "
                       f"{MIN_CONTACTS}), so nothing was sent to be safe.")
+
+
+def guard_removals(tagged):
+    """Stop the whole run if more people are tagged than one run may remove, so a mass tagging
+    (say the Google Group sync misfires) can't take everyone off the calendar."""
+    if len(tagged) > MAX_REMOVALS:
+        raise Problem(f"{len(tagged)} people are tagged {TAG} on Luma, more than the {MAX_REMOVALS} one run "
+                      "may remove. That looks like a mistake, so nobody was removed and no invites were sent. "
+                      f"Check the tag on Luma's People page: untag anyone who shouldn't have it, or remove the "
+                      f"rest there by hand. Invites go out on the next run once {MAX_REMOVALS} or fewer are tagged.")
 
 
 def nice(start_at):
@@ -256,6 +269,7 @@ def run(live, as_of=None):
     sent = load_sent()
 
     tagged = paginate(f"/v1/calendars/contacts/list?tags={urllib.parse.quote(TAG)}")
+    guard_removals(tagged)
     removed_ids = {c["id"] for c in tagged}
     for c in tagged:
         if not live:
