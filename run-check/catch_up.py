@@ -239,7 +239,7 @@ def main(argv=None):
         ("Eventbrite", "eventbrite.yml", "sync-now",
          lambda r: sync_job("Eventbrite", now, eventbrite, r, "not switched on.")),
         ("Meetup", "meetup.yml", "sync-now",
-         lambda r: sync_job("Meetup", now, meetup, r, "off until Meetup approves the API.")),
+         lambda r: sync_job("Meetup", now, meetup, r, "not switched on.")),
     ]
     report, needs, started, broken = [], [], [], False
     for label, file, action, check in jobs:

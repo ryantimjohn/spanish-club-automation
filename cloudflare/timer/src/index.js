@@ -19,7 +19,7 @@ export const SCHEDULE = [
   { workflow: "luma-invites.yml", action: "send-due", days: DAILY, times: ["10:07", "12:07", "15:07"] },
   { workflow: "discord.yml", action: "post-due", days: FRIDAY, times: ["09:07", "10:07", "12:07"] },
   { workflow: "eventbrite.yml", action: "sync-now", days: DAILY, times: ["10:37"] },
-  { workflow: "meetup.yml", action: "sync-now", days: DAILY, times: ["10:37"] }, // off until LIVE_FROM is set
+  { workflow: "meetup.yml", action: "sync-now", days: DAILY, times: ["10:37"] }, // live since Nov 17, 2026
 ];
 
 const EASTERN = new Intl.DateTimeFormat("en-US", {

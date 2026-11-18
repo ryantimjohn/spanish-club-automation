@@ -8,7 +8,7 @@ GitHub's own schedule ran hours late, or not at all, on Nov 11 to 13, 2026. A jo
 | Luma invites (`send-due`) | 10:07 AM, 12:07 PM, 3:07 PM |
 | Discord (`post-due`) | Fridays 9:07 AM, 10:07 AM, 12:07 PM |
 | Eventbrite (`sync-now`) | 10:37 AM |
-| Meetup (`sync-now`) | 10:37 AM (does nothing until Meetup's `LIVE_FROM` is set) |
+| Meetup (`sync-now`) | 10:37 AM (live since Nov 17, 2026) |
 
 There are three backups:
 - **GitHub's own schedules** still run, late. The extra runs are harmless, and Eventbrite and Meetup skip once that day's sync has run.

@@ -55,8 +55,8 @@ JOBS = [
         "sends Luma invites for events 6 days out; sends on the first run at or after 10 AM, and runs go on hourly "
         "until about 6 PM"),
     Job("Meetup", "meetup.yml", DAILY, time(6), time(12),
-        "copies Luma events to Meetup (off until Meetup approves the API); the first scheduled run that works each "
-        "day syncs, and later ones that day do nothing"),
+        "copies Luma events to Meetup (live since Nov 17, 2026); the first scheduled run that works each day syncs, "
+        "and later ones that day do nothing"),
     Job("Eventbrite", "eventbrite.yml", DAILY, time(6), time(12),
         "copies Luma events to Eventbrite; the first scheduled run that works each day syncs, and later ones that "
         "day do nothing"),
