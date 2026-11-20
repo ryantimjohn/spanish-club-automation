@@ -78,7 +78,10 @@ IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
 RUPLOAD_HOST = "rupload.facebook.com"
 
 # Facebook Page. Its own key: FACEBOOK_ACCESS_TOKEN, a system-user token of the "Spanish Club Page Poster" app.
-FB_LIVE_FROM = date(2026, 11, 20)  # first Friday posted to the Page (organizer's OK after the Nov 11 sample). None = off.
+# Paused Nov 20, 2026 (organizer's OK): Meta restricted the club's business portfolio on Nov 12 and removed the
+# Page poster app, so its key is dead. Was date(2026, 11, 20). Set a future Friday again once Meta's review is done
+# and the app (or a new one) and its key work again.
+FB_LIVE_FROM = None  # first Friday posted to the Page. None = off.
 FB_PAGE_ID = "1349858851551538"  # the club's Page (not secret), made Nov 11, 2026
 FB_PAGE_NAME = "Spanish Club for Socialists"  # checked before every post
 FB_NEEDED_SCOPES = {"pages_show_list", "pages_read_engagement", "pages_manage_posts"}
