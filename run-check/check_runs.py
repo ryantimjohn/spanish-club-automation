@@ -30,7 +30,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 WORKFLOWS = ROOT / ".github" / "workflows"
 TIMER_JS = ROOT / "cloudflare" / "timer" / "src" / "index.js"
 TIMER_FROM = date(2026, 11, 16)  # the timer's current times are live from this day (it started Nov 13 with fewer)
-TIMER_GRACE = timedelta(minutes=10)  # a "Run workflow" start this soon after a timer time is the timer's
+TIMER_GRACE = timedelta(minutes=5)  # the first "Run workflow" start this soon after a timer time is the timer's
 DAILY = frozenset(range(7))  # Monday is 0
 
 
@@ -160,12 +160,13 @@ def judge(job, runs, day, now):
     deadline = datetime.combine(day, job.deadline, TZ)
     mine = sorted((r for r in runs if eastern(r["created_at"]).date() == day), key=lambda r: r["created_at"])
     sched = [r for r in mine if r["event"] == "schedule"]
-    # The timer's starts are "Run workflow" starts within a few minutes after one of its times.
+    # The timer's start is the first "Run workflow" start within a few minutes after one of its times
+    # (it lands about 50 seconds after). Any later start in that window was by hand or by the check-in.
     tslots, timer, hit = timer_slots(job, day), [], set()
     for r in mine:
         t = eastern(r["created_at"])
         s = next((s for s in tslots if s <= t < s + TIMER_GRACE), None)
-        if r["event"] == "workflow_dispatch" and s is not None:
+        if r["event"] == "workflow_dispatch" and s is not None and s not in hit:
             timer.append(r)
             hit.add(s)
     missed = [s for s in tslots if s not in hit and s + TIMER_GRACE <= now]

@@ -160,6 +160,23 @@ class JudgeWithTimer(unittest.TestCase):
         self.assertIn("1 started by hand or by the check-in", d)
         self.assertIn("timer missed 10:37 AM", d)
 
+    def test_a_hand_run_just_after_the_timer_is_not_the_timer(self):
+        # Fri Nov 20: the timer started Instagram at 9:07, and someone started it by hand at 9:10.
+        runs = [run("2026-11-20T13:07:49Z", event="workflow_dispatch"),
+                run("2026-11-20T14:07:49Z", event="workflow_dispatch", conclusion="failure"),
+                run("2026-11-20T14:10:48Z", event="workflow_dispatch", conclusion="failure")]
+        s, d = cr.judge(JOB["Instagram"], runs, FRI2, datetime(2026, 11, 20, 9, 27, tzinfo=cr.TZ))
+        self.assertEqual(s, "OK, with failures")
+        self.assertIn("timer started it at: 8:07 AM, 9:07 AM;", d)
+        self.assertIn("1 started by hand or by the check-in", d)
+        self.assertIn("1 failed", d)
+
+    def test_a_start_6_minutes_late_is_not_the_timer(self):
+        runs = [run("2026-11-19T15:13:00Z", event="workflow_dispatch")]
+        s, d = cr.judge(JOB["Luma invites"], runs, THU2, datetime(2026, 11, 19, 10, 30, tzinfo=cr.TZ))
+        self.assertIn("timer missed 10:07 AM", d)
+        self.assertIn("1 started by hand or by the check-in", d)
+
     def test_github_schedule_still_counts(self):
         runs = [run("2026-11-19T15:37:48Z", event="workflow_dispatch"), run("2026-11-19T21:27:00Z")]
         s, d = cr.judge(JOB["Meetup"], runs, THU2, datetime(2026, 11, 19, 17, 0, tzinfo=cr.TZ))
