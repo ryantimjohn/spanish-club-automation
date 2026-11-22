@@ -15,6 +15,10 @@ each thing only once, so starting one never double-posts. From 1 PM, or whenever
 organizer, it also sends the summary to the "Daily check-in" issue through the "Check-in note"
 workflow. That comment comes from GitHub's bot, so GitHub emails it to the owner.
 
+It also reads the "Instagram log" and "Facebook log" issues. If Meta refused the club's app key there
+(code 190, or the app deleted or not live) and nothing has posted since, it says so plainly, so the
+organizer knows to look at the Spanish Club Poster app.
+
 Exit code 0 means everything due went out (or is on its way), 1 means something needs the organizer,
 and 2 means it couldn't check.
 """
@@ -22,6 +26,7 @@ import argparse
 import importlib.util
 import json
 import pathlib
+import re
 import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
@@ -207,6 +212,67 @@ def sync_job(label, now, mod, runs, note_off):
     return [f"{label}: not synced yet today."], not failed, needs
 
 
+# ---- Meta app errors ---------------------------------------------------------------------
+# Instagram and Facebook both post through one Meta app, "Spanish Club Poster". When Meta refuses its
+# key (the app deleted or not live, or the key expired), the jobs comment FAILED with Meta's error on
+# their log issues. The usual lines would only say "hasn't posted" or "missed", so this says why.
+
+META_LOGS = {"Instagram": ("Instagram log", "Posted:"), "Facebook": ("Facebook log", "Posted on Facebook:")}
+BOT = "github-actions[bot]"  # the repo is public, so only the jobs' own comments count
+META_APP_ERROR = re.compile(
+    r'"code"\s*:\s*190\b|application has been deleted|error validating (application|access token)|not live', re.I)
+
+
+def meta_app_error(body):
+    """Meta's message when a FAILED notice is a Meta app or key error, else None."""
+    if "FAILED" not in body or not META_APP_ERROR.search(body):
+        return None
+    m = re.search(r'"message"\s*:\s*"([^"]+)"', body)
+    return m.group(1) if m else "Meta refused the app's key"
+
+
+def meta_problems(logs, now):
+    """Needs-you lines for each Meta app error that no post has gone through since.
+    logs: "Instagram" or "Facebook" -> that log issue's recent comments, oldest first."""
+    needs = []
+    for label, comments in logs.items():
+        posted, problem = META_LOGS[label][1], None
+        for c in comments:
+            if (c.get("user") or {}).get("login") != BOT:
+                continue
+            body = c.get("body", "")
+            msg = meta_app_error(body)
+            if msg:
+                problem = (msg, et(c["created_at"]))
+            elif posted in body:
+                problem = None
+        if problem:
+            msg, at = problem
+            needs.append(f'{label}: Meta refused the app\'s key at {clock_on(at, now)} ("{msg}"). Check that the '
+                         "Spanish Club Poster app is still Live at developers.facebook.com, and that its key works.")
+    return needs
+
+
+def meta_log_comments(now):
+    """The Instagram and Facebook log issues' comments since 6 PM yesterday (so last night's Stories
+    count too), oldest first."""
+    since = (datetime.combine(now.date(), datetime.min.time(), TZ) - timedelta(hours=6)).astimezone(timezone.utc)
+    out = sh(["gh", "api", f"repos/{REPO_NAME}/issues?state=open&per_page=100", "--jq", "[.[] | {number, title}]"])
+    if out.returncode != 0:
+        raise RuntimeError(f"gh api failed for the log issues: {out.stderr.strip()[:200]}")
+    numbers = {i["title"]: i["number"] for i in json.loads(out.stdout or "[]")}
+    logs = {}
+    for label, (title, _) in META_LOGS.items():
+        if title not in numbers:
+            continue
+        out = sh(["gh", "api", f"repos/{REPO_NAME}/issues/{numbers[title]}/comments"
+                               f"?since={since:%Y-%m-%dT%H:%M:%SZ}&per_page=100"])
+        if out.returncode != 0:
+            raise RuntimeError(f"gh api failed for the {title} issue: {out.stderr.strip()[:200]}")
+        logs[label] = json.loads(out.stdout or "[]")
+    return logs
+
+
 # ---- starting jobs and sending the note ---------------------------------------------------
 
 def start(file, action):
@@ -261,6 +327,11 @@ def main(argv=None):
                 needs.append(f"{label}: something is due but the check-in couldn't start the job: {msg}")
         elif pending:
             report.append(f"{label}: would start {action} (run with --auto).")
+    try:
+        needs += meta_problems(meta_log_comments(now), now)
+    except Exception as e:  # noqa: BLE001 - report and keep going
+        report.append(f"Meta app check: COULDN'T CHECK ({str(e)[:200]})")
+        broken = True
 
     head = f"Check-in for {now:%a %b %d} at {clock(now)} Eastern"
     text = "\n".join([head] + [f"- {line}" for line in report]

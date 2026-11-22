@@ -154,5 +154,51 @@ class Sync(unittest.TestCase):
         self.assertFalse(cu.busy([self.run_("success")]))
 
 
+FRI20_0930 = datetime(2026, 11, 20, 9, 30, tzinfo=TZ)
+# The notice the Facebook step left on Nov 20, when the old Page Poster app was deleted.
+APP_DELETED = ('@ryantimjohn FAILED (facebook): GET https://graph.facebook.com/v27.0/1349858851551538 failed (400): '
+               '{"error":{"message":"Error validating application. Application has been deleted.",'
+               '"type":"OAuthException","code":190,"fbtrace_id":"AztAouWxHq4tqcT5uVVe-L7"}}')
+
+
+def comment(body, at="2026-11-20T14:10:03Z", login="github-actions[bot]"):
+    return {"user": {"login": login}, "body": body, "created_at": at}
+
+
+class MetaApp(unittest.TestCase):
+    def test_app_error_is_said_plainly(self):
+        needs = cu.meta_problems({"Facebook": [comment(APP_DELETED)]}, FRI20_0930)
+        self.assertEqual(len(needs), 1)
+        self.assertIn("Facebook", needs[0])
+        self.assertIn("Application has been deleted", needs[0])
+        self.assertIn("9:10 AM", needs[0])
+        self.assertIn("Spanish Club Poster", needs[0])
+        self.assertIn("developers.facebook.com", needs[0])
+
+    def test_a_later_post_clears_it(self):
+        posted = comment("@ryantimjohn Posted on Facebook: Weekly carousel: Nov 23. https://facebook.com/x",
+                         at="2026-11-20T15:10:00Z")
+        self.assertEqual(cu.meta_problems({"Facebook": [comment(APP_DELETED), posted]}, FRI20_0930), [])
+
+    def test_only_the_posting_bot_counts(self):
+        # The repo is public, so anyone could comment a fake error on the log issue.
+        fake = comment(APP_DELETED, login="someone")
+        self.assertEqual(cu.meta_problems({"Facebook": [fake]}, FRI20_0930), [])
+
+    def test_other_errors_are_left_to_the_usual_lines(self):
+        other = ('@ryantimjohn FAILED: Weekly carousel wasn\'t posted. Details: POST .../media failed (400): '
+                 '{"error":{"message":"(#100) Invalid parameter","type":"OAuthException","code":100}}')
+        self.assertEqual(cu.meta_problems({"Instagram": [comment(other)]}, FRI20_0930), [])
+
+    def test_instagram_app_not_live(self):
+        body = ('@ryantimjohn FAILED (run): GET https://graph.facebook.com/v27.0/me failed (400): '
+                '{"error":{"message":"App not live: this app is in development mode.","type":"OAuthException",'
+                '"code":190}}')
+        needs = cu.meta_problems({"Instagram": [comment(body, at="2026-11-20T02:07:50Z")]}, FRI20_0930)
+        self.assertEqual(len(needs), 1)
+        self.assertTrue(needs[0].startswith("Instagram: "))
+        self.assertIn("9:07 PM yesterday", needs[0])
+
+
 if __name__ == "__main__":
     unittest.main()
