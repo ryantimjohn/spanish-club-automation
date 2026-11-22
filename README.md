@@ -70,7 +70,9 @@ The same Instagram workflow also posts the Friday post to the club's Facebook Pa
 
 **How you'll hear about it:** a comment on the **"Facebook log"** issue after every post, skip or problem.
 
-**Secret:** `FACEBOOK_ACCESS_TOKEN`, a system-user token of the club's second Meta app, "Spanish Club Page Poster" (Live mode, since Meta hides posts made by apps in Development mode). Permissions: `pages_show_list`, `pages_read_engagement`, `pages_manage_posts`, `business_management`. The Page's own token is fetched with it at each run and never saved. Each Sunday, once it's switched on, the workflow checks the key without posting. The app's privacy policy is `PRIVACY.md`.
+**Secret:** `FACEBOOK_ACCESS_TOKEN`, a system-user token of the club's Meta app "Spanish Club Poster", the same app Instagram uses. It's a separate key from `INSTAGRAM_ACCESS_TOKEN`. The app has been in Live mode since Nov 22, 2026, because Meta hides posts made by apps in Development mode from everyone but the app's admins. Permissions: `pages_show_list`, `pages_read_engagement`, `pages_manage_posts`, `business_management`. The Page's own token is fetched with it at each run and never saved. Each Sunday, once it's switched on, the workflow checks the key without posting. The app's privacy policy is `PRIVACY.md`.
+
+(History: the first Page app, "Spanish Club Page Poster", was removed when Meta restricted the club's business portfolio on Nov 12, 2026. Meta reinstated the portfolio on Nov 22, but not that app. Avoid making new Meta apps, and avoid quick post-and-delete cycles through the API.)
 
 **Running it by hand (Actions → Instagram → Run workflow):**
 - `test`: shows what's due right now for Instagram and Facebook. Posts nothing.
