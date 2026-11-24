@@ -23,6 +23,8 @@
  "evt-oqgwamDUq2aXg1I": {
   "at": "2026-11-24T10:07-05:00",
   "event": "2026-11-24",
-  "status": "sending"
+  "invited": 772,
+  "skipped": 0,
+  "status": "sent"
  }
 }
