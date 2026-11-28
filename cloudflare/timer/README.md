@@ -9,10 +9,11 @@ GitHub's own schedule ran hours late, or not at all, on Nov 11 to 13, 2026. A jo
 | Discord (`post-due`) | Fridays 9:07 AM, 10:07 AM, 12:07 PM |
 | Eventbrite (`sync-now`) | 10:37 AM |
 | Meetup (`sync-now`) | 10:37 AM (live since Nov 17, 2026) |
+| Check-in (`check`) | 9:37 AM, 11:37 AM, 1:37 PM (since Nov 28, 2026) |
 
 There are three backups:
 - **GitHub's own schedules** still run, late. The extra runs are harmless, and Eventbrite and Meetup skip once that day's sync has run.
-- **The daily check-in** (`run-check/catch_up.py`) runs on the organizer's computer at 9:30 AM, 11:30 AM and 1:30 PM. It starts anything that still hasn't gone out, including a night Story that didn't post the evening before.
+- **The daily check-in** (`run-check/catch_up.py`) runs on GitHub as the Check-in workflow, which this timer starts at 9:37 AM, 11:37 AM and 1:37 PM, with GitHub's own schedule as a late backup. It starts anything that still hasn't gone out, including a night Story that didn't post the evening before. It also warns if this timer's last two Instagram starts didn't happen, so a stopped timer gets noticed. Until Nov 28, 2026 it ran on the organizer's computer.
 - **The Sunday Instagram key check** stays on GitHub's schedule.
 
 ## The GitHub key
