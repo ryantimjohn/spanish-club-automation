@@ -1,0 +1,67 @@
+# The daily check-in (run-check/catch_up.py), on GitHub so it doesn't need the organizer's computer
+# (organizer's OK, Nov 28, 2026). It reads what each job posted or sent today, starts any job that
+# missed (organizer's OK, Nov 13, 2026), and says plainly when Meta refuses the app's key or the
+# Cloudflare timer seems to have stopped. From 1 PM, or whenever something needs the organizer, it
+# comments the summary on the "Daily check-in" issue through the "Check-in note" workflow, and GitHub
+# emails that comment.
+#
+# The Cloudflare timer (cloudflare/timer) starts it at 9:37 AM, 11:37 AM and 1:37 PM Eastern.
+# GitHub's own schedule below is a backup, and often runs late. Extra runs are harmless: a job is only
+# started when something due hasn't gone out and no run of it is already going.
+#
+# Run it by hand: Actions -> Check-in -> Run workflow -> report (changes nothing) or check (live).
+
+name: Check-in
+
+on:
+  schedule:
+    - cron: "45 14,16,18 * * *"   # backup: about 9:45 AM, 11:45 AM and 1:45 PM Eastern (an hour later in summer)
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        type: choice
+        options: [report, check]
+        default: report
+
+permissions:
+  actions: write    # read today's runs, start a job that missed, and start the "Check-in note" workflow
+  contents: read
+  issues: read      # read the Instagram and Facebook log issues
+
+concurrency:
+  group: checkin
+  cancel-in-progress: false
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test the logic
+        run: python -X utf8 -m unittest run-check/test_catch_up.py run-check/test_check_runs.py
+
+      - name: Check-in
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LUMA_API_KEY: ${{ secrets.LUMA_API_KEY }}
+          EVENT: ${{ github.event_name }}
+          ACTION: ${{ inputs.action }}
+        run: |
+          set +e
+          if [ "$EVENT" = "schedule" ] || [ "$ACTION" = "check" ]; then
+            python -X utf8 run-check/catch_up.py --auto
+          else
+            python -X utf8 run-check/catch_up.py
+          fi
+          code=$?
+          # 1 = something needs the organizer: the note says so, so the run itself stays green.
+          # 2 = it couldn't check part of it: the run fails, so GitHub flags it too.
+          if [ "$code" -eq 2 ]; then exit 1; fi
+          exit 0

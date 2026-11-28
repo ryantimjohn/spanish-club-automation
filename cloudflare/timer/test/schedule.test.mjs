@@ -30,6 +30,13 @@ test("9 PM night Stories: Instagram at 9:07, 9:37 and 10:07 PM", () => {
   assert.deepEqual(names("2026-07-07T01:07:00Z"), ["instagram.yml post-due"]); // Mon 9:07 PM, summer
 });
 
+test("the check-in at 9:37 AM, 11:37 AM and 1:37 PM", () => {
+  assert.deepEqual(names("2026-11-24T14:37:00Z"), ["checkin.yml check"]); // Tue 9:37 AM, winter
+  assert.deepEqual(names("2026-11-24T16:37:00Z"), ["checkin.yml check"]);
+  assert.deepEqual(names("2026-11-24T18:37:00Z"), ["checkin.yml check"]);
+  assert.deepEqual(names("2026-07-07T13:37:00Z"), ["checkin.yml check"]); // Tue 9:37 AM, summer
+});
+
 test("nothing overnight or in the early evening", () => {
   assert.deepEqual(names("2026-11-13T07:07:00Z"), []);
   assert.deepEqual(names("2026-11-14T01:07:00Z"), []); // 8:07 PM Eastern

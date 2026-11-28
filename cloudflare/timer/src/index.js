@@ -20,6 +20,8 @@ export const SCHEDULE = [
   { workflow: "discord.yml", action: "post-due", days: FRIDAY, times: ["09:07", "10:07", "12:07"] },
   { workflow: "eventbrite.yml", action: "sync-now", days: DAILY, times: ["10:37"] },
   { workflow: "meetup.yml", action: "sync-now", days: DAILY, times: ["10:37"] }, // live since Nov 17, 2026
+  // The daily check-in (run-check/catch_up.py) runs on GitHub, so it doesn't need the organizer's computer.
+  { workflow: "checkin.yml", action: "check", days: DAILY, times: ["09:37", "11:37", "13:37"] },
 ];
 
 const EASTERN = new Intl.DateTimeFormat("en-US", {

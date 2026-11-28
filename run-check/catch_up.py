@@ -1,9 +1,12 @@
 """The daily check-in: did what should have gone out today go out? It starts what GitHub missed.
 
-GitHub's schedule ran hours late or not at all on Nov 11-13, 2026, so this runs on the organizer's
-computer at about 9:30 AM, 11:30 AM and 1:30 PM Eastern. For each job it reads the job's own record
-on GitHub (what was posted or sent), works out what was due by now, and reports it with links. For
-Instagram that includes last night's 9 PM Stories, which can still go out the next morning if missed.
+GitHub's schedule ran hours late or not at all on Nov 11-13, 2026. So since Nov 28 this runs on GitHub
+(the "Check-in" workflow, .github/workflows/checkin.yml), started by the Cloudflare timer at 9:37 AM,
+11:37 AM and 1:37 PM Eastern; before, it ran on the organizer's computer. For each job it reads the
+job's own record on GitHub (what was posted or sent), works out what was due by now, and reports it
+with links. For Instagram that includes last night's 9 PM Stories, which can still go out the next
+morning if missed. It also warns when the Cloudflare timer seems to have stopped, since then neither
+the jobs nor this check-in start on time.
 
     python -I -X utf8 run-check/catch_up.py           # report only; changes nothing
     python -I -X utf8 run-check/catch_up.py --auto    # also start missed jobs and send the summary
@@ -273,6 +276,26 @@ def meta_log_comments(now):
     return logs
 
 
+# ---- the Cloudflare timer ----------------------------------------------------------------
+# The timer starts the jobs and this check-in. If it stops, GitHub's late backup schedule may still
+# start the check-in, so the check-in says so. Instagram has the most timer times (hourly from 8:07 AM),
+# so it's the one looked at: if its last two timer starts due by now both didn't happen, the timer
+# looks stopped. One missed start alone isn't reported.
+
+def timer_problem(now, runs, cr):
+    """A needs-you line if the timer looks stopped. runs: today's instagram.yml runs (gh run list);
+    cr: run-check/check_runs.py, which reads the timer's times."""
+    job = next(j for j in cr.JOBS if j.file == "instagram.yml")
+    due = [s for s in cr.timer_slots(job, now.date()) if s + cr.TIMER_GRACE <= now][-2:]
+    if not due:
+        return []
+    starts = [et(r["createdAt"]) for r in runs if r["event"] == "workflow_dispatch"]
+    if any(s <= t < s + cr.TIMER_GRACE for s in due for t in starts):
+        return []
+    return [f"The Cloudflare timer didn't start Instagram at {' or '.join(clock(s) for s in due)}, so it may have "
+            "stopped. Check the spanish-club-timer Worker on Cloudflare (Workers > spanish-club-timer > Logs)."]
+
+
 # ---- starting jobs and sending the note ---------------------------------------------------
 
 def start(file, action):
@@ -307,10 +330,10 @@ def main(argv=None):
         ("Meetup", "meetup.yml", "sync-now",
          lambda r: sync_job("Meetup", now, meetup, r, "not switched on.")),
     ]
-    report, needs, started, broken = [], [], [], False
+    report, needs, started, broken, todays = [], [], [], False, {}
     for label, file, action, check in jobs:
         try:
-            runs = runs_today(file, now)
+            runs = todays[file] = runs_today(file, now)
             lines, pending, need = check(runs)
         except Exception as e:  # noqa: BLE001 - report and keep going
             report.append(f"{label}: COULDN'T CHECK ({str(e)[:200]})")
@@ -331,6 +354,12 @@ def main(argv=None):
         needs += meta_problems(meta_log_comments(now), now)
     except Exception as e:  # noqa: BLE001 - report and keep going
         report.append(f"Meta app check: COULDN'T CHECK ({str(e)[:200]})")
+        broken = True
+    try:
+        cr = load_module("check_runs", "run-check/check_runs.py")
+        needs += timer_problem(now, todays.get("instagram.yml") or runs_today("instagram.yml", now), cr)
+    except Exception as e:  # noqa: BLE001 - report and keep going
+        report.append(f"Timer check: COULDN'T CHECK ({str(e)[:200]})")
         broken = True
 
     head = f"Check-in for {now:%a %b %d} at {clock(now)} Eastern"

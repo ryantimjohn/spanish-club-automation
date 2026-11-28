@@ -42,6 +42,7 @@ class Job:
     start: time       # Eastern: a run before this does nothing useful (the script checks the hour)
     deadline: time    # Eastern: a run must have started by now to count as on time
     does: str
+    since: date = date(2026, 11, 1)  # days before this aren't judged (the job didn't run then)
 
 
 # Each job's useful window, from the scripts' own time checks. Keep in step with the workflows.
@@ -63,6 +64,10 @@ JOBS = [
     Job("Discord", "discord.yml", frozenset({4}), time(9), time(12),
         "posts next week's events in Discord on Fridays; posts on the first run at or after 9 AM, and runs go on "
         "hourly until about 6 PM"),
+    Job("Check-in", "checkin.yml", DAILY, time(9, 30), time(12),
+        "is the daily check-in (run-check/catch_up.py), on GitHub since Nov 28, 2026: it checks what went out, starts "
+        "any job that missed, and from 1 PM comments a summary on the Daily check-in issue, which GitHub emails",
+        since=date(2026, 11, 29)),  # live the afternoon of Nov 28, so judged from the first full day
 ]
 
 
@@ -136,7 +141,7 @@ def timer_schedule():
 
 def timer_slots(job, day):
     """The times (Eastern) the Cloudflare timer starts the job on that day."""
-    if day < TIMER_FROM:
+    if day < max(TIMER_FROM, job.since):
         return []
     days, times = timer_schedule().get(job.file, (frozenset(), []))
     return [datetime.combine(day, t, TZ) for t in times] if day.weekday() in days else []
@@ -156,6 +161,8 @@ def judge(job, runs, day, now):
     started by hand or by the check-in are only noted."""
     if day.weekday() not in job.days:
         return "OFF", "not a run day"
+    if day < job.since:
+        return "OFF", f"not running until {job.since:%b %d}"
     start = datetime.combine(day, job.start, TZ)
     deadline = datetime.combine(day, job.deadline, TZ)
     mine = sorted((r for r in runs if eastern(r["created_at"]).date() == day), key=lambda r: r["created_at"])

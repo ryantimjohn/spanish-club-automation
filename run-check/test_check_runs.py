@@ -183,6 +183,15 @@ class JudgeWithTimer(unittest.TestCase):
         self.assertEqual(s, "OK")
         self.assertIn("GitHub's schedule ran at: 4:27 PM", d)
 
+    def test_the_check_in_is_judged_from_the_day_it_moved_to_github(self):
+        sat = date(2026, 11, 28)  # it went live that afternoon, so the first full day is Sunday
+        self.assertEqual(cr.judge(JOB["Check-in"], [], sat, datetime(2026, 11, 28, 15, 0, tzinfo=cr.TZ))[0], "OFF")
+        self.assertEqual(cr.timer_slots(JOB["Check-in"], sat), [])
+        sun = date(2026, 11, 29)
+        self.assertEqual(hhmm(cr.timer_slots(JOB["Check-in"], sun)), ["09:37", "11:37", "13:37"])
+        runs = [run("2026-11-29T14:37:49Z", event="workflow_dispatch")]
+        self.assertEqual(cr.judge(JOB["Check-in"], runs, sun, datetime(2026, 11, 29, 10, 0, tzinfo=cr.TZ))[0], "OK")
+
     def test_which_statuses_need_a_look(self):
         for s in ("OK", "RUNNING", "WAITING", "OFF"):
             self.assertFalse(cr.needs_look(s), s)

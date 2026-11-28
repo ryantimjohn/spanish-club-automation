@@ -154,6 +154,47 @@ class Sync(unittest.TestCase):
         self.assertFalse(cu.busy([self.run_("success")]))
 
 
+_crspec = importlib.util.spec_from_file_location("check_runs", pathlib.Path(__file__).resolve().parent / "check_runs.py")
+CR = importlib.util.module_from_spec(_crspec)
+_crspec.loader.exec_module(CR)
+
+
+def started(utc):
+    return {"event": "workflow_dispatch", "status": "completed", "conclusion": "success", "createdAt": utc}
+
+
+class TimerDown(unittest.TestCase):
+    """The check-in runs on GitHub, started by the timer, so it says so when the timer seems to have stopped."""
+
+    def at(self, hour, minute):
+        return datetime(2026, 11, 26, hour, minute, tzinfo=TZ)
+
+    def test_timer_working(self):
+        self.assertEqual(cu.timer_problem(self.at(9, 45), [started("2026-11-26T14:07:49Z")], CR), [])
+
+    def test_nothing_due_yet(self):
+        self.assertEqual(cu.timer_problem(self.at(8, 0), [], CR), [])
+
+    def test_no_start_today(self):
+        needs = cu.timer_problem(self.at(9, 45), [], CR)
+        self.assertEqual(len(needs), 1)
+        self.assertIn("Cloudflare timer", needs[0])
+        self.assertIn("9:07 AM", needs[0])
+        self.assertIn("spanish-club-timer", needs[0])
+
+    def test_stopped_after_the_morning(self):
+        runs = [started("2026-11-26T13:07:49Z"), started("2026-11-26T14:07:49Z")]  # 8:07 and 9:07 only
+        self.assertEqual(len(cu.timer_problem(self.at(13, 45), runs, CR)), 1)
+
+    def test_one_missed_start_is_not_enough(self):
+        runs = [started("2026-11-26T17:07:49Z")]  # 12:07 ran, 1:07 didn't
+        self.assertEqual(cu.timer_problem(self.at(13, 45), runs, CR), [])
+
+    def test_a_hand_start_is_not_the_timer(self):
+        runs = [started("2026-11-26T14:20:00Z")]  # 9:20 AM, by hand
+        self.assertEqual(len(cu.timer_problem(self.at(9, 45), runs, CR)), 1)
+
+
 FRI20_0930 = datetime(2026, 11, 20, 9, 30, tzinfo=TZ)
 # The notice the Facebook step left on Nov 20, when the old Page Poster app was deleted.
 APP_DELETED = ('@ryantimjohn FAILED (facebook): GET https://graph.facebook.com/v27.0/1349858851551538 failed (400): '
